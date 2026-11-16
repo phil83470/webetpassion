@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jardin Clair — Paysagiste · Démo Site Essentiel (3 pages)</title>
+  <meta name="description" content="Prototype de démonstration pour le forfait Site Essentiel de Web & Passion. Exemple de site vitrine 3 pages pour Jardin Clair, paysagiste et aménagements extérieurs.">
+
+  <!-- Typographies Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================
+       VARIABLES ET DESIGN SYSTEM "JARDIN CLAIR"
+       Ambiance nature, terre vivante, bois et vert forêt
+       ========================================================== */
+    :root {
+      --font-serif: 'Fraunces', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+      --bg-nature: #f6f8f5;
+      --bg-card: #ffffff;
+      --bg-card-alt: #edf3ec;
+      
+      --color-primary: #295738;        /* Vert forêt profond */
+      --color-primary-dark: #1b3d26;   /* Sous-bois dense */
+      --color-primary-light: #d8eada;  /* Feuillage frais */
+      --color-accent: #b87a3b;         /* Terre cuite / chêne doré */
+
+      --text-main: #1f2b22;
+      --text-muted: #5b695f;
+      --border-subtle: #d7e3d9;
+
+      --shadow-sm: 0 4px 14px rgba(27, 61, 38, 0.05);
+      --shadow-md: 0 12px 30px rgba(27, 61, 38, 0.08);
+      --shadow-hover: 0 20px 40px rgba(27, 61, 38, 0.12);
+
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-nature);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* BANDEAU DÉMO */
+    .demo-bar {
+      background: #17241b;
+      color: #e5ede7;
+      padding: 0.65rem 1.2rem;
+      font-size: 0.85rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .demo-bar-inner {
+      max-width: 1140px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .demo-bar-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+    }
+
+    .demo-tag {
+      background: var(--color-primary);
+      color: #fff;
+      padding: 0.15rem 0.6rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .demo-back-link {
+      color: #d6e5da;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.8rem;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.08);
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .demo-back-link:hover {
+      background: rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+    }
+
+    /* EN-TÊTE */
+    .site-header {
+      max-width: 1140px;
+      margin: auto;
+      padding: 1.6rem 1.5rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .brand-symbol {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--color-primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      line-height: 1.1;
+    }
+
+    .brand-tagline {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--color-accent);
+      font-weight: 700;
+      display: block;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .site-nav a:hover {
+      color: var(--color-primary);
+    }
+
+    .nav-badge-page {
+      font-size: 0.75rem;
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      margin-left: 0.2rem;
+    }
+
+    .site-nav a.nav-cta {
+      background: var(--color-primary);
+      color: #ffffff;
+      padding: 0.55rem 1.25rem;
+      border-radius: var(--radius-pill);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .site-nav a.nav-cta:hover {
+      background: var(--color-primary-dark);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* CONTAINER */
+    .site-container {
+      max-width: 1140px;
+      margin: auto;
+      padding: 1rem 1.5rem 3.5rem;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #ffffff 0%, #eaf2eb 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: clamp(2.2rem, 6vw, 4.5rem);
+      margin: 1.5rem 0 3.5rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--color-primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.85rem;
+      background: var(--color-primary-light);
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-pill);
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      line-height: 1.08;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      margin-bottom: 1.2rem;
+      max-width: 820px;
+    }
+
+    .hero-lead {
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      color: var(--text-muted);
+      max-width: 660px;
+      line-height: 1.6;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.65rem;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(41, 87, 56, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--color-primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(41, 87, 56, 0.35);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--color-primary-dark);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+
+    .hero-badges {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.2rem;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1.8rem;
+    }
+
+    .hero-badge-box {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-badge-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .hero-badge-text strong {
+      display: block;
+      font-size: 0.88rem;
+      color: var(--color-primary-dark);
+    }
+
+    .hero-badge-text span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* SECTION TITLES */
+    .section-head {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 2.8rem;
+    }
+
+    .section-head h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 2.7rem);
+      color: var(--color-primary-dark);
+      margin-bottom: 0.6rem;
+      font-weight: 700;
+    }
+
+    .section-head p {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+    }
+
+    /* RUBRIQUES (PAGE 2 : SERVICES) */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 1.8rem;
+      margin-bottom: 4rem;
+    }
+
+    .service-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 2.2rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .service-icon-box {
+      width: 50px;
+      height: 50px;
+      background: var(--color-primary-light);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .service-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.6rem;
+      font-weight: 700;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+      margin-bottom: 1.2rem;
+      flex-grow: 1;
+    }
+
+    .service-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      font-size: 0.85rem;
+      color: var(--text-main);
+      border-top: 1px dashed var(--border-subtle);
+      padding-top: 1rem;
+    }
+
+    /* METHODE DE TRAVAIL */
+    .workflow-section {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: clamp(2rem, 5vw, 3.8rem);
+      margin-bottom: 4rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .workflow-step {
+      background: var(--bg-card-alt);
+      padding: 1.6rem;
+      border-radius: var(--radius-md);
+      position: relative;
+    }
+
+    .step-num {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .workflow-step h4 {
+      font-size: 1.05rem;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .workflow-step p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* PAGE 3 : CONTACT & DEVIS */
+    .contact-box {
+      background: linear-gradient(135deg, #eaf2ec 0%, #dbe8dd 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: clamp(2rem, 5vw, 3.8rem);
+      margin-bottom: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .contact-info h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 2.7rem);
+      color: var(--color-primary-dark);
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+    }
+
+    .contact-info p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-card-box {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-subtle);
+      text-align: center;
+    }
+
+    .contact-card-box h3 {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-card-box p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1.4rem;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* ENCART PÉDAGOGIQUE */
+    .demo-explainer {
+      background: #ffffff;
+      border-left: 4px solid var(--color-primary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 1.25rem 1.5rem;
+      margin: 2.5rem 0 1rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .demo-explainer h4 {
+      font-size: 0.95rem;
+      color: var(--color-primary-dark);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .demo-explainer p {
+      color: var(--text-muted);
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .footer-credits {
+      font-weight: 600;
+      color: var(--color-primary-dark);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BANDEAU HAUT PROTOTYPE ET RETOUR FORFAITS -->
+  <aside class="demo-bar" aria-label="Informations de démonstration">
+    <div class="demo-bar-inner">
+      <div class="demo-bar-badge">
+        <span class="demo-tag">Prototype démo</span>
+        <span>Modèle pour le forfait <strong>Site Essentiel</strong> (500 € · 3 pages)</span>
+      </div>
+      <a class="demo-back-link" href="index.html">
+        <span>←</span> Revenir aux 6 forfaits Web &amp; Passion
+      </a>
+    </div>
+  </aside>
+
+  <!-- EN-TÊTE PRINCIPAL DU PAYSAGISTE -->
+  <header class="site-header">
+    <a class="brand-logo" href="#">
+      <div class="brand-symbol">🌿</div>
+      <div>
+        <span class="brand-title">Jardin Clair</span>
+        <span class="brand-tagline">Conception &amp; Entretien paysager</span>
+      </div>
+    </a>
+
+    <nav class="site-nav" aria-label="Navigation principale">
+      <a href="#accueil">Accueil <span class="nav-badge-page">Page 1</span></a>
+      <a href="#services">Services <span class="nav-badge-page">Page 2</span></a>
+      <a href="#contact">Devis &amp; Contact <span class="nav-badge-page">Page 3</span></a>
+      <a class="nav-cta" href="#contact">Demander un devis</a>
+    </nav>
+  </header>
+
+  <!-- CONTENU PRINCIPAL -->
+  <main class="site-container">
+
+    <!-- PAGE 1 : ACCUEIL -->
+    <section class="hero" id="accueil">
+      <span class="eyebrow">🌱 Paysagiste de proximité · Savoie &amp; Bassin chambérien</span>
+      <h1>Des extérieurs vivants, harmonieux et simples à entretenir.</h1>
+      <p class="hero-lead">
+        De la création d’un massif fleuri à l’entretien annuel de vos haies, Jardin Clair vous accompagne avec une approche naturelle et respectueuse de la biodiversité locale.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Demander une visite gratuite</a>
+        <a class="btn btn-secondary" href="#services">Consulter nos services</a>
+      </div>
+
+      <div class="hero-badges">
+        <div class="hero-badge-box">
+          <div class="hero-badge-icon">📍</div>
+          <div class="hero-badge-text">
+            <strong>Intervention locale</strong>
+            <span>Chambéry, Aix-les-Bains et communes voisines</span>
+          </div>
+        </div>
+        <div class="hero-badge-box">
+          <div class="hero-badge-icon">💶</div>
+          <div class="hero-badge-text">
+            <strong>Crédit d’impôt 50%</strong>
+            <span>Sur les prestations d'entretien éligibles</span>
+          </div>
+        </div>
+        <div class="hero-badge-box">
+          <div class="hero-badge-icon">🍃</div>
+          <div class="hero-badge-text">
+            <strong>Zéro produit chimique</strong>
+            <span>Paillage naturel et techniques écologiques</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 2 : PRESTATIONS -->
+    <section id="services">
+      <div class="section-head">
+        <span class="eyebrow">Page 2 · Nos savoir-faire</span>
+        <h2>Des prestations sur mesure pour votre terrain</h2>
+        <p>Un seul artisan pour concevoir, planter et entretenir vos espaces extérieurs tout au long des saisons.</p>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-icon-box">🏡</div>
+          <h3>Aménagement &amp; Création</h3>
+          <p>Conception complète de vos massifs, allées en pas japonais, terrasses bois et engazonnement adapté à votre sol.</p>
+          <ul class="service-features">
+            <li>✓ Choix d’arbres et vivaces peu gourmands en eau</li>
+            <li>✓ Clôtures bois et bordures naturelles</li>
+            <li>✓ Plans et esquisses avant démarrage</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon-box">✂️</div>
+          <h3>Entretien ponctuel ou annuel</h3>
+          <p>Tonte soignée, désherbage manuel thermique, taille des arbustes et remise en état après l’hiver ou avant l’été.</p>
+          <ul class="service-features">
+            <li>✓ Contrats d’entretien au mois ou à l’année</li>
+            <li>✓ Éligible au crédit d’impôt de 50 %</li>
+            <li>✓ Évacuation et valorisation des déchets verts</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon-box">🌳</div>
+          <h3>Taille raisonnée &amp; Haies</h3>
+          <p>Taille de formation et taille douce respectant le cycle végétatif des arbres fruitiers et des haies bocagères.</p>
+          <ul class="service-features">
+            <li>✓ Respect des périodes de nidification</li>
+            <li>✓ Soin des arbres fruitiers pour la récolte</li>
+            <li>✓ Broyage sur place pour paillage protecteur</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- MÉTHODE DE TRAVAIL -->
+    <section class="workflow-section">
+      <div class="section-head">
+        <span class="eyebrow">Simplicité</span>
+        <h2>Comment nous travaillons ensemble</h2>
+        <p>Une démarche limpide, sans mauvaise surprise, de la première visite jusqu’au nettoyage du chantier.</p>
+      </div>
+
+      <div class="workflow-grid">
+        <div class="workflow-step">
+          <div class="step-num">01</div>
+          <h4>Visite sur place</h4>
+          <p>Découverte de votre terrain, échange sur vos souhaits et analyse de l'exposition.</p>
+        </div>
+        <div class="workflow-step">
+          <div class="step-num">02</div>
+          <h4>Devis détaillé gratuit</h4>
+          <p>Proposition claire chiffrant les fournitures, végétaux et temps de main d'œuvre.</p>
+        </div>
+        <div class="workflow-step">
+          <div class="step-num">03</div>
+          <h4>Réalisation soignée</h4>
+          <p>Intervention aux dates convenues avec un matériel professionnel adapté.</p>
+        </div>
+        <div class="workflow-step">
+          <div class="step-num">04</div>
+          <h4>Conseils de suivi</h4>
+          <p>Recommandations d'arrosage et astuces pour voir grandir votre jardin sereinement.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 3 : CONTACT & ESTIMATION -->
+    <section class="contact-box" id="contact">
+      <div class="contact-info">
+        <span class="eyebrow">Page 3 · Prendre contact</span>
+        <h2>Un projet de jardin ? Parlons-en simplement.</h2>
+        <p>
+          Chaque jardin est unique. Contactez Jardin Clair pour convenir d’une visite sur votre terrain et recevoir votre estimation chiffrée sous quelques jours.
+        </p>
+
+        <div class="contact-details">
+          <div class="contact-item">📍 Secteur : <strong>Chambéry et un rayon de 25 km</strong></div>
+          <div class="contact-item">✉️ Email : <strong>contact@jardin-clair.invalid</strong></div>
+          <div class="contact-item">📞 Appel : <strong>06 00 00 00 00</strong> (fictif)</div>
+        </div>
+      </div>
+
+      <div class="contact-card-box">
+        <h3>Devis gratuit &amp; Sans engagement</h3>
+        <p>Envoyez une brève description de votre terrain pour programmer un rendez-vous :</p>
+        <a class="btn btn-primary" href="mailto:contact@jardin-clair.invalid?subject=Demande%20de%20devis%20Jardin%20Clair">
+          Demander mon devis gratuit
+        </a>
+      </div>
+    </section>
+
+    <!-- ENCART PÉDAGOGIQUE -->
+    <div class="demo-explainer">
+      <h4>💡 Pourquoi cette formule illustre le « Site Essentiel » (500 € · jusqu’à 3 pages)</h4>
+      <p>
+        À partir de 3 pages, un artisan ou une entreprise locale dispose d’une vraie structure multipage : une page d’accueil rassurante, une page dédiée aux prestations (idéale pour le référencement naturel local sur Google) et une page de contact/devis complète. Sur le site final, ces rubriques peuvent être présentées sur 3 URLs séparées avec un menu fluide.
+      </p>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p><strong>Jardin Clair</strong> — Exemple de démonstration fictif conçu par <span class="footer-credits">Web &amp; Passion</span>.</p>
+    <p>Aucune transaction commerciale réelle n’est effectuée sur ce prototype.</p>
+  </footer>
+
+</body>
+</html>

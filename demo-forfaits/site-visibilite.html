@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maison Mistral — Café &amp; Épicerie · Démo Site Visibilité</title>
+  <meta name="description"
+    content="Prototype de démonstration pour le forfait Site Visibilité de Web & Passion. Exemple de site vitrine 5 pages pour Maison Mistral, café de quartier et épicerie locale.">
+
+  <!-- Typographies Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ==========================================================
+       VARIABLES ET DESIGN SYSTEM "MAISON MISTRAL"
+       Ambiance soleil, ocre provençal, café chaleureux et terroir
+       ========================================================== */
+    :root {
+      --font-display: 'Outfit', system-ui, sans-serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+      --bg-cream: #faf5ee;
+      --bg-card: #ffffff;
+      --bg-card-alt: #f3eae0;
+
+      --color-primary: #b44f26;
+      /* Ocre terracotta ensoleillé */
+      --color-primary-dark: #873311;
+      /* Terre brûlée */
+      --color-primary-light: #fae8dc;
+      /* Pêche douce */
+      --color-accent: #4a6646;
+      /* Vert olive provençal */
+
+      --text-main: #2b231f;
+      --text-muted: #6b5c54;
+      --border-subtle: #e8dcd2;
+
+      --shadow-sm: 0 4px 14px rgba(135, 51, 17, 0.05);
+      --shadow-md: 0 12px 30px rgba(135, 51, 17, 0.08);
+      --shadow-hover: 0 20px 40px rgba(135, 51, 17, 0.12);
+
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* BANDEAU DÉMO */
+    .demo-bar {
+      background: #1f1713;
+      color: #ede2db;
+      padding: 0.65rem 1.2rem;
+      font-size: 0.85rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .demo-bar-inner {
+      max-width: 1140px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .demo-bar-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+    }
+
+    .demo-tag {
+      background: var(--color-primary);
+      color: #fff;
+      padding: 0.15rem 0.6rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .demo-back-link {
+      color: #ded1c8;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.8rem;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.08);
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .demo-back-link:hover {
+      background: rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+    }
+
+    /* EN-TÊTE */
+    .site-header {
+      max-width: 1140px;
+      margin: auto;
+      padding: 1.6rem 1.5rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .brand-symbol {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--color-primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--color-primary-dark);
+      line-height: 1.1;
+    }
+
+    .brand-tagline {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--color-accent);
+      font-weight: 700;
+      display: block;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: color 0.2s ease;
+    }
+
+    .site-nav a:hover {
+      color: var(--color-primary);
+    }
+
+    .nav-badge-page {
+      font-size: 0.72rem;
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+      padding: 0.15rem 0.45rem;
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      margin-left: 0.2rem;
+    }
+
+    .site-nav a.nav-cta {
+      background: var(--color-primary);
+      color: #ffffff;
+      padding: 0.5rem 1.15rem;
+      border-radius: var(--radius-pill);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .site-nav a.nav-cta:hover {
+      background: var(--color-primary-dark);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* CONTAINER */
+    .site-container {
+      max-width: 1140px;
+      margin: auto;
+      padding: 1rem 1.5rem 3.5rem;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #ffffff 0%, #f7eae0 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: clamp(2.2rem, 6vw, 4.5rem);
+      margin: 1.5rem 0 3.5rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--color-primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.85rem;
+      background: var(--color-primary-light);
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-pill);
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      line-height: 1.08;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--color-primary-dark);
+      margin-bottom: 1.2rem;
+      max-width: 820px;
+    }
+
+    .hero-lead {
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      color: var(--text-muted);
+      max-width: 660px;
+      line-height: 1.6;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.65rem;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(180, 79, 38, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--color-primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(180, 79, 38, 0.35);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--color-primary-dark);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+
+    .hero-badges {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.2rem;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1.8rem;
+    }
+
+    .hero-badge-box {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-badge-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .hero-badge-text strong {
+      display: block;
+      font-size: 0.88rem;
+      color: var(--color-primary-dark);
+    }
+
+    .hero-badge-text span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* SECTION TITLES */
+    .section-head {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 2.8rem;
+    }
+
+    .section-head h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 2.7rem);
+      color: var(--color-primary-dark);
+      margin-bottom: 0.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+    }
+
+    /* PAGE 2 : LA CARTE DU CAFÉ */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .menu-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 2.2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .menu-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--color-primary-dark);
+      margin-bottom: 1.2rem;
+      border-bottom: 2px solid var(--color-primary-light);
+      padding-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px dashed var(--border-subtle);
+    }
+
+    .menu-item:last-child {
+      border-bottom: none;
+    }
+
+    .menu-item-info strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+
+    .menu-item-info span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .menu-item-price {
+      font-weight: 700;
+      color: var(--color-primary);
+      font-size: 1rem;
+    }
+
+    /* PAGE 3 : L'ÉPICERIE DE PRODUCTEURS */
+    .producers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem;
+      margin-bottom: 4rem;
+    }
+
+    .producer-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.8rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .producer-card .tag {
+      align-self: flex-start;
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-pill);
+      margin-bottom: 0.8rem;
+    }
+
+    .producer-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.4rem;
+      font-weight: 700;
+    }
+
+    .producer-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* PAGE 4 : ATELIERS & RENCONTRES */
+    .events-box {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 4rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .events-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .event-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      background: var(--bg-card-alt);
+      padding: 1.2rem 1.6rem;
+      border-radius: var(--radius-md);
+    }
+
+    .event-date {
+      font-family: var(--font-display);
+      font-weight: 800;
+      color: var(--color-primary);
+      font-size: 1.1rem;
+    }
+
+    .event-details strong {
+      display: block;
+      color: var(--color-primary-dark);
+      font-size: 0.95rem;
+    }
+
+    .event-details span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* PAGE 5 : NOUS TROUVER & HORAIRES */
+    .contact-box {
+      background: linear-gradient(135deg, #f7eae0 0%, #ecdacf 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: clamp(2rem, 5vw, 3.8rem);
+      margin-bottom: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .contact-info h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 2.7rem);
+      color: var(--color-primary-dark);
+      margin-bottom: 0.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-info p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .hours-table {
+      width: 100%;
+      font-size: 0.92rem;
+      border-collapse: collapse;
+      margin-bottom: 1.2rem;
+    }
+
+    .hours-table td {
+      padding: 0.4rem 0;
+    }
+
+    .contact-address-box {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .contact-action-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-subtle);
+      text-align: center;
+    }
+
+    .contact-action-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .contact-action-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1.4rem;
+    }
+
+    /* ENCART PÉDAGOGIQUE */
+    .demo-explainer {
+      background: #ffffff;
+      border-left: 4px solid var(--color-primary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 1.25rem 1.5rem;
+      margin: 2.5rem 0 1rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .demo-explainer h4 {
+      font-size: 0.95rem;
+      color: var(--color-primary-dark);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .demo-explainer p {
+      color: var(--text-muted);
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .footer-credits {
+      font-weight: 600;
+      color: var(--color-primary-dark);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- BANDEAU HAUT PROTOTYPE ET RETOUR FORFAITS -->
+  <aside class="demo-bar" aria-label="Informations de démonstration">
+    <div class="demo-bar-inner">
+      <div class="demo-bar-badge">
+        <span class="demo-tag">Prototype démo</span>
+        <span>Modèle pour le forfait <strong>Site Visibilité</strong> (650 € · 5 pages)</span>
+      </div>
+      <a class="demo-back-link" href="index.html">
+        <span>←</span> Revenir aux 6 forfaits Web &amp; Passion
+      </a>
+    </div>
+  </aside>
+
+  <!-- EN-TÊTE PRINCIPAL -->
+  <header class="site-header">
+    <a class="brand-logo" href="#">
+      <div class="brand-symbol">☕</div>
+      <div>
+        <span class="brand-title">Maison Mistral</span>
+        <span class="brand-tagline">Café de terroir &amp; Épicerie fine</span>
+      </div>
+    </a>
+
+    <nav class="site-nav" aria-label="Navigation principale">
+      <a href="#accueil">Accueil <span class="nav-badge-page">P.1</span></a>
+      <a href="#carte">La Carte <span class="nav-badge-page">P.2</span></a>
+      <a href="#epicerie">L’Épicerie <span class="nav-badge-page">P.3</span></a>
+      <a href="#ateliers">Ateliers <span class="nav-badge-page">P.4</span></a>
+      <a href="#contact">Nous Trouver <span class="nav-badge-page">P.5</span></a>
+      <a class="nav-cta" href="#contact">Venir au café</a>
+    </nav>
+  </header>
+
+  <!-- CONTENU PRINCIPAL -->
+  <main class="site-container">
+
+    <!-- PAGE 1 : ACCUEIL -->
+    <section class="hero" id="accueil">
+      <span class="eyebrow">☀️ Café de quartier &amp; Producteurs passionnés · Aix-en-Provence</span>
+      <h1>Le goût des bonnes choses, au rythme de la Provence.</h1>
+      <p class="hero-lead">
+        Un lieu chaleureux pour boire un café de spécialité torréfié localement, savourer un goûter fait maison et
+        repartir avec le meilleur des huiles, miels et biscuits de nos artisans régionaux.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#carte">Découvrir notre carte</a>
+        <a class="btn btn-secondary" href="#epicerie">Nos producteurs partenaires</a>
+      </div>
+
+      <div class="hero-badges">
+        <div class="hero-badge-box">
+          <div class="hero-badge-icon">☕</div>
+          <div class="hero-badge-text">
+            <strong>Cafés de spécialité</strong>
+            <span>Torréfaction artisanale et extraction soignée</span>
+          </div>
+        </div>
+        <div class="hero-badge-box">
+          <div class="hero-badge-icon">🌿</div>
+          <div class="hero-badge-text">
+            <strong>100% Circuit court</strong>
+            <span>Producteurs de Provence et terroirs voisins</span>
+          </div>
+        </div>
+        <div class="hero-badge-box">
+          <div class="hero-badge-icon">🍰</div>
+          <div class="hero-badge-text">
+            <strong>Pâtisseries du jour</strong>
+            <span>Faites sur place avec amour chaque matin</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 2 : LA CARTE DU CAFÉ -->
+    <section id="carte">
+      <div class="section-head">
+        <span class="eyebrow">Page 2 · À savourer sur place ou à emporter</span>
+        <h2>La Carte du moment</h2>
+        <p>Des boissons réconfortantes et des douceurs préparées avec des ingrédients nobles et de saison.</p>
+      </div>
+
+      <div class="menu-grid">
+        <div class="menu-card">
+          <h3>Boissons chaudes &amp; Cafés</h3>
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <strong>Espresso ou Allongé Terroir</strong>
+              <span>Grains d'Éthiopie torréfiés à Marseille</span>
+            </div>
+            <span class="menu-item-price">2,40 €</span>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <strong>Flat White &amp; Cappuccino velouté</strong>
+              <span>Lait entier fermier ou avoine bio</span>
+            </div>
+            <span class="menu-item-price">4,20 €</span>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <strong>Chocolat chaud onctueux Valrhona</strong>
+              <span>Chocolat noir 66% et fève tonka</span>
+            </div>
+            <span class="menu-item-price">4,80 €</span>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <strong>Infusion sauvage du Ventoux</strong>
+              <span>Thym, verveine et fleurs de lavande</span>
+            </div>
+            <span class="menu-item-price">3,80 €</span>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <h3>Pâtisseries &amp; Pause gourmande</h3>
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <strong>Brioche feuilletée fleur d'oranger</strong>
+              <span>Sucre perlé et zeste d'agrumes</span>
+            </div>
+            <span class="menu-item-price">3,50 €</span>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <strong>Cake moelleux citron &amp; romarin</strong>
+              <span>Citrons non traités de Menton</span>
+            </div>
+            <span class="menu-item-price">3,90 €</span>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <strong>Cookie amandes toastées &amp; sel de Camargue</strong>
+              <span>Chocolat noir et amandes de Provence</span>
+            </div>
+            <span class="menu-item-price">3,20 €</span>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <strong>Assiette salée du midi</strong>
+              <span>Focaccia maison, burrata et légumes confits</span>
+            </div>
+            <span class="menu-item-price">12,50 €</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 3 : L'ÉPICERIE FINE -->
+    <section id="epicerie">
+      <div class="section-head">
+        <span class="eyebrow">Page 3 · L’Épicerie</span>
+        <h2>Les pépites de nos producteurs</h2>
+        <p>Une sélection exigeante de produits d’exception, dénichés directement dans les fermes et ateliers provençaux.
+        </p>
+      </div>
+
+      <div class="producers-grid">
+        <div class="producer-card">
+          <span class="tag">Huiles d’Olive</span>
+          <h4>Domaine des Alpilles</h4>
+          <p>Huile d'olive vierge extra pressée à froid, AOP Vallée des Baux-de-Provence. Arômes d'herbe fraîche et
+            d'artichaut.</p>
+        </div>
+
+        <div class="producer-card">
+          <span class="tag">Miels sauvages</span>
+          <h4>Rucher du Luberon</h4>
+          <p>Miels récoltés en transhumance : lavande fine, châtaignier et garrigue. 100% brut sans aucun traitement
+            thermique.</p>
+        </div>
+
+        <div class="producer-card">
+          <span class="tag">Biscuiterie fine</span>
+          <h4>L’Atelier Calisson &amp; Navette</h4>
+          <p>Navettes traditionnelles parfumées à la fleur d’oranger naturelle et croquants aux amandes du pays d’Aix.
+          </p>
+        </div>
+
+        <div class="producer-card">
+          <span class="tag">Boissons artisanales</span>
+          <h4>Limonades &amp; Sirops de Haute-Provence</h4>
+          <p>Infusions pétillantes artisanales, jus de fruits pressés en verger et sirops botaniques naturels.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 4 : LES ATELIERS -->
+    <section class="events-box" id="ateliers">
+      <div class="section-head">
+        <span class="eyebrow">Page 4 · Événements</span>
+        <h2>Les Ateliers &amp; Dégustations du mois</h2>
+        <p>Des moments de partage en petit comité autour des arômes du café et des saveurs locales.</p>
+      </div>
+
+      <div class="events-list">
+        <div class="event-item">
+          <div class="event-date">Samedi 17 Oct. · 10h00</div>
+          <div class="event-details">
+            <strong>Initiation au Cupping (Dégustation de café)</strong>
+            <span>Découvrez les terroirs d'Amérique latine et d'Afrique avec notre torréfacteur (1h30 · 6 pers).</span>
+          </div>
+          <a class="btn btn-secondary" href="#contact">Réserver une place</a>
+        </div>
+
+        <div class="event-item">
+          <div class="event-date">Jeudi 29 Oct. · 18h30</div>
+          <div class="event-details">
+            <strong>Soirée accords Huiles d'olive &amp; Focaccias</strong>
+            <span>Rencontre avec le moulinier et dégustation comparative de 4 cuvées d'exception.</span>
+          </div>
+          <a class="btn btn-secondary" href="#contact">Réserver une place</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 5 : NOUS TROUVER & CONTACT -->
+    <section class="contact-box" id="contact">
+      <div class="contact-info">
+        <span class="eyebrow">Page 5 · Informations pratiques</span>
+        <h2>Venez faire une pause chez Maison Mistral</h2>
+        <p>
+          Au calme d'une place ombragée du centre historique d'Aix-en-Provence. Terrasse ensoleillée et wifi pour
+          télétravailler en matinée.
+        </p>
+
+        <table class="hours-table">
+          <tbody>
+            <tr>
+              <td><strong>Lundi - Vendredi :</strong></td>
+              <td>08h00 - 18h30</td>
+            </tr>
+            <tr>
+              <td><strong>Samedi :</strong></td>
+              <td>08h30 - 19h00</td>
+            </tr>
+            <tr>
+              <td><strong>Dimanche :</strong></td>
+              <td>09h30 - 16h00 (Brunch de saison)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="contact-address-box">
+          📍 <strong>12 Place des Cardeurs, 13100 Aix-en-Provence</strong><br>
+          ✉️ contact@maison-mistral.invalid
+        </div>
+      </div>
+
+      <div class="contact-action-card">
+        <h3>Une question ou un événement ?</h3>
+        <p>Privatisation en soirée, commande de paniers gourmands ou réservation d'ateliers :</p>
+        <a class="btn btn-primary"
+          href="mailto:contact@maison-mistral.invalid?subject=Message%20pour%20Maison%20Mistral">
+          Écrire à Maison Mistral
+        </a>
+      </div>
+    </section>
+
+    <!-- ENCART PÉDAGOGIQUE -->
+    <div class="demo-explainer">
+      <h4>💡 Pourquoi cette formule illustre le « Site Visibilité » (650 € · jusqu’à 5 pages)</h4>
+      <p>
+        Avec 5 rubriques ou pages, un commerce ou un établissement physique dispose de la surface idéale pour asseoir sa
+        notoriété : une page d’accueil accueillante, une carte détaillée de l’offre, la mise en valeur des partenaires
+        locaux, un agenda des ateliers/actualités et une page d'accès avec horaires complets. C’est le forfait de
+        référence pour les cafés, restaurants, boutiques et artisans ayant une offre riche à valoriser.
+      </p>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p><strong>Maison Mistral</strong> — Exemple de démonstration fictif conçu par <span class="footer-credits">Web
+        &amp; Passion</span>.</p>
+    <p>Aucune commande commerciale réelle n’est traitée sur ce prototype.</p>
+  </footer>
+
+</body>
+
+</html>

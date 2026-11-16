@@ -1,0 +1,19 @@
+{
+  "name": "Carte de Visite Digitale & QR Code Pro",
+  "short_name": "Carte Digitale",
+  "description": "Mini-application mobile de présentation professionnelle avec enregistrement de contact direct et QR Code.",
+  "start_url": "index.php",
+  "display": "standalone",
+  "background_color": "#0a192f",
+  "theme_color": "#1e3a8a",
+  "lang": "fr-FR",
+  "icons": [
+    {
+      "src": "../../assets/logo-web-passion.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ]
+}
+

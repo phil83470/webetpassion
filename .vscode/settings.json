@@ -1,0 +1,18 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.port": 5501,
+  "html.validate.styles": false,
+  "html.validate.scripts": false,
+  "css.validate": false,
+  "html.format.wrapAttributes": "auto",
+  "html.completion.attributeDefaultValue": "doublequotes"
+}

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Démonstrations des 6 forfaits web | Web &amp; Passion</title>
+  <meta name="description"
+    content="Découvrez nos 6 démonstrations de sites vitrines conçus par Web & Passion : du One Page Essentiel au Projet personnalisé sur mesure.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ==========================================================
+       HUB DÉMONSTRATIONS WEB & PASSION
+       ========================================================== */
+    :root {
+      --font-display: 'Outfit', system-ui, sans-serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+      --bg-hub: #f4f7f6;
+      --bg-card: #ffffff;
+
+      --color-primary: #185f62;
+      /* Vert bleuté Web & Passion */
+      --color-primary-dark: #0f4042;
+      --color-primary-light: #e1f0ef;
+      --color-accent: #e67e22;
+
+      --text-main: #1d2726;
+      --text-muted: #566866;
+      --border-subtle: #dbe4e2;
+
+      --shadow-sm: 0 4px 14px rgba(15, 64, 66, 0.05);
+      --shadow-md: 0 12px 32px rgba(15, 64, 66, 0.08);
+      --shadow-hover: 0 20px 45px rgba(15, 64, 66, 0.14);
+
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 26px;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-hub);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* BARRE SUPÉRIEURE DE NAVIGATION GLOBALE */
+    .top-global-bar {
+      background: #112524;
+      color: #e3eeee;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.88rem;
+    }
+
+    .top-global-inner {
+      max-width: 1160px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .top-global-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .top-global-brand span.tag {
+      background: var(--color-primary);
+      padding: 0.15rem 0.55rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .top-global-links a {
+      color: #b8cfcd;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease;
+      margin-left: 1rem;
+    }
+
+    .top-global-links a:hover {
+      color: #ffffff;
+    }
+
+    /* EN-TÊTE DU HUB */
+    .hub-header {
+      max-width: 1160px;
+      margin: auto;
+      padding: 4rem 1.5rem 2.5rem;
+    }
+
+    .hub-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--color-primary);
+      background: var(--color-primary-light);
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1.2rem;
+    }
+
+    .hub-header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.08;
+      color: var(--color-primary-dark);
+      letter-spacing: -0.03em;
+      max-width: 860px;
+      margin-bottom: 1.2rem;
+    }
+
+    .hub-lead {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 740px;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .hub-notice {
+      background: #ffffff;
+      border-left: 4px solid var(--color-primary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 1.1rem 1.4rem;
+      max-width: 860px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* GRILLE DES 6 FORFAITS */
+    .hub-main {
+      max-width: 1160px;
+      margin: auto;
+      padding: 1rem 1.5rem 4rem;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .demo-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+
+    .demo-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .demo-card-head {
+      padding: 1.8rem 1.8rem 1.2rem;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .demo-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .demo-price-badge {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-pill);
+      background: var(--bg-hub);
+      color: var(--text-main);
+    }
+
+    .demo-card-body {
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .demo-card-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--color-primary-dark);
+      font-weight: 800;
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.01em;
+    }
+
+    .demo-fictitious-brand {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 0.8rem;
+    }
+
+    .demo-card-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .demo-card-specs {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      font-size: 0.84rem;
+      color: var(--text-main);
+      border-top: 1px dashed var(--border-subtle);
+      padding: 1.1rem 0 1.4rem;
+    }
+
+    .btn-view-demo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--color-primary);
+      color: #ffffff;
+      padding: 0.85rem 1.4rem;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-view-demo:hover {
+      background: var(--color-primary-dark);
+      transform: translateY(-2px);
+    }
+
+    /* COULEURS THÉMATIQUES PAR FORFAIT */
+    .card-theme-1 .demo-card-icon {
+      background: #fbeee7;
+      color: #945233;
+    }
+
+    .card-theme-2 .demo-card-icon {
+      background: #e8f3ef;
+      color: #275d50;
+    }
+
+    .card-theme-3 .demo-card-icon {
+      background: #eaf2eb;
+      color: #295738;
+    }
+
+    .card-theme-4 .demo-card-icon {
+      background: #fae8dc;
+      color: #b44f26;
+    }
+
+    .card-theme-5 .demo-card-icon {
+      background: #d6ebe6;
+      color: #1e524d;
+    }
+
+    .card-theme-6 .demo-card-icon {
+      background: #ecdff6;
+      color: #5f3287;
+    }
+
+    /* FOOTER */
+    .hub-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    .hub-footer a {
+      color: var(--color-primary);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .hub-footer .footer-links {
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- BARRE GLOBALE HAUTE -->
+  <aside class="top-global-bar" aria-label="Navigation Web et Passion">
+    <div class="top-global-inner">
+      <a class="top-global-brand" href="../index.html">
+        <span>Web &amp; Passion</span>
+        <span class="tag">Prototypes &amp; Démos</span>
+      </a>
+      <div class="top-global-links">
+        <a href="../index.html">← Accueil du site</a>
+        <a href="../tarifs.html">Mes Tarifs officiels</a>
+      </div>
+   </div>
+  </aside>
+
+  <!-- EN-TÊTE -->
+  <header class="hub-header">
+    <span class="hub-eyebrow">✦ Galerie interactive de prototypes</span>
+    <h1>Six forfaits, six univers concrets pour imaginer votre futur site</h1>
+    <p class="hub-lead">
+      Chaque démonstration illustre l'étendue des fonctionnalités, la structure de navigation et le soin graphique
+      apporté à chaque projet, d’une page unique percutante jusqu'à une application interactive sur mesure.
+    </p>
+    <div class="hub-notice">
+      ℹ️ <strong>Environnement de démonstration :</strong> Toutes les marques, activités, coordonnées et tarifs affichés
+      dans ces prototypes sont fictifs. Cliquez sur chaque prototype pour le visiter et tester son ergonomie sur mobile
+      et grand écran.
+    </div>
+  </header>
+
+  <!-- GRILLE DES DÉMOS -->
+  <main class="hub-main">
+    <div class="demo-grid">
+
+      <!-- FORFAIT 1 -->
+      <article class="demo-card card-theme-1">
+        <div class="demo-card-head">
+          <div class="demo-card-icon">🕯️</div>
+          <span class="demo-price-badge">250 € · 1 page</span>
+        </div>
+        <div class="demo-card-body">
+          <h2 class="demo-card-title">One Page Essentiel</h2>
+          <div class="demo-fictitious-brand">L’Atelier Sève · Bougies végétales</div>
+          <p class="demo-card-desc">
+            Une page unique raffinée, chaleureuse et fluide. Idéale pour les artisans, créateurs et indépendants qui
+            souhaitent une vitrine soignée à petit budget.
+          </p>
+          <ul class="demo-card-specs">
+            <li>✓ Typographie élégante Cormorant &amp; tons chauds</li>
+            <li>✓ 3 créations présentées avec flamme animée CSS</li>
+            <li>✓ Valeurs artisanales &amp; contact direct sécurisé</li>
+          </ul>
+          <a class="btn-view-demo" href="one-page-essentiel.html">Voir le prototype →</a>
+        </div>
+      </article>
+
+      <!-- FORFAIT 2 -->
+      <article class="demo-card card-theme-2">
+        <div class="demo-card-head">
+          <div class="demo-card-icon">🌿</div>
+          <span class="demo-price-badge">400 € · 1 page</span>
+        </div>
+        <div class="demo-card-body">
+          <h2 class="demo-card-title">One Page Pro</h2>
+          <div class="demo-fictitious-brand">Mouvement Studio · Pilates &amp; Bien-être</div>
+          <p class="demo-card-desc">
+            Une page unique enrichie et structurée pour convertir : présentation complète des cours, tableau de planning
+            hebdomadaire et grille tarifaire transparente.
+          </p>
+          <ul class="demo-card-specs">
+            <li>✓ Design énergisant vert sauge &amp; typographie Outfit</li>
+            <li>✓ Tableau de planning type du lundi au samedi</li>
+            <li>✓ Formules tarifaires &amp; multiples boutons d'action</li>
+          </ul>
+          <a class="btn-view-demo" href="one-page-pro.html">Voir le prototype →</a>
+        </div>
+      </article>
+
+      <!-- FORFAIT 3 -->
+      <article class="demo-card card-theme-3">
+        <div class="demo-card-head">
+          <div class="demo-card-icon">🌱</div>
+          <span class="demo-price-badge">500 € · Jusqu’à 3 pages</span>
+        </div>
+        <div class="demo-card-body">
+          <h2 class="demo-card-title">Site Essentiel</h2>
+          <div class="demo-fictitious-brand">Jardin Clair · Paysagiste de proximité</div>
+          <p class="demo-card-desc">
+            Le passage à un site multipage pour un référencement naturel renforcé : page d’accueil rassurante, page
+            dédiée aux prestations et page de devis gratuit.
+          </p>
+          <ul class="demo-card-specs">
+            <li>✓ Ambiance vivante vert forêt &amp; terre naturelle</li>
+            <li>✓ Fiches de prestations détaillées (crédit d’impôt 50%)</li>
+            <li>✓ Démarche de travail limpide en 4 étapes</li>
+          </ul>
+          <a class="btn-view-demo" href="site-essentiel.html">Voir le prototype →</a>
+        </div>
+      </article>
+
+      <!-- FORFAIT 4 -->
+      <article class="demo-card card-theme-4">
+        <div class="demo-card-head">
+          <div class="demo-card-icon">☕</div>
+          <span class="demo-price-badge">650 € · Jusqu’à 5 pages</span>
+        </div>
+        <div class="demo-card-body">
+          <h2 class="demo-card-title">Site Visibilité</h2>
+          <div class="demo-fictitious-brand">Maison Mistral · Café &amp; Épicerie fine</div>
+          <p class="demo-card-desc">
+            Une structure complète à 5 rubriques pour valoriser un commerce ou un établissement : carte des douceurs,
+            producteurs partenaires, calendrier d’ateliers et accès.
+          </p>
+          <ul class="demo-card-specs">
+            <li>✓ Couleurs chaudes ocre provençal &amp; terroir gourmand</li>
+            <li>✓ Menus du café avec prix indicatifs et spécialités</li>
+            <li>✓ Agenda des événements du mois &amp; horaires complets</li>
+          </ul>
+          <a class="btn-view-demo" href="site-visibilite.html">Voir le prototype →</a>
+        </div>
+      </article>
+
+      <!-- FORFAIT 5 -->
+      <article class="demo-card card-theme-5">
+        <div class="demo-card-head">
+          <div class="demo-card-icon">🌲</div>
+          <span class="demo-price-badge">850 € · Jusqu’à 7 pages</span>
+        </div>
+        <div class="demo-card-body">
+          <h2 class="demo-card-title">Site Plus</h2>
+          <div class="demo-fictitious-brand">Réno Hêtre · Rénovation énergétique</div>
+          <p class="demo-card-desc">
+            Un véritable site d’autorité et de référence : multiples pages techniques spécialisées (isolation,
+            chauffage, audit thermique), dossier d'aides d'État et réalisations.
+          </p>
+          <ul class="demo-card-specs">
+            <li>✓ Design architectural soigné bleu canard &amp; ardoise</li>
+            <li>✓ Focus audit énergétique avec indicateurs chiffrés</li>
+            <li>✓ Guide des subventions (MaPrimeRénov', CEE, éco-PTZ)</li>
+          </ul>
+          <a class="btn-view-demo" href="site-plus.html">Voir le prototype →</a>
+        </div>
+      </article>
+
+      <!-- FORFAIT 6 -->
+      <article class="demo-card card-theme-6">
+        <div class="demo-card-head">
+          <div class="demo-card-icon">🎨</div>
+          <span class="demo-price-badge">Sur devis · Sur mesure</span>
+        </div>
+        <div class="demo-card-body">
+          <h2 class="demo-card-title">Projet Personnalisé</h2>
+          <div class="demo-fictitious-brand">Atelier Tempo · Cours &amp; Pratiques créatives</div>
+          <p class="demo-card-desc">
+            Démonstration d’une fonctionnalité interactive codée sur mesure : configurateur dynamique de créneaux et
+            simulation de réservation avec calcul en temps réel.
+          </p>
+          <ul class="demo-card-specs">
+            <li>✓ Ambiance studio d'art contemporain violet &amp; ambre</li>
+            <li>✓ Sélecteur interactif en JavaScript avec calcul de tarif</li>
+            <li>✓ Pour besoins métiers spécifiques &amp; interactions avancées</li>
+          </ul>
+          <a class="btn-view-demo" href="projet-personnalise.html">Voir le prototype →</a>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="hub-footer">
+    <p>Démonstrations conçues par <strong>Web &amp; Passion</strong> · Création de sites internet, assistance web &amp;
+      SEO.</p>
+    <p class="footer-links">
+      <a href="../tarifs.html">Consulter mes offres et tarifs</a> · <a href="../guide-lexique.html">Guide du Développeur Web (PDF offert)</a> · <a href="../index.html">Retour à la page
+        d’accueil</a>
+    </p>
+  </footer>
+
+</body>
+
+</html>

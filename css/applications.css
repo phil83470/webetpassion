@@ -1,0 +1,518 @@
+/* =========================================================
+   WEB & PASSION — FEUILLE DE STYLE APPLICATIONS WEB & PWA
+   ========================================================= */
+
+/* Hero Section Applications */
+.apps-hero {
+  position: relative;
+  padding: 80px 0 45px;
+  text-align: center;
+}
+
+.apps-hero-content {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.apps-hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.45rem);
+  line-height: 1.14;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+
+.apps-hero h1 span {
+  background: linear-gradient(120deg, var(--accent) 0%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.apps-hero-lead {
+  font-size: 1.1rem;
+  color: var(--text-soft);
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.apps-trust-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.apps-trust-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 15px;
+  border-radius: 999px;
+  background: rgba(32, 217, 197, 0.08);
+  border: 1px solid rgba(32, 217, 197, 0.25);
+  color: var(--accent);
+  font-size: 0.83rem;
+  font-weight: 600;
+}
+
+/* Grille des Applications */
+.apps-showcase {
+  position: relative;
+  padding: 35px 0 85px;
+}
+
+.apps-showcase::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(900px, 90vw);
+  height: 420px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(32, 217, 197, 0.11) 0%,
+    rgba(59, 130, 246, 0.07) 45%,
+    transparent 75%
+  );
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.apps-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 34px;
+}
+
+.app-product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(
+    165deg,
+    rgba(20, 38, 61, 0.86) 0%,
+    rgba(11, 23, 40, 0.94) 100%
+  );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 34px 32px;
+  box-shadow:
+    0 24px 55px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+  overflow: hidden;
+}
+
+.app-product-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(32, 217, 197, 0.45);
+  box-shadow:
+    0 28px 65px rgba(0, 0, 0, 0.5),
+    0 0 38px rgba(32, 217, 197, 0.14),
+    inset 0 1px 0 rgba(32, 217, 197, 0.2);
+}
+
+.app-product-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent), #60a5fa, transparent);
+  opacity: 0.45;
+  transition: opacity 0.35s ease;
+}
+
+.app-product-card:hover::before {
+  opacity: 1;
+}
+
+/* En-tête de carte avec icône cliquable de démo */
+.app-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.app-card-title-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.app-badge-tag {
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(32, 217, 197, 0.12);
+  border: 1px solid rgba(32, 217, 197, 0.28);
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.app-product-card h2 {
+  font-size: 1.58rem;
+  line-height: 1.24;
+  margin: 0;
+  color: var(--text);
+}
+
+/* Icône d'application cliquable façon App Store */
+.app-demo-icon-link {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+  outline: none;
+}
+
+.app-demo-squircle {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+  background: linear-gradient(
+    145deg,
+    rgba(32, 217, 197, 0.2) 0%,
+    rgba(59, 130, 246, 0.16) 100%
+  );
+  border: 1px solid rgba(32, 217, 197, 0.42);
+  color: var(--accent);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.38),
+    0 0 20px rgba(32, 217, 197, 0.14),
+    inset 0 1px 1px rgba(255, 255, 255, 0.18);
+  transition:
+    transform 0.28s ease,
+    border-color 0.28s ease,
+    background 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+.app-demo-squircle svg {
+  width: 34px;
+  height: 34px;
+  transition: transform 0.28s ease;
+}
+
+.app-demo-live-dot {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 0 2px rgba(7, 17, 31, 0.9), 0 0 10px #34d399;
+  animation: livePulse 2.2s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.75;
+  }
+}
+
+.app-demo-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: rgba(32, 217, 197, 0.14);
+  border: 1px solid rgba(32, 217, 197, 0.3);
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.app-demo-icon-link:hover .app-demo-squircle,
+.app-demo-icon-link:focus-visible .app-demo-squircle {
+  transform: translateY(-4px) scale(1.06);
+  border-color: var(--accent);
+  background: linear-gradient(
+    145deg,
+    rgba(32, 217, 197, 0.35) 0%,
+    rgba(59, 130, 246, 0.28) 100%
+  );
+  box-shadow:
+    0 16px 35px rgba(0, 0, 0, 0.45),
+    0 0 30px rgba(32, 217, 197, 0.35);
+}
+
+.app-demo-icon-link:hover .app-demo-squircle svg,
+.app-demo-icon-link:focus-visible .app-demo-squircle svg {
+  transform: scale(1.08);
+}
+
+.app-demo-icon-link:hover .app-demo-label,
+.app-demo-icon-link:focus-visible .app-demo-label {
+  background: var(--accent);
+  color: #05131f;
+}
+
+.app-card-desc {
+  font-size: 0.96rem;
+  color: var(--text-soft);
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+/* Liste des fonctionnalités */
+.app-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.app-features-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.92rem;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+
+.app-feature-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(32, 217, 197, 0.14);
+  border: 1px solid rgba(32, 217, 197, 0.25);
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: bold;
+  margin-top: 2px;
+}
+
+.app-features-list li strong {
+  color: var(--text);
+}
+
+/* Bloc Prix */
+.app-pricing-box {
+  background: rgba(5, 13, 24, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 18px 22px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.app-pricing-amount {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 7px;
+}
+
+.app-pricing-amount span.currency {
+  font-size: 1.4rem;
+  color: var(--accent);
+}
+
+.app-pricing-amount span.period {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.app-pricing-trial {
+  display: inline-block;
+  margin-top: 6px;
+  margin-bottom: 4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(32, 217, 197, 0.14);
+  border: 1px solid rgba(32, 217, 197, 0.35);
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.app-pricing-tva {
+  font-size: 0.77rem;
+  color: var(--text-muted);
+  display: block;
+}
+
+/* Bouton d'action principal */
+.app-card-actions {
+  display: flex;
+}
+
+.app-card-actions .button {
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  padding: 14px 20px;
+  font-size: 0.96rem;
+}
+
+/* Section Avantages PWA */
+.why-pwa-section {
+  padding: 65px 0 75px;
+  border-top: 1px solid var(--border);
+}
+
+.why-pwa-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 45px;
+}
+
+.why-pwa-card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px 22px;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.why-pwa-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(32, 217, 197, 0.35);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.25);
+}
+
+.why-pwa-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.why-pwa-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: rgba(32, 217, 197, 0.12);
+  border: 1px solid rgba(32, 217, 197, 0.25);
+  color: var(--accent);
+}
+
+.why-pwa-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.why-pwa-num {
+  font-family: Consolas, Monaco, monospace;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+.why-pwa-card h3 {
+  font-size: 1.08rem;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.why-pwa-card p {
+  font-size: 0.88rem;
+  color: var(--text-soft);
+  line-height: 1.58;
+  margin: 0;
+}
+
+/* Section Sur-Mesure */
+.custom-app-cta {
+  margin: 15px auto 70px;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .apps-grid {
+    grid-template-columns: 1fr;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .why-pwa-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .apps-hero {
+    padding: 50px 0 30px;
+  }
+
+  .app-product-card {
+    padding: 26px 20px;
+  }
+
+  .app-card-top {
+    gap: 14px;
+  }
+
+  .app-demo-squircle {
+    width: 66px;
+    height: 66px;
+    border-radius: 17px;
+  }
+
+  .app-demo-squircle svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .why-pwa-grid {
+    grid-template-columns: 1fr;
+  }
+}

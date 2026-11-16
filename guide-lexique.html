@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="Le Lexique du Développeur Web par Web & Passion : 20 notions indispensables décodées sans jargon. Guide visuel et pédagogique de 14 fiches à consulter ou télécharger en PDF gratuit.">
+  <meta property="og:title" content="Le Lexique du Développeur Web — Guide PDF Gratuit | Web &amp; Passion">
+  <meta property="og:description"
+    content="20 notions clés du web expliquées simplement et sans jargon : hébergement, HTML, CSS, DNS, cache, CMS, SEO... Téléchargez le guide visuel complet.">
+  <title>Lexique du Développeur Web — Guide gratuit | Web &amp; Passion</title>
+  <link rel="icon" type="image/webp" href="assets/logo-web-passion.webp">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* =========================================================
+       PAGE GUIDE LEXIQUE DU DÉVELOPPEUR WEB
+       ========================================================= */
+
+    .guide-page {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 60px 0 100px;
+    }
+
+    /* HERO BANNER */
+    .guide-hero {
+      text-align: center;
+      max-width: 860px;
+      margin: 0 auto 70px;
+      padding: 40px 24px;
+      background: radial-gradient(circle at 50% 0%, rgba(32, 217, 197, 0.12) 0%, transparent 70%);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+
+    .guide-hero h1 {
+      font-size: clamp(2.1rem, 5vw, 3.2rem);
+      line-height: 1.2;
+      margin: 14px 0 18px;
+    }
+
+    .guide-hero p.subtitle {
+      font-size: 1.15rem;
+      color: var(--text-soft);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    /* BADGES */
+    .guide-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 35px;
+    }
+
+    .guide-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 0.88rem;
+      color: var(--text-soft);
+    }
+
+    .guide-badge strong {
+      color: var(--accent);
+    }
+
+    /* ACTIONS HERO */
+    .guide-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    /* SECTIONS THÉMATIQUES */
+    .pillar-section {
+      margin-bottom: 70px;
+    }
+
+    .pillar-header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 30px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pillar-icon {
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      background: rgba(32, 217, 197, 0.1);
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+
+    .pillar-title h2 {
+      font-size: 1.65rem;
+      margin-bottom: 4px;
+    }
+
+    .pillar-title p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* GRILLES DE CARTES */
+    .notions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 22px;
+    }
+
+    .notion-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .notion-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(32, 217, 197, 0.35);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .notion-card-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .notion-card-header h3 {
+      font-size: 1.22rem;
+      color: var(--text);
+    }
+
+    .notion-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      background: rgba(32, 217, 197, 0.1);
+      padding: 3px 9px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .notion-desc {
+      color: var(--text-soft);
+      font-size: 0.94rem;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .notion-example {
+      padding: 10px 14px;
+      background: rgba(0, 0, 0, 0.25);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .notion-example strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* SYNTHÈSE ANATOMIE */
+    .anatomy-box {
+      background: linear-gradient(145deg, var(--card) 0%, rgba(20, 38, 61, 0.6) 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      margin-bottom: 70px;
+      text-align: center;
+    }
+
+    .anatomy-box h2 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .anatomy-box>p {
+      max-width: 760px;
+      margin: 0 auto 30px;
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+
+    .anatomy-flow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .anatomy-step {
+      background: rgba(7, 17, 31, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      text-align: left;
+    }
+
+    .anatomy-step .step-tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .anatomy-step h4 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .anatomy-step p {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      line-height: 1.55;
+    }
+
+    /* BANNIÈRE DE TÉLÉCHARGEMENT BAS DE PAGE */
+    .download-banner {
+      background: radial-gradient(circle at 50% 50%, rgba(32, 217, 197, 0.16) 0%, rgba(7, 17, 31, 0.9) 100%), var(--card);
+      border: 1px solid rgba(32, 217, 197, 0.3);
+      border-radius: var(--radius);
+      padding: 45px 30px;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .download-banner h2 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .download-banner p {
+      max-width: 680px;
+      margin: 0 auto 28px;
+      color: var(--text-soft);
+      font-size: 1.05rem;
+    }
+
+    @media (max-width: 860px) {
+      .anatomy-flow {
+        grid-template-columns: 1fr;
+      }
+
+      .guide-hero {
+        padding: 25px 16px;
+        margin-bottom: 50px;
+      }
+
+      .guide-actions {
+        flex-direction: column;
+      }
+
+      .guide-actions .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =====================================================
+       HEADER
+       ===================================================== -->
+
+  <header class="site-header">
+
+    <a class="logo" href="index.html" aria-label="Web &amp; Passion, accueil">
+      <img src="assets/logo-web-passion.webp" alt="Logo Web &amp; Passion">
+      <span>
+        Web <span class="accent">&amp;</span> Passion
+      </span>
+    </a>
+
+    <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false"
+      aria-controls="main-navigation">
+      ☰
+    </button>
+
+    <nav class="nav" id="main-navigation" aria-label="Navigation principale">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#apropos">À propos</a>
+      <a href="index.html#methode">Ma méthode</a>
+      <a href="index.html#diagnostic">Diagnostic</a>
+      <a href="tarifs.html">Tarifs</a>
+      <a href="applications.html">Applications</a>
+      <a href="guide-lexique.html" class="active">Lexique</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <button class="audio-toggle" id="audio-toggle" type="button" aria-pressed="false"
+      aria-label="Activer le fond musical d'ambiance" title="Activer / couper l'ambiance musicale">
+      <span class="audio-bars" aria-hidden="true">
+        <i></i><i></i><i></i><i></i>
+      </span>
+      <span class="audio-label">Ambiance</span>
+    </button>
+
+  </header>
+
+
+  <main class="guide-page">
+
+    <!-- =====================================================
+         HERO BANNER
+         ===================================================== -->
+
+    <section class="guide-hero reveal">
+
+      <p class="eyebrow">RESSOURCE OFFERTE · GUIDE VISUEL COMPLET</p>
+
+      <h1>Le Lexique du Développeur Web</h1>
+
+      <p class="subtitle">
+        20 notions indispensables décodées sans jargon technique. Un guide pratique pensé pour les artisans,
+        entrepreneurs et curieux souhaitant comprendre les coulisses d’un site web et dialoguer sereinement.
+      </p>
+
+      <div class="guide-badges">
+        <span class="guide-badge">📘 <strong>14 fiches</strong> visuelles</span>
+        <span class="guide-badge">💡 <strong>20 notions</strong> clés</span>
+        <span class="guide-badge">🎯 <strong>0 jargon</strong> inutile</span>
+        <span class="guide-badge">✨ <strong>100 % gratuit</strong> en PDF</span>
+      </div>
+
+      <div class="guide-actions">
+        <a class="button primary" href="assets/guide-lexique-web.pdf" download="Guide-Lexique-Web-Passion.pdf">
+          📥 Télécharger le guide complet (PDF · 18 Mo)
+        </a>
+        <a class="button secondary" href="#sommaire">
+          Consulter les notions ci-dessous ↓
+        </a>
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PILIER 1 : STRUCTURE & CODE
+         ===================================================== -->
+
+    <section class="pillar-section" id="sommaire">
+
+      <div class="pillar-header">
+        <div class="pillar-icon" aria-hidden="true">🖥️</div>
+        <div class="pillar-title">
+          <p class="eyebrow">PILIER 1</p>
+          <h2>Structure &amp; Code : La Vitrine &amp; Le Moteur</h2>
+          <p>Tout ce que le visiteur voit à l’écran et ce qui fait tourner l’interactivité.</p>
+        </div>
+      </div>
+
+      <div class="notions-grid">
+
+        <article class="notion-card">
+          <div class="notion-card-header">
+            <h3>Front-End</h3>
+            <span class="notion-tag">Côté Client</span>
+          </div>
+          <p class="notion-desc">
+            La partie visible du site internet. Tout ce qui s’affiche à l’écran et avec lequel le visiteur interagit
+            directement.
+          </p>
+          <div class="notion-example">
+            <strong>Exemple concret :</strong>
+            Le design, les couleurs, les boutons et les formulaires que vous remplissez.
+          </div>
+        </article>
+
+        <article class="notion-card">
+          <div class="notion-card-header">
+            <h3>Back-End</h3>
+            <span class="notion-tag">Côté Serveur</span>
+          </div>
+          <p class="notion-desc">
+            Les coulisses invisibles du site. Gère les bases de données, la sécurité, les calculs et la logique serveur
+            pure.
+          </p>
+          <div class="notion-example">
+            <strong>Exemple concret :</strong>
+            L'enregistrement d'une commande, le traitement d'un paiement ou la vérification d'un mot de passe.
+          </div>
+        </article>
+
+        <article class="notion-card">
+          <div class="notion-card-header">
+            <h3>HTML</h3>
+            <span class="notion-tag">Le Squelette</span>
+          </div>
+          <p class="notion-desc">
+            Langage de balisage fondamental. Il structure et hiérarchise tout le contenu de vos pages.
+          </p>
+          <div class="notion-example">
+            <strong>Exemple concret :</strong>
+            La balise <code>&lt;header&gt;</code> pour le haut de page, <code>&lt;h1&gt;</code> pour le titre principal.
+          </div>
+        </article>
+
+        <article class="notion-card">
+          <div class="notion-card-header">
+            <h3>CSS</h3>
+            <span class="notion-tag">L’Habillage</span>
+          </div>
+          <p class="notion-desc">
+            Feuilles de style. Gère la mise en page, l'esthétique visuelle, les couleurs, les marges et les polices.
+          </p>
+          <div class="notion-example">
+            <strong>Exemple concret :</strong>
+            Définir un fond sombre, des boutons arrondis ou ajouter une ombre élégante.
+          </div>
+        </article>
+
+        <article class="notion-card">
+          <div class="notion-card-header">
+            <h3>JavaScript (JS)</h3>
+            <span class="notion-tag">Le Moteur</span>
+          </div>
+          <p class="notion-desc">
+            Programmation dynamique côté client. Apporte l'interactivité, le mouvement et la réactivité instantanée.
+          </p>
+          <div class="notion-example">
+            <strong>Exemple concret :</strong>
+            Faire apparaître le menu hamburger au clic ou animer l'apparition d'un élément au défilement.
+          </div>
+        </article>
+
+        <article class="notion-card">
+          <div class="notion-card-header">
+            <h3>PHP</h3>
+            <span class="notion-tag">Affichage Dynamique</span>
+          </div>
+          <p class="notion-desc">
+            Langage serveur qui assemble et génère du code HTML sur mesure avant de transmettre la page au navigateur.
+          </p>
+          <div class="notion-example">
+            <strong>Exemple concret :</strong>
+            Charger automatiquement le bon en-tête via <code>include('header.php')</code> sur toutes les pages.
+          </div>
+        </article>
+
+        <article class="notion-card">
+          <div class="notion-card-header">
+            <h3>Responsive Design</h3>
+            <span class="notion-tag">L’Adaptation</span>
+          </div>
+          <p class="notion-desc">
+            Capacité d'un site à s'adapter automatiquement à toutes les résolutions d'écrans (smartphone, tablette, PC).
+          </p>
+          <div class="notion-example">
+            <strong>Exemple concret :</strong>
+            Passer d'une navigation horizontale sur ordinateur à un menu déroulant vertical sur mobile.
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PILIER 2 : HÉBERGEMENT & PERFORMANCE
+         ===================================================== -->
+
+    <section class="pillar-section">
+
+      <div class="pillar-header">
+        <div class="pillar-icon" aria-hidden="true">🌐</div>
+        <div class="pillar-title">
+          <p class="eyebrow">PILIER 2</p>
+          <h2>Hébergement &amp; Performance : L’Infrastructure</h2>
+          <p>Le lieu où le site habite et les mécanismes qui assurent sa disponibilité.</p>
+        </div>
+      </div>
+
+      <div class="notions-grid">
+
+        <article class="notion-card">
+          <div class="notion-card-header">
+            <h3>Nom de Domaine</h3>
+            <span class="notion-tag">L'Adresse</span>
+          </div>
+          <p class="notion-desc">
+            L'adresse texte unique qui permet aux visiteurs de retrouver facilement votre site sur le réseau mondial.
+          </p>
+          <div class="notion-example">
+            <strong>Exemple concret :</strong>
+            <code>webetpassion.fr</code> ou <code>latelierdecesames.fr</code>.
+          </div>
+        </article>
+
+        <article class="notion-card">
+          <div class="notion-card-header">
+            <h3>Hébergement Web</h3>
+            <span class="notion-tag">Le Terrain</span>
+          </div>
+          <p class="notion-desc">
+            Espace de stockage sécurisé sur un serveur physique distant connecté à Internet en continu 24h/24.
+          </p>
+          <div class="notion-example">
+            <strong>Exemple concret :</strong>
+            Un compte d'hébergement chez un prestataire comme o2switch ou Infomaniak.
+          </div>
+        </article>
+
+        <article class="notion-card">
+          <div class="notion-card-header">
+            <h3>Racine du Document</h3>
+            <span class="notion-tag">Document Root</span>
+          </div>
+          <p class="notion-desc">
+            Le dossier exact sur le serveur où le nom de domaine va pointer pour chercher la page d'accueil.
+          </p>
+          <div class="notion-example">
+            <strong>Exemple concret :</strong>
+            Le répertoire <code>public_html/mon-site.fr</code>.
+          </div>
+        </article>
+
+        <article class="notion-card">
+          <div class="notion-card-header">
+            <h3>cPanel</h3>
+            <span class="notion-tag">Tableau de Bord</span>
+          </div>
+          <p class="notion-desc">
+            Une interface visuelle en ligne permettant de gérer ses fichiers, ses adresses e-mails et ses bases de
+            données.
+          </p>
+          <div class="notion-example">
+            <strong>Exemple concret :</strong>
+            Accéder au Gestionnaire de Fichiers pour déposer une nouvelle page sans ligne de commande.
+          </div>
+        </article>
+
+        <article class="notion-card">
+          <div class="notion-card-header">
+            <h3>Le Cache</h3>
+            <span class="notion-tag">Mémoire Rapide</span>
+          </div>
+          <p class="notion-desc">
+            Sauvegarde temporaire des images et scripts dans le navigateur pour accélérer les visites ultérieures.
+          </p>
+          <div class="notion-example">
+            <strong>Astuce :</strong>
+            Faire <code>Ctrl + F5</code> pour forcer le navigateur à recharger la toute dernière version.
+          </div>
+        </article>
+
+        <article class="notion-card">
+          <div class="notion-card-header">
+            <h3>Erreur 404</h3>
+            <span class="notion-tag">Page Introuvable</span>
+          </div>
+          <p class="notion-desc">
+            Code d'erreur renvoyé par le serveur web lorsqu'un fichier demandé n'existe pas ou a été déplacé.
+          </p>
+          <div class="notion-example">
+            <strong>Exemple concret :</strong>
+            Un lien pointant vers <code>contact.html</code> alors que le fichier s'appelle <code>contact.php</code>.
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PILIER 3 : OUTILS & MÉTHODES
+         ===================================================== -->
+
+    <section class="pillar-section">
+
+      <div class="pillar-header">
+        <div class="pillar-icon" aria-hidden="true">🛠️</div>
+        <div class="pillar-title">
+          <p class="eyebrow">PILIER 3</p>
+          <h2>Outils &amp; Méthodes : L’Atelier</h2>
+          <p>Comment les développeurs conçoivent, organisent et protègent votre site.</p>
+        </div>
+      </div>
+
+      <div class="notions-grid">
+
+        <article class="notion-card">
+          <div class="notion-card-header">
+            <h3>IDE vs CMS</h3>
+            <span class="notion-tag">Les Outils</span>
+          </div>
+          <p class="notion-desc">
+            L’<strong>IDE</strong> est le logiciel du développeur pour coder sur mesure (ex : VS Code). Le
+            <strong>CMS</strong>
+            permet d'administrer du contenu sans toucher au code (ex : WordPress).
+          </p>
+          <div class="notion-example">
+            <strong>Distinction :</strong>
+            Le code sur mesure garantit légèreté et sécurité maximale ; le CMS offre une gestion autonome du contenu.
+          </div>
+        </article>
+
+        <article class="notion-card">
+          <div class="notion-card-header">
+            <h3>Git &amp; GitHub</h3>
+            <span class="notion-tag">Version &amp; Partage</span>
+          </div>
+          <p class="notion-desc">
+            Outil permettant de sauvegarder l'historique complet des modifications de code (véritable machine à remonter
+            le temps).
+          </p>
+          <div class="notion-example">
+            <strong>Cas pratique :</strong>
+            Permet de tester une nouveauté sans jamais risquer d'écraser la version fonctionnelle du site.
+          </div>
+        </article>
+
+        <article class="notion-card">
+          <div class="notion-card-header">
+            <h3>Arborescence</h3>
+            <span class="notion-tag">Organisation</span>
+          </div>
+          <p class="notion-desc">
+            L'organisation hiérarchique et logique des dossiers et fichiers composant un site web.
+          </p>
+          <div class="notion-example">
+            <strong>Exemple concret :</strong>
+            Ranger les images dans un sous-dossier <code>assets/</code> au même niveau que <code>index.html</code>.
+          </div>
+        </article>
+
+        <article class="notion-card">
+          <div class="notion-card-header">
+            <h3>Permissions (CHMOD)</h3>
+            <span class="notion-tag">Sécurité</span>
+          </div>
+          <p class="notion-desc">
+            Les règles de sécurité du système définissant qui a le droit de lire, modifier ou exécuter un fichier.
+          </p>
+          <div class="notion-example">
+            <strong>Exemple concret :</strong>
+            Régler l'accès d'un fichier <code>index.html</code> sur le code 644 (lecture publique, écriture réservée).
+          </div>
+        </article>
+
+        <article class="notion-card">
+          <div class="notion-card-header">
+            <h3>Ancre HTML</h3>
+            <span class="notion-tag">Navigation Interne</span>
+          </div>
+          <p class="notion-desc">
+            Un lien spécifique qui amène directement le visiteur à un endroit précis de la même page sans rechargement.
+          </p>
+          <div class="notion-example">
+            <strong>Exemple concret :</strong>
+            Un lien <code>&lt;a href="#services"&gt;</code> qui fait défiler la page jusqu'au bloc des prestations.
+          </div>
+        </article>
+
+        <article class="notion-card">
+          <div class="notion-card-header">
+            <h3>SEO &amp; Optimisation</h3>
+            <span class="notion-tag">Visibilité</span>
+          </div>
+          <p class="notion-desc">
+            L'ensemble des techniques pour positionner naturellement un site dans les premiers résultats Google.
+          </p>
+          <div class="notion-example">
+            <strong>Exemple concret :</strong>
+            Renseigner des balises <code>&lt;title&gt;</code> précises et intégrer des mots-clés stratégiques.
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SYNTHÈSE : L'ANATOMIE D'UN PROJET WEB
+         ===================================================== -->
+
+    <section class="anatomy-box">
+
+      <p class="eyebrow">VISION D'ENSEMBLE</p>
+
+      <h2>L’Anatomie d’un Projet Web</h2>
+
+      <p>
+        Comment l’Atelier (outils &amp; méthodes), l’Infrastructure (serveur &amp; données) et la Vitrine (rendu &amp;
+        code)
+        collaborent ensemble pour donner vie à votre site internet :
+      </p>
+
+      <div class="anatomy-flow">
+
+        <div class="anatomy-step">
+          <p class="step-tag">1. L’Atelier</p>
+          <h4>Conception &amp; Code</h4>
+          <p>
+            Avec l’IDE (VS Code), Git et une arborescence soignée, le code HTML, CSS et JavaScript est rédigé, testé et
+            sécurisé avec précision.
+          </p>
+        </div>
+
+        <div class="anatomy-step">
+          <p class="step-tag">2. L’Infrastructure</p>
+          <h4>Hébergement &amp; Données</h4>
+          <p>
+            Le serveur héberge les fichiers à la racine (Document Root). cPanel gère les accès, PHP assemble les données
+            et le cache accélère la distribution.
+          </p>
+        </div>
+
+        <div class="anatomy-step">
+          <p class="step-tag">3. La Vitrine</p>
+          <h4>Affichage &amp; Visiteurs</h4>
+          <p>
+            Le nom de domaine amène le visiteur sur une interface fluide, responsive sur tous les écrans, optimisée pour
+            le référencement SEO.
+          </p>
+        </div>
+
+      </div>
+
+      <a class="button primary" href="assets/guide-lexique-web.pdf" download="Guide-Lexique-Web-Passion.pdf">
+        📥 Télécharger les 14 fiches visuelles (PDF haute définition)
+      </a>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONTACT & ÉCHANGE
+         ===================================================== -->
+
+    <section class="download-banner reveal">
+
+      <p class="eyebrow">UN PROJET EN TÊTE ?</p>
+
+      <h2>Besoin d’aide pour concrétiser votre site ?</h2>
+
+      <p>
+        Que ce soit pour créer un nouveau site, débloquer un problème technique, améliorer votre SEO ou simplement
+        faire le point ensemble, je vous accompagne avec clarté et sans jargon.
+      </p>
+
+      <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+        <a class="button primary" href="index.html#contact">
+          Me décrire votre besoin →
+        </a>
+        <a class="button secondary" href="tarifs.html">
+          Voir mes forfaits &amp; tarifs
+        </a>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+
+  <footer class="footer">
+
+    <div>
+
+      <a class="logo" href="index.html" aria-label="Web &amp; Passion - Accueil">
+
+        <img src="assets/logo-web-passion.webp" alt="Logo Web &amp; Passion" class="brand-logo">
+
+        <span>
+          Web <span class="accent">&amp;</span> Passion
+        </span>
+
+      </a>
+
+      <p>
+        Assistance web, SEO &amp; IA — par passion.
+      </p>
+
+      <div class="footer-socials">
+        <a class="footer-social-link" href="https://www.linkedin.com/in/philippe-jireau-14a0a8448/" target="_blank"
+          rel="noopener noreferrer" aria-label="Profil LinkedIn de Philippe JIREAU">
+          <span>LinkedIn</span>
+        </a>
+      </div>
+
+    </div>
+
+
+    <div class="footer-links-group">
+
+      <div class="footer-links">
+
+        <a href="index.html#services">
+          Services
+        </a>
+
+        <a href="index.html#apropos">
+          À propos
+        </a>
+
+        <a href="index.html#methode">
+          Méthode
+        </a>
+
+        <a href="guide-lexique.html">
+          Guide Lexique Web
+        </a>
+
+        <a href="index.html#diagnostic">
+          Diagnostic
+        </a>
+
+        <a href="index.html#contact">
+          Contact
+        </a>
+
+      </div>
+
+
+      <div class="footer-links legal-links">
+
+        <a href="mentions-legales.html">
+          Mentions légales
+        </a>
+
+        <a href="politique-confidentialite.html">
+          Politique de confidentialité
+        </a>
+
+        <a href="cgv.html">
+          CGV
+        </a>
+
+        <a href="modele-document-ia.html">
+          Modèle de document IA
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <p class="copyright">
+
+      © <span id="year">2026</span>
+      Web &amp; Passion.
+      Tous droits réservés.
+
+    </p>
+
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/audio.js"></script>
+
+</body>
+
+</html>

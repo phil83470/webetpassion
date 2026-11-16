@@ -1,0 +1,18 @@
+{
+  "name": "Calculateur Devis Travaux - Web et Passion",
+  "short_name": "Devis Artisan",
+  "description": "Application de chiffrage rapide de chantiers pour artisans et PME.",
+  "start_url": "index.php",
+  "display": "standalone",
+  "background_color": "#f1f5f9",
+  "theme_color": "#1e3a8a",
+  "lang": "fr-FR",
+  "icons": [
+    {
+      "src": "../../assets/logo-web-passion.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mouvement Studio — Pilates &amp; Posture · Démo One Page Pro</title>
+  <meta name="description"
+    content="Prototype de démonstration pour le forfait One Page Pro de Web & Passion. Exemple de site complet pour Mouvement Studio, studio de Pilates et bien-être.">
+
+  <!-- Typographies Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ==========================================================
+       VARIABLES ET DESIGN SYSTEM "MOUVEMENT STUDIO"
+       Ambiance zen, dynamique, lumineuse et moderne
+       ========================================================== */
+    :root {
+      --font-display: 'Outfit', system-ui, sans-serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+      --bg-main: #f3f7f5;
+      --bg-card: #ffffff;
+      --bg-card-alt: #e9f2ee;
+
+      --color-primary: #275d50;
+      /* Vert sauge profond */
+      --color-primary-dark: #193f36;
+      /* Forêt dense */
+      --color-primary-light: #dbebe4;
+      /* Teinte menthe très douce */
+      --color-accent: #3ea085;
+      /* Vert émeraude stimulant */
+
+      --text-main: #1f2e29;
+      /* Gris vert très sombre */
+      --text-muted: #576b64;
+      /* Gris sauge texturé */
+      --border-subtle: #d8e5df;
+      /* Bordure douce */
+
+      --shadow-sm: 0 4px 14px rgba(25, 63, 54, 0.05);
+      --shadow-md: 0 12px 30px rgba(25, 63, 54, 0.08);
+      --shadow-hover: 0 20px 40px rgba(25, 63, 54, 0.13);
+
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* BANDEAU SUPÉRIEUR DE DÉMO */
+    .demo-bar {
+      background: #172420;
+      color: #e5ede9;
+      padding: 0.65rem 1.2rem;
+      font-size: 0.85rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .demo-bar-inner {
+      max-width: 1140px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .demo-bar-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+    }
+
+    .demo-tag {
+      background: var(--color-primary);
+      color: #fff;
+      padding: 0.15rem 0.6rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .demo-back-link {
+      color: #d6e5de;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.8rem;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.08);
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .demo-back-link:hover {
+      background: rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+    }
+
+    /* EN-TÊTE DU STUDIO */
+    .site-header {
+      max-width: 1140px;
+      margin: auto;
+      padding: 1.6rem 1.5rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .brand-symbol {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--color-primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--color-primary-dark);
+      line-height: 1.1;
+    }
+
+    .brand-subtitle {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--color-accent);
+      font-weight: 700;
+      display: block;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .site-nav a:hover {
+      color: var(--color-primary);
+    }
+
+    .site-nav a.nav-cta {
+      background: var(--color-primary);
+      color: #ffffff;
+      padding: 0.55rem 1.2rem;
+      border-radius: var(--radius-pill);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .site-nav a.nav-cta:hover {
+      background: var(--color-primary-dark);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* CONTAINER PRINCIPAL */
+    .site-container {
+      max-width: 1140px;
+      margin: auto;
+      padding: 1rem 1.5rem 3.5rem;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      background: linear-gradient(135deg, #ffffff 0%, #e8f3ef 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: clamp(2.2rem, 6vw, 4.5rem);
+      margin: 1.5rem 0 3.5rem;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--color-primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.85rem;
+      background: var(--color-primary-light);
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-pill);
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6vw, 4.3rem);
+      line-height: 1.08;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--color-primary-dark);
+      margin-bottom: 1.2rem;
+      max-width: 820px;
+    }
+
+    .hero-lead {
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      color: var(--text-muted);
+      max-width: 660px;
+      line-height: 1.6;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.65rem;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(39, 93, 80, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--color-primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(39, 93, 80, 0.35);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--color-primary-dark);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+
+    .hero-badges {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1.8rem;
+    }
+
+    .hero-badge-box {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-badge-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .hero-badge-text strong {
+      display: block;
+      font-size: 0.88rem;
+      color: var(--color-primary-dark);
+    }
+
+    .hero-badge-text span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* SECTION HEADERS */
+    .section-head {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 2.8rem;
+    }
+
+    .section-head h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 2.7rem);
+      letter-spacing: -0.02em;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.6rem;
+      font-weight: 800;
+    }
+
+    .section-head p {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+    }
+
+    /* APPROCHE SECTION */
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin-bottom: 4rem;
+    }
+
+    .approach-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .approach-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .approach-num {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--color-accent);
+      line-height: 1;
+      margin-bottom: 0.8rem;
+    }
+
+    .approach-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.6rem;
+      font-weight: 700;
+    }
+
+    .approach-card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    /* COURS / SÉANCES */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.8rem;
+      margin-bottom: 4rem;
+    }
+
+    .course-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .course-card.highlight {
+      border: 2px solid var(--color-primary);
+    }
+
+    .course-ribbon {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--color-primary);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-pill);
+    }
+
+    .course-header {
+      padding: 2rem 2rem 1.2rem;
+      background: var(--bg-card-alt);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .course-title {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      color: var(--color-primary-dark);
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .course-intensity {
+      font-size: 0.82rem;
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+
+    .course-body {
+      padding: 1.8rem 2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .course-body p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-bottom: 1.4rem;
+      flex-grow: 1;
+    }
+
+    .course-meta {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-main);
+      margin-bottom: 1.5rem;
+    }
+
+    .course-meta li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* SECTION PLANNING TYPE */
+    .schedule-box {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 4rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+      font-size: 0.92rem;
+    }
+
+    .schedule-table th,
+    .schedule-table td {
+      padding: 1rem 1.2rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .schedule-table th {
+      background: var(--bg-card-alt);
+      color: var(--color-primary-dark);
+      font-weight: 700;
+      font-family: var(--font-display);
+    }
+
+    .schedule-badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+    }
+
+    .schedule-table-wrap {
+      overflow-x: auto;
+    }
+
+    .pricing-card-featured {
+      border-color: var(--color-primary);
+      background: var(--bg-card-alt);
+    }
+
+    .pricing-period {
+      font-size: 1rem;
+      font-weight: normal;
+    }
+
+    /* SECTION TARIFS / FORMULES */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .pricing-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .pricing-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .pricing-price {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      margin-bottom: 0.8rem;
+    }
+
+    .pricing-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* SECTION CONTACT & ACCÈS */
+    .contact-box {
+      background: linear-gradient(135deg, #eaf2ee 0%, #dfeee7 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: clamp(2rem, 5vw, 3.8rem);
+      margin-bottom: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .contact-info h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 2.7rem);
+      color: var(--color-primary-dark);
+      margin-bottom: 0.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-info p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .contact-item-row {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 0.95rem;
+    }
+
+    .contact-action-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-subtle);
+      text-align: center;
+    }
+
+    .contact-action-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .contact-action-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1.4rem;
+    }
+
+    /* ENCART PÉDAGOGIQUE POUR LE CLIENT */
+    .demo-explainer {
+      background: #ffffff;
+      border-left: 4px solid var(--color-primary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 1.25rem 1.5rem;
+      margin: 2.5rem 0 1rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .demo-explainer h4 {
+      font-size: 0.95rem;
+      color: var(--color-primary-dark);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .demo-explainer p {
+      color: var(--text-muted);
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .footer-credits {
+      font-weight: 600;
+      color: var(--color-primary-dark);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- BANDEAU HAUT PROTOTYPE ET RETOUR FORFAITS -->
+  <aside class="demo-bar" aria-label="Informations de démonstration">
+    <div class="demo-bar-inner">
+      <div class="demo-bar-badge">
+        <span class="demo-tag">Prototype démo</span>
+        <span>Modèle pour le forfait <strong>One Page Pro</strong> (400 €)</span>
+      </div>
+      <a class="demo-back-link" href="index.html">
+        <span>←</span> Revenir aux 6 forfaits Web &amp; Passion
+      </a>
+    </div>
+  </aside>
+
+  <!-- EN-TÊTE PRINCIPAL DU STUDIO -->
+  <header class="site-header">
+    <a class="brand-logo" href="#">
+      <div class="brand-symbol">M</div>
+      <div>
+        <span class="brand-title">Mouvement Studio</span>
+        <span class="brand-subtitle">Pilates · Posture · Vitalité</span>
+      </div>
+    </a>
+
+    <nav class="site-nav" aria-label="Navigation principale">
+      <a href="#approche">L’Approche</a>
+      <a href="#seances">Séances</a>
+      <a href="#planning">Planning</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#contact">Studio</a>
+      <a class="nav-cta" href="#contact">Séance d’essai</a>
+    </nav>
+  </header>
+
+  <!-- CONTENU PRINCIPAL -->
+  <main class="site-container">
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="accueil">
+      <span class="eyebrow">🌿 Studio de Pilates &amp; Mouvement au centre-ville</span>
+      <h1>Bouger avec précision. Respirer. Retrouver un corps fort et délié.</h1>
+      <p class="hero-lead">
+        Des séances de Pilates en petit groupe de 8 personnes maximum pour corriger votre posture, soulager les tensions
+        du quotidien et gagner en énergie durable.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Réserver une séance découverte</a>
+        <a class="btn btn-secondary" href="#seances">Découvrir les cours</a>
+      </div>
+
+      <div class="hero-badges">
+        <div class="hero-badge-box">
+          <div class="hero-badge-icon">👥</div>
+          <div class="hero-badge-text">
+            <strong>Petits groupes</strong>
+            <span>8 personnes max pour corriger chaque geste</span>
+          </div>
+        </div>
+        <div class="hero-badge-box">
+          <div class="hero-badge-icon">🏅</div>
+          <div class="hero-badge-text">
+            <strong>Enseignants certifiés</strong>
+            <span>Méthode Pilates classique &amp; contemporaine</span>
+          </div>
+        </div>
+        <div class="hero-badge-box">
+          <div class="hero-badge-icon">✨</div>
+          <div class="hero-badge-text">
+            <strong>Espace lumineux</strong>
+            <span>Studio apaisant et matériel professionnel</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION APPROCHE -->
+    <section id="approche">
+      <div class="section-head">
+        <span class="eyebrow">Notre méthode</span>
+        <h2>Une pédagogie attentive et progressive</h2>
+        <p>Le Pilates n’est pas une question de performance, mais d’écoute et d’alignement corporel.</p>
+      </div>
+
+      <div class="approach-grid">
+        <div class="approach-card">
+          <div class="approach-num">01</div>
+          <h3>Renforcement du centre</h3>
+          <p>Activation des muscles profonds (abdominaux transverses, plancher pelvien, érecteurs du rachis) pour
+            protéger le dos au quotidien.</p>
+        </div>
+
+        <div class="approach-card">
+          <div class="approach-num">02</div>
+          <h3>Mobilité &amp; Amplitude</h3>
+          <p>Libérer les hanches, ouvrir les épaules et délier la colonne vertébrale pour retrouver de l’aisance dans
+            chaque geste.</p>
+        </div>
+
+        <div class="approach-card">
+          <div class="approach-num">03</div>
+          <h3>Respiration consciente</h3>
+          <p>Synchroniser le souffle avec le mouvement pour oxygéner le système nerveux et évacuer les tensions
+            accumulées.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION SÉANCES -->
+    <section id="seances">
+      <div class="section-head">
+        <span class="eyebrow">Les formats</span>
+        <h2>Des cours adaptés à votre rythme</h2>
+        <p>Du renforcement tonique au soulagement doux des lombaires, trouvez votre pratique idéale.</p>
+      </div>
+
+      <div class="courses-grid">
+        <!-- COURS 1 -->
+        <article class="course-card">
+          <div class="course-header">
+            <h3 class="course-title">Pilates Fondations</h3>
+            <span class="course-intensity">Intensité : Douce à Modérée · Tous niveaux</span>
+          </div>
+          <div class="course-body">
+            <p>Idéal pour démarrer ou consolider les principes de base : placement du bassin, respiration costale et
+              gainage profond.</p>
+            <ul class="course-meta">
+              <li>⏱️ Durée : 55 minutes</li>
+              <li>🧘 Accessoires : Magic circle, élastiques</li>
+              <li>🎯 Bienfaits : Posture droite, dos soulagé</li>
+            </ul>
+            <a class="btn btn-secondary" href="#contact">Réserver ce cours</a>
+          </div>
+        </article>
+
+        <!-- COURS 2 (HIGHLIGHT) -->
+        <article class="course-card highlight">
+          <span class="course-ribbon">Le plus demandé</span>
+          <div class="course-header">
+            <h3 class="course-title">Pilates Flow &amp; Tonus</h3>
+            <span class="course-intensity">Intensité : Dynamique · Pratiquants réguliers</span>
+          </div>
+          <div class="course-body">
+            <p>Enchaînement fluide des exercices classiques avec rythme soutenu pour sculpter et renforcer le corps
+              harmonieusement.</p>
+            <ul class="course-meta">
+              <li>⏱️ Durée : 55 minutes</li>
+              <li>🧘 Accessoires : Petits ballons, haltères légers</li>
+              <li>🎯 Bienfaits : Tonification, endurance, gainage</li>
+            </ul>
+            <a class="btn btn-primary" href="#contact">Réserver ce cours</a>
+          </div>
+        </article>
+
+        <!-- COURS 3 -->
+        <article class="course-card">
+          <div class="course-header">
+            <h3 class="course-title">Dos &amp; Mobilité Douce</h3>
+            <span class="course-intensity">Intensité : Très douce · Récupération</span>
+          </div>
+          <div class="course-body">
+            <p>Étirements profonds, décompression vertébrale et mobilité articulaire. Recommandé en cas de raideurs ou
+              sédentarité.</p>
+            <ul class="course-meta">
+              <li>⏱️ Durée : 55 minutes</li>
+              <li>🧘 Accessoires : Rouleaux foam roller, sangles</li>
+              <li>🎯 Bienfaits : Décontraction, souplesse, sérénité</li>
+            </ul>
+            <a class="btn btn-secondary" href="#contact">Réserver ce cours</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION PLANNING -->
+    <section class="schedule-box" id="planning">
+      <div class="section-head">
+        <span class="eyebrow">Organisation</span>
+        <h2>Planning hebdomadaire type</h2>
+        <p>Des créneaux le matin, sur la pause déjeuner et en fin de journée pour s’intégrer facilement à votre agenda.
+        </p>
+      </div>
+
+      <div class="schedule-table-wrap">
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>Créneau</th>
+              <th>Lundi</th>
+              <th>Mardi</th>
+              <th>Jeudi</th>
+              <th>Vendredi</th>
+              <th>Samedi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>09:30 - 10:25</strong></td>
+              <td><span class="schedule-badge">Fondations</span></td>
+              <td><span class="schedule-badge">Mobilité douce</span></td>
+              <td><span class="schedule-badge">Fondations</span></td>
+              <td><span class="schedule-badge">Mobilité douce</span></td>
+              <td><span class="schedule-badge">Flow du week-end</span></td>
+            </tr>
+            <tr>
+              <td><strong>12:30 - 13:25</strong></td>
+              <td><span class="schedule-badge">Flow Tonus</span></td>
+              <td><span class="schedule-badge">Fondations</span></td>
+              <td><span class="schedule-badge">Flow Tonus</span></td>
+              <td><span class="schedule-badge">Dos &amp; Gainage</span></td>
+              <td><em>Ateliers mensuels</em></td>
+            </tr>
+            <tr>
+              <td><strong>18:30 - 19:25</strong></td>
+              <td><span class="schedule-badge">Fondations</span></td>
+              <td><span class="schedule-badge">Flow Tonus</span></td>
+              <td><span class="schedule-badge">Mobilité douce</span></td>
+              <td><span class="schedule-badge">Flow détente</span></td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION TARIFS -->
+    <section id="tarifs">
+      <div class="section-head">
+        <span class="eyebrow">Transparence</span>
+        <h2>Formules &amp; Tarifs indicatifs</h2>
+        <p>Sans frais d’inscription, avec engagement libre ou carnet de séances selon vos envies.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Séance Découverte</h3>
+          <div class="pricing-price">18 €</div>
+          <p class="pricing-desc">Pour faire un premier bilan postural et tester la méthode dans le studio.</p>
+          <a class="btn btn-secondary" href="#contact">Essayer une séance</a>
+        </div>
+
+        <div class="pricing-card pricing-card-featured">
+          <h3>Carnet 10 Séances</h3>
+          <div class="pricing-price">180 €</div>
+          <p class="pricing-desc">Valable 6 mois. La formule souple idéale pour pratiquer à votre rythme (18 € / cours).
+          </p>
+          <a class="btn btn-primary" href="#contact">Choisir ce carnet</a>
+        </div>
+
+        <div class="pricing-card">
+          <h3>Abonnement Trimestriel</h3>
+          <div class="pricing-price">65 € <small class="pricing-period">/ mois</small></div>
+          <p class="pricing-desc">1 cours par semaine garanti sur le créneau de votre choix avec accès prioritaire.</p>
+          <a class="btn btn-secondary" href="#contact">Nous contacter</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION CONTACT & ACCÈS -->
+    <section class="contact-box" id="contact">
+      <div class="contact-info">
+        <span class="eyebrow">Venez nous rencontrer</span>
+        <h2>Envie d’essayer ou de visiter le studio ?</h2>
+        <p>
+          Le studio est situé en plein cœur de ville. N’hésitez pas à nous envoyer un message pour planifier votre
+          séance d’essai ou poser vos questions.
+        </p>
+
+        <div class="contact-items">
+          <div class="contact-item-row">
+            <span>📍</span>
+            <span>Adresse : <strong>14 rue de la Liberté, Chambéry</strong></span>
+          </div>
+          <div class="contact-item-row">
+            <span>✉️</span>
+            <span>Email : <strong>contact@mouvement-studio.invalid</strong></span>
+          </div>
+          <div class="contact-item-row">
+            <span>📞</span>
+            <span>Téléphone : <strong>04 79 00 00 00</strong> (fictif)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-action-card">
+        <h3>Prendre contact</h3>
+        <p>Envoyez un e-mail au studio pour bloquer votre créneau d'essai :</p>
+        <a class="btn btn-primary"
+          href="mailto:contact@mouvement-studio.invalid?subject=R%C3%A9servation%20s%C3%A9ance%20d'essai%20Mouvement%20Studio">
+          Écrire à Mouvement Studio
+        </a>
+      </div>
+    </section>
+
+    <!-- ENCART EXPLICATIF PÉDAGOGIQUE -->
+    <div class="demo-explainer">
+      <h4>💡 Pourquoi cette page illustre le forfait « One Page Pro » (400 €)</h4>
+      <p>
+        Par rapport au forfait Essentiel, le forfait Pro propose une page unique beaucoup plus complète : présentation
+        détaillée des différentes formules, tableau de planning hebdomadaire, grille tarifaire transparente, réassurance
+        renforcée et multiples boutons d’appel à l’action. C’est la formule reine pour les studios, thérapeutes et
+        prestataires de services qui veulent convaincre et convertir sur une seule page.
+      </p>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p><strong>Mouvement Studio</strong> — Exemple de démonstration fictif conçu par <span class="footer-credits">Web
+        &amp; Passion</span>.</p>
+    <p>Aucune réservation sportive réelle n’est effectuée sur ce prototype.</p>
+  </footer>
+
+</body>
+
+</html>
