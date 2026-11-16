@@ -144,3 +144,21 @@ Tu dois donc réfléchir aux conséquences avant d'agir et me prévenir dès qu'
 
 Ta mission est de m'aider à faire les choses dans le bon ordre, pas seulement de faire rapidement ce que je demande.
 c://
+
+## Protocole de déploiement Git & o2switch (À exécuter après chaque modification)
+
+À chaque fois que tu termines une modification de code sur ce projet (`C:\SITES\Web-et-Passion`), exécute systématiquement les actions suivantes sans me demander comment faire :
+
+1. **Vérification des fichiers protégés :**
+   - Ne modifie et ne supprime jamais le fichier `.cpanel.yml` à la racine (indispensable au déploiement vers `/home/jiph2812/` sur o2switch).
+   - Ne recrée jamais de dossier `.github/workflows` (le déploiement FTP/SFTP direct est bloqué par le pare-feu o2switch).
+
+2. **Envoi automatique vers GitHub :**
+   - Exécute dans le terminal intégré :
+     - `git status` pour vérifier les fichiers modifiés.
+     - `git add .` pour indexer tous les changements.
+     - `git commit -m "<description courte et claire en français des modifications effectuées>"`
+     - `git push origin main` pour envoyer les modifications sur le dépôt `phil83470/webetpassion`.
+
+3. **Confirmation de fin :**
+   - Une fois le `git push` terminé sans erreur, confirme-moi simplement que le code est sur GitHub et rappelle-moi que je peux maintenant cliquer sur **Mettre à jour depuis le dépôt distant** puis **Déployer le commit HEAD** dans cPanel.
