@@ -184,7 +184,122 @@ a:hover {
     gap: 0.5rem;
 }
 
-/* Grille principale de l'article */
+/* En-tête de la page d'index du blog */
+.blog-hero {
+    background-color: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+    padding: 2.5rem 0;
+    text-align: center;
+}
+
+.blog-hero h1 {
+    font-size: 1.85rem;
+    line-height: 1.25;
+    color: #0f172a;
+    margin-bottom: 0.85rem;
+}
+
+.blog-hero-desc {
+    max-width: 720px;
+    margin: 0 auto;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
+
+/* Grille des articles sur blog/index.php */
+.blog-posts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+}
+
+.post-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.09);
+}
+
+.post-card-body {
+    padding: 1.5rem;
+}
+
+.post-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.post-card-top .article-badge {
+    margin-bottom: 0;
+}
+
+.post-reading-time {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.post-card-title {
+    font-size: 1.3rem;
+    line-height: 1.35;
+    margin-bottom: 0.75rem;
+}
+
+.post-card-title a {
+    color: #0f172a;
+}
+
+.post-card-title a:hover {
+    color: var(--primary);
+}
+
+.post-card-excerpt {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.post-card-footer {
+    background-color: #f8fafc;
+    border-top: 1px solid var(--border-color);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.post-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.blog-bottom-cta {
+    margin-top: 3rem;
+}
+
+.blog-bottom-cta h2 {
+    font-size: 1.4rem;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+}
+
+/* Grille principale d'un article */
 .article-wrapper {
     padding: 2rem 0 4rem;
 }
@@ -468,6 +583,14 @@ a:hover {
 
 /* Tablette (min-width: 768px) */
 @media (min-width: 768px) {
+    .blog-hero h1 {
+        font-size: 2.3rem;
+    }
+
+    .blog-posts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .article-content {
         padding: 2.5rem;
     }
