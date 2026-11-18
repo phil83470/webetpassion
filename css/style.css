@@ -1716,11 +1716,14 @@ section[id],
 
   .about-screen {
     max-width: 440px;
+    width: 100%;
     margin: 0 auto;
     height: auto;
   }
 
   .carousel-viewport {
+    flex: none;
+    width: 100%;
     aspect-ratio: 3 / 4;
     min-height: 0;
   }
@@ -1943,6 +1946,18 @@ section[id],
 
   .diagnostic-box {
     padding: 22px 18px;
+  }
+
+  .carousel-caption {
+    padding: 28px 14px 12px;
+  }
+
+  .carousel-caption strong {
+    font-size: 0.94rem;
+  }
+
+  .carousel-caption span {
+    font-size: 0.8rem;
   }
 }
 

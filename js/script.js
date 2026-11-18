@@ -142,7 +142,7 @@ if ("IntersectionObserver" in window) {
       });
     },
     {
-      threshold: 0.12,
+      threshold: 0.01,
     },
   );
 
@@ -524,10 +524,12 @@ document.addEventListener("keydown", (event) => {
     });
   });
 
-  // Pause au survol ou au focus clavier
+  // Pause au survol (souris uniquement) ou au focus clavier
   const screenContainer = carousel.closest(".about-screen") || carousel;
-  screenContainer.addEventListener("mouseenter", stopAutoPlay);
-  screenContainer.addEventListener("mouseleave", startAutoPlay);
+  if (window.matchMedia("(hover: hover)").matches) {
+    screenContainer.addEventListener("mouseenter", stopAutoPlay);
+    screenContainer.addEventListener("mouseleave", startAutoPlay);
+  }
   screenContainer.addEventListener("focusin", stopAutoPlay);
   screenContainer.addEventListener("focusout", startAutoPlay);
 
@@ -546,12 +548,13 @@ document.addEventListener("keydown", (event) => {
 
   // Balayage tactile (swipe) sur mobile et tablette
   let touchStartX = 0;
-  let touchEndX = 0;
+  let touchStartY = 0;
 
   carousel.addEventListener(
     "touchstart",
     (event) => {
       touchStartX = event.changedTouches[0].screenX;
+      touchStartY = event.changedTouches[0].screenY;
     },
     { passive: true },
   );
@@ -559,10 +562,13 @@ document.addEventListener("keydown", (event) => {
   carousel.addEventListener(
     "touchend",
     (event) => {
-      touchEndX = event.changedTouches[0].screenX;
-      const diff = touchStartX - touchEndX;
-      if (Math.abs(diff) > 40) {
-        if (diff > 0) {
+      const touchEndX = event.changedTouches[0].screenX;
+      const touchEndY = event.changedTouches[0].screenY;
+      const diffX = touchStartX - touchEndX;
+      const diffY = touchStartY - touchEndY;
+
+      if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+        if (diffX > 0) {
           nextSlide();
         } else {
           prevSlide();
