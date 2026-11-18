@@ -318,82 +318,71 @@ const contactForm = document.querySelector("#contact-form");
 
 const formSuccess = document.querySelector("#form-success");
 
-contactForm?.addEventListener("submit", (event) => {
-  event.preventDefault();
+if (contactForm) {
+  contactForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-  const name = document.querySelector("#name")?.value.trim();
+    const name = document.querySelector("#name")?.value.trim();
+    const email = document.querySelector("#email")?.value.trim();
+    const message = document.querySelector("#message")?.value.trim();
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
 
-  const email = document.querySelector("#email")?.value.trim();
-
-  const subject = document.querySelector("#subject")?.value.trim();
-
-  const message = document.querySelector("#message")?.value.trim();
-
-  // Adresse de destination.
-
-  const destination = "bonjour@webetpassion.fr";
-
-  // Vérification simple.
-
-  if (!name || !email || !message) {
-    if (formSuccess) {
-      formSuccess.textContent = "Merci de remplir les champs obligatoires.";
+    if (!name || !email || !message) {
+      if (formSuccess) {
+        formSuccess.textContent = "Merci de remplir les champs obligatoires.";
+      }
+      return;
     }
 
-    return;
-  }
-
-  // Vérification simple de l'email.
-
-  const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-  if (!emailIsValid) {
-    if (formSuccess) {
-      formSuccess.textContent = "Merci de vérifier votre adresse email.";
+    const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!emailIsValid) {
+      if (formSuccess) {
+        formSuccess.textContent = "Merci de vérifier votre adresse email.";
+      }
+      return;
     }
 
-    return;
-  }
+    if (submitBtn) {
+      submitBtn.disabled = true;
+    }
+    if (formSuccess) {
+      formSuccess.textContent = "Envoi en cours…";
+    }
 
-  // Sujet du mail.
+    try {
+      const response = await fetch(
+        contactForm.getAttribute("action") || "send-mail.php",
+        {
+          method: "POST",
+          body: new FormData(contactForm),
+        },
+      );
+      const data = await response.json();
 
-  const mailSubject = `Demande de contact - ${subject || "Web & Passion"}`;
-
-  // Contenu du mail.
-
-  const mailBody = `Bonjour Philippe,
-
-Nom : ${name}
-Email : ${email}
-
-Sujet :
-${subject || "Non précisé"}
-
-Message :
-${message}
-
-Cordialement,
-${name}`;
-
-  // Création du lien mailto.
-
-  const mailto =
-    `mailto:${destination}` +
-    `?subject=${encodeURIComponent(mailSubject)}` +
-    `&body=${encodeURIComponent(mailBody)}`;
-
-  // Message avant ouverture
-  // du logiciel de messagerie.
-
-  if (formSuccess) {
-    formSuccess.textContent =
-      "Votre logiciel de messagerie va s’ouvrir pour préparer l’email.";
-  }
-
-  // Ouverture du logiciel de messagerie.
-
-  window.location.href = mailto;
-});
+      if (response.ok && data.success) {
+        if (formSuccess) {
+          formSuccess.textContent =
+            data.message ||
+            "Votre message a bien été envoyé. Je vous répondrai dès que possible.";
+        }
+        contactForm.reset();
+      } else if (formSuccess) {
+        formSuccess.textContent =
+          data.message ||
+          "Une erreur est survenue lors de l’envoi. Vous pouvez aussi écrire à bonjour@webetpassion.fr.";
+      }
+    } catch (error) {
+      if (formSuccess) {
+        formSuccess.textContent =
+          "Impossible de joindre le serveur pour le moment. Vous pouvez écrire directement à bonjour@webetpassion.fr.";
+      }
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+      }
+    }
+  });
+}
 
 // =========================================================
 // ANNÉE AUTOMATIQUE

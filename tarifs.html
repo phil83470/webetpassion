@@ -1,759 +1,694 @@
 <!DOCTYPE html>
 
 <html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Philippe JIREAU — Web &amp; Passion">
 
-  <meta name="author" content="Philippe JIREAU — Web &amp; Passion">
+    <meta
+      name="description"
+      content="Découvrez les tarifs Web &amp; Passion pour l'assistance web, la création et l'amélioration de sites internet, le référencement SEO et l'accompagnement avec les outils IA.">
 
-  <meta name="description"
-    content="Découvrez les tarifs Web &amp; Passion pour l'assistance web, la création et l'amélioration de sites internet, le référencement SEO et l'accompagnement avec les outils IA.">
+    <meta property="og:type" content="website">
+    <meta
+      property="og:title"
+      content="Tarifs assistance web, création de site, SEO &amp; IA | Web &amp; Passion"
+    >
+    <meta
+      property="og:description"
+      content="Découvrez les tarifs Web &amp; Passion pour l'assistance web, la création de sites internet, le référencement SEO et les outils IA."
+    >
+    <meta
+      property="og:url"
+      content="https://www.web-et-passion.fr/tarifs.html"
+    >
+    <meta property="og:site_name" content="Web &amp; Passion" >
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Tarifs assistance web, création de site, SEO &amp; IA | Web &amp; Passion">
-  <meta property="og:description"
-    content="Découvrez les tarifs Web &amp; Passion pour l'assistance web, la création de sites internet, le référencement SEO et les outils IA.">
-  <meta property="og:url" content="https://www.web-et-passion.fr/tarifs.html">
-  <meta property="og:site_name" content="Web &amp; Passion">
+    <meta name="twitter:card" content="summary" >
+    <meta
+      name="twitter:title"
+      content="Tarifs Web &amp; Passion — Assistance web, SEO &amp; IA"
+    >
+    <meta
+      name="twitter:description"
+      content="Découvrez les tarifs pour l'assistance web, la création de site, le référencement SEO et l'accompagnement avec les outils IA."
+    >
 
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Tarifs Web &amp; Passion — Assistance web, SEO &amp; IA">
-  <meta name="twitter:description"
-    content="Découvrez les tarifs pour l'assistance web, la création de site, le référencement SEO et l'accompagnement avec les outils IA.">
+    <title>Tarif assistance, création, SEO et IA | Web &amp; Passion</title>
 
-  <title>Tarif assistance, création, SEO et IA | Web &amp; Passion</title>
+    <link rel="icon" type="image/webp" href="assets/logo-web-passion.webp">
 
-  <link rel="icon" type="image/webp" href="assets/logo-web-passion.webp">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tarifs.css">
 
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/tarifs.css">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Tarifs assistance web, création de site, SEO & IA | Web & Passion",
+        "description": "Découvrez les tarifs Web & Passion pour l'assistance web, la création et l'amélioration de sites internet, le référencement SEO et l'accompagnement avec les outils IA.",
+        "url": "https://www.web-et-passion.fr/tarifs.html"
+      }
+    </script>
+  </head>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Tarifs assistance web, création de site, SEO & IA | Web & Passion",
-    "description": "Découvrez les tarifs Web & Passion pour l'assistance web, la création et l'amélioration de sites internet, le référencement SEO et l'accompagnement avec les outils IA.",
-    "url": "https://www.web-et-passion.fr/tarifs.html"
-  }
-  </script>
-
-</head>
-
-<body>
-
-  <!-- ==============================
+  <body>
+    <!-- ==============================
        HEADER
        ============================== -->
 
-  <header class="site-header">
+    <header class="site-header">
+      <a class="logo" href="index.html" aria-label="Web & Passion - Accueil">
+        <img src="assets/logo-web-passion.webp" alt="Logo Web & Passion" >
 
-    <a class="logo" href="index.html" aria-label="Web & Passion - Accueil">
-      <img src="assets/logo-web-passion.webp" alt="Logo Web & Passion">
+        <span> Web <span class="accent">&amp;</span> Passion </span>
+      </a>
 
-      <span>
-        Web <span class="accent">&amp;</span> Passion
-      </span>
-    </a>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+        aria-controls="main-navigation"
+      >
+        ☰
+      </button>
 
-    <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false"
-      aria-controls="main-navigation">
-      ☰
-    </button>
+      <nav class="nav" id="main-navigation" aria-label="Navigation principale">
+        <a href="services.html">Services</a>
+        <a href="a-propos.html">À propos</a>
+        <a href="methode.html">Ma méthode</a>
+        <a href="diagnostic.html">Diagnostic</a>
+        <a href="tarifs.html" class="active">Tarifs</a>
+        <a href="applications.html">Applications</a>
+        <a href="guide-lexique.html">Lexique</a>
+        <a href="contact.html">Contact</a>
+      </nav>
 
-    <nav class="nav" id="main-navigation" aria-label="Navigation principale">
+      <button
+        class="audio-toggle"
+        id="audio-toggle"
+        type="button"
+        aria-pressed="false"
+        aria-label="Activer le fond musical d'ambiance"
+        title="Activer / couper l'ambiance musicale"
+      >
+        <span class="audio-bars" aria-hidden="true">
+          <i></i><i></i><i></i><i></i>
+        </span>
+        <span class="audio-label">Ambiance</span>
+      </button>
+    </header>
 
-      <a href="index.html#services">Services</a>
-      <a href="index.html#apropos">À propos</a>
-      <a href="index.html#methode">Ma méthode</a>
-      <a href="index.html#diagnostic">Diagnostic</a>
-      <a href="tarifs.html" class="active">Tarifs</a>
-      <a href="applications.html">Applications</a>
-      <a href="guide-lexique.html">Lexique</a>
-      <a href="index.html#contact">Contact</a>
-     
-    </nav>
-
-<button class="audio-toggle" id="audio-toggle" type="button" aria-pressed="false"
-      aria-label="Activer le fond musical d'ambiance" title="Activer / couper l'ambiance musicale">
-      <span class="audio-bars" aria-hidden="true">
-        <i></i><i></i><i></i><i></i>
-      </span>
-      <span class="audio-label">Ambiance</span>
-    </button>
-    
-  </header>
-
-  <main>
-
-    <!-- ==============================
+    <main>
+      <!-- ==============================
      HERO
      ============================== -->
 
-    <section class="pricing-hero">
+      <section class="pricing-hero">
+        <div class="eyebrow">DES SOLUTIONS À VOTRE MESURE</div>
 
-      <div class="eyebrow">
-        DES SOLUTIONS À VOTRE MESURE
-      </div>
+        <h1>Mes <span>tarifs</span></h1>
 
-      <h1>
-        Mes <span>tarifs</span>
-      </h1>
+        <p class="hero-lead">
+          Des solutions web accessibles, adaptées à vos besoins.
+        </p>
 
-      <p class="hero-lead">
-        Des solutions web accessibles, adaptées à vos besoins.
-      </p>
+        <p class="hero-text">
+          Je réalise mes prestations avec passion et transparence.<br >
+          Chaque projet est différent : si vous avez un besoin particulier,
+          n'hésitez pas à me contacter.
+        </p>
+      </section>
 
-      <p class="hero-text">
-        Je réalise mes prestations avec passion et transparence.<br>
-        Chaque projet est différent : si vous avez un besoin particulier,
-        n'hésitez pas à me contacter.
-      </p>
-
-    </section>
-
-
-    <!-- ==============================
+      <!-- ==============================
      PACKS
      ============================== -->
 
-    <section class="pricing-section" aria-labelledby="packs-title">
+      <section class="pricing-section" aria-labelledby="packs-title">
+        <div class="section-heading">
+          <span class="line"></span>
 
-      <div class="section-heading">
+          <h2 id="packs-title">Choisissez votre formule</h2>
 
-        <span class="line"></span>
+          <span class="line"></span>
+        </div>
 
-        <h2 id="packs-title">
-          Choisissez votre formule
-        </h2>
+        <div class="pricing-grid">
+          <link rel="stylesheet" href="css/style.css" >
+          <link rel="stylesheet" href="css/tarifs.css" >
 
-        <span class="line"></span>
-
-      </div>
-
-
-      <div class="pricing-grid">
-
-
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/tarifs.css">
-
-        <!-- ==============================
+          <!-- ==============================
          1 — ONE PAGE ESSENTIEL
          ============================== -->
-        <article class="price-card essential">
+          <article class="price-card essential">
+            <div class="card-icon">+</div>
 
-          <div class="card-icon">+</div>
+            <h3>One Page Essentiel</h3>
 
-          <h3>One Page Essentiel</h3>
+            <p class="card-intro">
+              Une présence professionnelle simple et efficace.
+            </p>
 
-          <p class="card-intro">
-            Une présence professionnelle simple et efficace.
-          </p>
+            <a
+              class="demo-link"
+              href="demo-forfaits/one-page-essentiel.html"
+              target="_blank"
+              rel="noopener"
+            >
+              Découvrir l’exemple <span aria-hidden="true">→</span>
+            </a>
 
-          <a class="demo-link" href="demo-forfaits/one-page-essentiel.html" target="_blank" rel="noopener">
-            Découvrir l’exemple <span aria-hidden="true">→</span>
-          </a>
+            <div class="price"><span>250</span> €</div>
 
-          <div class="price">
-            <span>250</span> €
-          </div>
+            <ul>
+              <li>Site vitrine sur 1 page</li>
+              <li>Design personnalisé</li>
+              <li>Version ordinateur, tablette et mobile</li>
+              <li>Formulaire de contact</li>
+              <li>Référencement de base</li>
+              <li>Connexion à votre nom de domaine</li>
+            </ul>
 
-          <ul>
-            <li>Site vitrine sur 1 page</li>
-            <li>Design personnalisé</li>
-            <li>Version ordinateur, tablette et mobile</li>
-            <li>Formulaire de contact</li>
-            <li>Référencement de base</li>
-            <li>Connexion à votre nom de domaine</li>
-          </ul>
+            <button
+              class="choose-pack"
+              type="button"
+              data-pack="One Page Pro"
+              data-price="400"
+            >
+              Choisir ce pack <span>→</span>
+            </button>
+          </article>
 
-          <button class="choose-pack" type="button" data-pack="One Page Pro" data-price="400">
-            Choisir ce pack <span>→</span>
-          </button>
-
-        </article>
-
-        <!-- ==============================
+          <!-- ==============================
          2 — ONE PAGE PRO
          ============================== -->
 
-        <article class="price-card featured">
+          <article class="price-card featured">
+            <div class="popular">LE PLUS DEMANDÉ</div>
 
-          <div class="popular">
-            LE PLUS DEMANDÉ
-          </div>
+            <div class="card-icon">⚡</div>
 
-          <div class="card-icon">⚡</div>
+            <h3>One Page Pro</h3>
 
-          <h3>
-            One Page Pro
-          </h3>
+            <p class="card-intro">
+              Une page complète pour mieux présenter votre activité.
+            </p>
 
-          <p class="card-intro">
-            Une page complète pour mieux présenter votre activité.
-          </p>
+            <a
+              class="demo-link"
+              href="demo-forfaits/one-page-pro.html"
+              target="_blank"
+              rel="noopener"
+            >
+              Découvrir l’exemple <span aria-hidden="true">→</span>
+            </a>
 
-          <a class="demo-link" href="demo-forfaits/one-page-pro.html" target="_blank" rel="noopener">
-            Découvrir l’exemple <span aria-hidden="true">→</span>
-          </a>
+            <div class="price"><span>400</span> €</div>
 
-          <div class="price">
-            <span>400</span> €
-          </div>
+            <ul>
+              <li>Site vitrine sur 1 page</li>
+              <li>Design personnalisé et professionnel</li>
+              <li>Version ordinateur, tablette et mobile</li>
+              <li>Formulaire de contact</li>
+              <li>Référencement SEO de base renforcé</li>
+              <li>Optimisation des contenus et images</li>
+              <li>Intégration des réseaux sociaux</li>
+              <li>Conseils pour améliorer votre visibilité</li>
+            </ul>
 
-          <ul>
-            <li>Site vitrine sur 1 page</li>
-            <li>Design personnalisé et professionnel</li>
-            <li>Version ordinateur, tablette et mobile</li>
-            <li>Formulaire de contact</li>
-            <li>Référencement SEO de base renforcé</li>
-            <li>Optimisation des contenus et images</li>
-            <li>Intégration des réseaux sociaux</li>
-            <li>Conseils pour améliorer votre visibilité</li>
-          </ul>
+            <button
+              class="choose-pack"
+              type="button"
+              data-pack="One Page Pro"
+              data-price="400"
+            >
+              Choisir ce pack <span>→</span>
+            </button>
+          </article>
 
-          <button class="choose-pack" type="button" data-pack="One Page Pro" data-price="400">
-            Choisir ce pack <span>→</span>
-          </button>
-
-        </article>
-
-        <!-- ==============================
+          <!-- ==============================
          3 — SITE ESSENTIEL
          ============================== -->
 
-        <article class="price-card plus">
+          <article class="price-card plus">
+            <div class="card-icon">◆</div>
 
-          <div class="card-icon">◆</div>
+            <h3>Site Essentiel</h3>
 
-          <h3>
-            Site Essentiel
-          </h3>
+            <p class="card-intro">
+              L'essentiel pour présenter clairement votre activité.
+            </p>
 
-          <p class="card-intro">
-            L'essentiel pour présenter clairement votre activité.
-          </p>
+            <a
+              class="demo-link"
+              href="demo-forfaits/site-essentiel.html"
+              target="_blank"
+              rel="noopener"
+            >
+              Découvrir l’exemple <span aria-hidden="true">→</span>
+            </a>
 
-          <a class="demo-link" href="demo-forfaits/site-essentiel.html" target="_blank" rel="noopener">
-            Découvrir l’exemple <span aria-hidden="true">→</span>
-          </a>
+            <div class="price"><span>500</span> €</div>
 
-          <div class="price">
-            <span>500</span> €
-          </div>
+            <ul>
+              <li>Site vitrine jusqu'à 3 pages</li>
+              <li>Design personnalisé</li>
+              <li>Version ordinateur, tablette et mobile</li>
+              <li>Formulaire de contact</li>
+              <li>Référencement de base</li>
+              <li>Optimisation des images</li>
+              <li>Connexion à votre nom de domaine</li>
+            </ul>
 
-          <ul>
-            <li>Site vitrine jusqu'à 3 pages</li>
-            <li>Design personnalisé</li>
-            <li>Version ordinateur, tablette et mobile</li>
-            <li>Formulaire de contact</li>
-            <li>Référencement de base</li>
-            <li>Optimisation des images</li>
-            <li>Connexion à votre nom de domaine</li>
-          </ul>
+            <button
+              class="choose-pack"
+              type="button"
+              data-pack="Site Essentiel"
+              data-price="500"
+            >
+              Choisir ce pack <span>→</span>
+            </button>
+          </article>
 
-          <button class="choose-pack" type="button" data-pack="Site Essentiel" data-price="500">
-            Choisir ce pack <span>→</span>
-          </button>
-
-        </article>
-
-
-        <!-- ==============================
+          <!-- ==============================
          4 — SITE VISIBILITÉ
          ============================== -->
 
-        <article class="price-card essential">
+          <article class="price-card essential">
+            <div class="card-icon">✦</div>
 
-          <div class="card-icon">✦</div>
+            <h3>Site Visibilité</h3>
 
-          <h3>
-            Site Visibilité
-          </h3>
+            <p class="card-intro">
+              Un site plus complet pour développer votre présence en ligne.
+            </p>
 
-          <p class="card-intro">
-            Un site plus complet pour développer votre présence en ligne.
-          </p>
+            <a
+              class="demo-link"
+              href="demo-forfaits/site-visibilite.html"
+              target="_blank"
+              rel="noopener"
+            >
+              Découvrir l’exemple <span aria-hidden="true">→</span>
+            </a>
 
-          <a class="demo-link" href="demo-forfaits/site-visibilite.html" target="_blank" rel="noopener">
-            Découvrir l’exemple <span aria-hidden="true">→</span>
-          </a>
+            <div class="price"><span>650</span> €</div>
 
-          <div class="price">
-            <span>650</span> €
-          </div>
+            <ul>
+              <li>Site vitrine jusqu'à 5 pages</li>
+              <li>Design personnalisé</li>
+              <li>Version ordinateur, tablette et mobile</li>
+              <li>Formulaire de contact</li>
+              <li>Référencement SEO de base renforcé</li>
+              <li>Optimisation des pages et images</li>
+              <li>Intégration des réseaux sociaux</li>
+              <li>Conseils en visibilité</li>
+            </ul>
 
-          <ul>
-            <li>Site vitrine jusqu'à 5 pages</li>
-            <li>Design personnalisé</li>
-            <li>Version ordinateur, tablette et mobile</li>
-            <li>Formulaire de contact</li>
-            <li>Référencement SEO de base renforcé</li>
-            <li>Optimisation des pages et images</li>
-            <li>Intégration des réseaux sociaux</li>
-            <li>Conseils en visibilité</li>
-          </ul>
+            <button
+              class="choose-pack"
+              type="button"
+              data-pack="Site Visibilité"
+              data-price="650"
+            >
+              Choisir ce pack <span>→</span>
+            </button>
+          </article>
 
-          <button class="choose-pack" type="button" data-pack="Site Visibilité" data-price="650">
-            Choisir ce pack <span>→</span>
-          </button>
-
-        </article>
-
-
-        <!-- ==============================
+          <!-- ==============================
          5 — SITE PLUS
          ============================== -->
 
-        <article class="price-card featured">
+          <article class="price-card featured">
+            <div class="popular">FORMULE COMPLÈTE</div>
 
-          <div class="popular">
-            FORMULE COMPLÈTE
-          </div>
+            <div class="card-icon">⚡</div>
 
-          <div class="card-icon">⚡</div>
+            <h3>Site Plus</h3>
 
-          <h3>
-            Site Plus
-          </h3>
+            <p class="card-intro">
+              Une solution complète pour une présence web plus ambitieuse.
+            </p>
 
-          <p class="card-intro">
-            Une solution complète pour une présence web plus ambitieuse.
-          </p>
+            <a
+              class="demo-link"
+              href="demo-forfaits/site-plus.html"
+              target="_blank"
+              rel="noopener"
+            >
+              Découvrir l’exemple <span aria-hidden="true">→</span>
+            </a>
 
-          <a class="demo-link" href="demo-forfaits/site-plus.html" target="_blank" rel="noopener">
-            Découvrir l’exemple <span aria-hidden="true">→</span>
-          </a>
+            <div class="price"><span>850</span> €</div>
 
-          <div class="price">
-            <span>850</span> €
-          </div>
+            <ul>
+              <li>Site vitrine jusqu'à 7 pages</li>
+              <li>Design personnalisé</li>
+              <li>Version ordinateur, tablette et mobile</li>
+              <li>Formulaire de contact</li>
+              <li>Référencement SEO de base renforcé</li>
+              <li>Optimisation des performances</li>
+              <li>Optimisation des images et contenus</li>
+              <li>Intégration des réseaux sociaux</li>
+              <li>Aide à la mise en ligne</li>
+              <li>Accompagnement après livraison</li>
+            </ul>
 
-          <ul>
-            <li>Site vitrine jusqu'à 7 pages</li>
-            <li>Design personnalisé</li>
-            <li>Version ordinateur, tablette et mobile</li>
-            <li>Formulaire de contact</li>
-            <li>Référencement SEO de base renforcé</li>
-            <li>Optimisation des performances</li>
-            <li>Optimisation des images et contenus</li>
-            <li>Intégration des réseaux sociaux</li>
-            <li>Aide à la mise en ligne</li>
-            <li>Accompagnement après livraison</li>
-          </ul>
+            <button
+              class="choose-pack"
+              type="button"
+              data-pack="Site Plus"
+              data-price="850"
+            >
+              Choisir ce pack <span>→</span>
+            </button>
+          </article>
 
-          <button class="choose-pack" type="button" data-pack="Site Plus" data-price="850">
-            Choisir ce pack <span>→</span>
-          </button>
-
-        </article>
-
-
-        <!-- ==============================
+          <!-- ==============================
          6 — PROJET PERSONNALISÉ
          ============================== -->
 
-        <article class="price-card plus">
+          <article class="price-card plus">
+            <div class="card-icon">⚙</div>
 
-          <div class="card-icon">⚙</div>
+            <h3>Projet personnalisé</h3>
 
-          <h3>
-            Projet personnalisé
-          </h3>
+            <p class="card-intro">
+              Pour les projets nécessitant des fonctionnalités spécifiques.
+            </p>
 
-          <p class="card-intro">
-            Pour les projets nécessitant des fonctionnalités spécifiques.
-          </p>
+            <a
+              class="demo-link"
+              href="demo-forfaits/projet-personnalise.html"
+              target="_blank"
+              rel="noopener"
+            >
+              Découvrir l’exemple <span aria-hidden="true">→</span>
+            </a>
 
-          <a class="demo-link" href="demo-forfaits/projet-personnalise.html" target="_blank" rel="noopener">
-            Découvrir l’exemple <span aria-hidden="true">→</span>
-          </a>
+            <div class="price">
+              <span>Sur devis</span>
+            </div>
 
-          <div class="price">
-            <span>Sur devis</span>
-          </div>
+            <ul>
+              <li>Projet web spécifique</li>
+              <li>Fonctionnalité particulière</li>
+              <li>Modification d'un site existant</li>
+              <li>Référencement et optimisation</li>
+              <li>Fonctionnalités avancées</li>
+              <li>Accompagnement personnalisé</li>
+            </ul>
 
-          <ul>
-            <li>Projet web spécifique</li>
-            <li>Fonctionnalité particulière</li>
-            <li>Modification d'un site existant</li>
-            <li>Référencement et optimisation</li>
-            <li>Fonctionnalités avancées</li>
-            <li>Accompagnement personnalisé</li>
-          </ul>
+            <button
+              class="choose-pack"
+              type="button"
+              data-pack="Projet personnalisé"
+              data-price="Sur devis"
+            >
+              Demander un devis <span>→</span>
+            </button>
+          </article>
+        </div>
+      </section>
 
-          <button class="choose-pack" type="button" data-pack="Projet personnalisé" data-price="Sur devis">
-            Demander un devis <span>→</span>
-          </button>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- ==============================
+      <!-- ==============================
      PROJET SUR MESURE
      ============================== -->
 
-    <section class="custom-section">
+      <section class="custom-section">
+        <div class="custom-content">
+          <div class="custom-icon">⚙</div>
 
-      <div class="custom-content">
+          <div>
+            <p class="small-title">BESOIN D'AUTRE CHOSE ?</p>
 
-        <div class="custom-icon">
-          ⚙
-        </div>
+            <h2>Un projet différent ? Parlons-en.</h2>
 
-        <div>
+            <p>Votre besoin ne correspond pas aux formules proposées ?</p>
 
-          <p class="small-title">
-            BESOIN D'AUTRE CHOSE ?
-          </p>
+            <a
+              href="demo-forfaits/projet-personnalise.html"
+              target="_blank"
+              rel="noopener"
+            >
+              Découvrir l’exemple <span aria-hidden="true">→</span>
+            </a>
 
-          <h2>
-            Un projet différent ? Parlons-en.
-          </h2>
-
-          <p>
-            Votre besoin ne correspond pas aux formules proposées ?
-          </p>
-
-          <a href="demo-forfaits/projet-personnalise.html" target="_blank" rel="noopener">
-            Découvrir l’exemple <span aria-hidden="true">→</span>
-          </a>
-
-          <div class="custom-list">
-            <span>✓ Création spécifique</span>
-            <span>✓ Fonctionnalité particulière</span>
-            <span>✓ Modification d'un site existant</span>
-            <span>✓ Référencement</span>
-            <span>✓ Assistance</span>
+            <div class="custom-list">
+              <span>✓ Création spécifique</span>
+              <span>✓ Fonctionnalité particulière</span>
+              <span>✓ Modification d'un site existant</span>
+              <span>✓ Référencement</span>
+              <span>✓ Assistance</span>
+            </div>
           </div>
-
         </div>
 
-      </div>
+        <a
+          class="outline-button"
+          href="mailto:bonjour@webetpassion.fr?subject=Demande%20de%20devis"
+        >
+          ✉ Demander un devis
+        </a>
+      </section>
 
-      <a class="outline-button" href="mailto:bonjour@webetpassion.fr?subject=Demande%20de%20devis">
-        ✉ Demander un devis
-      </a>
-
-    </section>
-
-
-    <!-- ==============================
+      <!-- ==============================
      COMMENT ÇA MARCHE
      ============================== -->
 
-    <section class="how-section">
+      <section class="how-section">
+        <div class="section-heading">
+          <span class="line"></span>
 
-      <div class="section-heading">
+          <h2>Comment ça marche ?</h2>
 
-        <span class="line"></span>
-
-        <h2>
-          Comment ça marche ?
-        </h2>
-
-        <span class="line"></span>
-
-      </div>
-
-
-      <div class="steps">
-
-        <div class="step">
-
-          <span class="step-number">1</span>
-
-          <h3>
-            Choisissez votre formule
-          </h3>
-
-          <p>
-            Sélectionnez la formule qui correspond à votre projet.
-          </p>
-
+          <span class="line"></span>
         </div>
 
+        <div class="steps">
+          <div class="step">
+            <span class="step-number">1</span>
 
-        <div class="step">
+            <h3>Choisissez votre formule</h3>
 
-          <span class="step-number">2</span>
+            <p>Sélectionnez la formule qui correspond à votre projet.</p>
+          </div>
 
-          <h3>
-            Remplissez le formulaire
-          </h3>
+          <div class="step">
+            <span class="step-number">2</span>
 
-          <p>
-            Renseignez vos informations et précisez votre besoin.
-          </p>
+            <h3>Remplissez le formulaire</h3>
 
+            <p>Renseignez vos informations et précisez votre besoin.</p>
+          </div>
+
+          <div class="step">
+            <span class="step-number">3</span>
+
+            <h3>Paiement par virement bancaire</h3>
+
+            <p>Le paiement pourra être effectué par virement bancaire.</p>
+          </div>
+
+          <div class="step">
+            <span class="step-number">4</span>
+
+            <h3>Confirmation</h3>
+
+            <p>
+              Vous recevez la confirmation et nous échangeons sur votre projet.
+            </p>
+          </div>
         </div>
+      </section>
 
-
-        <div class="step">
-
-          <span class="step-number">3</span>
-
-          <h3>
-            Paiement par virement bancaire
-          </h3>
-
+      <!-- SECTION RÉCAPITULATIF APPLICATIONS (TARIFS.HTML) -->
+      <section id="boutique-apps" class="custom-section">
+        <div class="custom-text">
+          <span class="badge">Essai gratuit 7 jours • Sans engagement</span>
+          <h2>Applications Web &amp; Mobiles Clé en Main</h2>
           <p>
-            Le paiement pourra être effectué par virement bancaire.
+            <strong>Calculateur de Devis Express</strong> :
+            <strong>190 €</strong> (paiement unique) •
+            <strong>Carte de Visite Digitale &amp; QR Code Pro</strong> :
+            <strong>89 €</strong> (paiement unique).<br >
+            Testez chaque application gratuitement pendant
+            <strong>7 jours</strong> avant de commander.
           </p>
-
         </div>
-
-
-        <div class="step">
-
-          <span class="step-number">4</span>
-
-          <h3>
-            Confirmation
-          </h3>
-
-          <p>
-            Vous recevez la confirmation et nous échangeons sur votre projet.
-          </p>
-
+        <div class="custom-action">
+          <a href="applications.html" class="outline-button"
+            >Découvrir les applications et tester les démos →</a
+          >
         </div>
+      </section>
+    </main>
 
-      </div>
-
-    </section>
-
-    <!-- SECTION RÉCAPITULATIF APPLICATIONS (TARIFS.HTML) -->
-    <section id="boutique-apps" class="custom-section">
-      <div class="custom-text">
-        <span class="badge">Essai gratuit 7 jours • Sans engagement</span>
-        <h2>Applications Web &amp; Mobiles Clé en Main</h2>
-        <p>
-          <strong>Calculateur de Devis Express</strong> : <strong>190 €</strong> (paiement unique) •
-          <strong>Carte de Visite Digitale &amp; QR Code Pro</strong> : <strong>89 €</strong> (paiement unique).<br>
-          Testez chaque application gratuitement pendant <strong>7 jours</strong> avant de commander.
-        </p>
-      </div>
-      <div class="custom-action">
-        <a href="applications.html" class="outline-button">Découvrir les applications et tester les démos →</a>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ==============================
+    <!-- ==============================
        FENÊTRE DE COMMANDE
        ============================== -->
 
-  <div class="modal" id="orderModal" aria-hidden="true" inert>
+    <div class="modal" id="orderModal" aria-hidden="true" inert>
+      <div class="modal-backdrop" data-close-modal=""></div>
 
-    <div class="modal-backdrop" data-close-modal="">
-    </div>
-
-    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-
-      <button class="modal-close" type="button" aria-label="Fermer" data-close-modal="">
-        ×
-      </button>
-
-      <p class="small-title">
-        VOTRE COMMANDE
-      </p>
-
-      <h2 id="modalTitle">
-        Commander une formule
-      </h2>
-
-      <div class="selected-pack">
-
-        <span id="selectedPack">
-          One Page Pro
-        </span>
-
-        <strong>
-          <span id="selectedPrice">400</span> €
-        </strong>
-
-      </div>
-
-
-      <form id="orderForm" action="#" novalidate>
-
-        <label for="name">
-          Nom / Prénom
-        </label>
-
-        <input id="name" name="name" type="text" autocomplete="name" required>
-
-
-        <label for="email">
-          Adresse e-mail
-        </label>
-
-        <input id="email" name="email" type="email" autocomplete="email" required>
-
-
-        <label for="phone">
-          Téléphone
-        </label>
-
-        <input id="phone" name="phone" type="tel" autocomplete="tel">
-
-
-        <label for="message">
-          Précisions sur votre projet
-        </label>
-
-        <textarea id="message" name="message" rows="3"></textarea>
-
-
-        <label class="checkbox">
-
-          <input type="checkbox" id="cgv-accept" name="cgv" required>
-
-          <span>
-            J'accepte les conditions générales de vente.
-          </span>
-
-        </label>
-
-
-        <button class="submit-button" type="submit">
-
-          Envoyer ma demande <span>→</span>
-
+      <div
+        class="modal-box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+      >
+        <button
+          class="modal-close"
+          type="button"
+          aria-label="Fermer"
+          data-close-modal=""
+        >
+          ×
         </button>
 
+        <p class="small-title">VOTRE COMMANDE</p>
 
-        <p class="payment-note">
+        <h2 id="modalTitle">Commander une formule</h2>
 
-          💳 Paiement par virement bancaire.<br>
+        <div class="selected-pack">
+          <span id="selectedPack"> One Page Pro </span>
 
-          Les coordonnées bancaires nécessaires au règlement seront communiquées
-          sur le devis ou la facture.
+          <strong> <span id="selectedPrice">400</span> € </strong>
+        </div>
 
-        </p>
+        <form id="orderForm" action="#" novalidate>
+          <label for="name"> Nom / Prénom </label>
 
-      </form>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            required
+          >
 
+          <label for="email"> Adresse e-mail </label>
+
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+          >
+
+          <label for="phone"> Téléphone </label>
+
+          <input id="phone" name="phone" type="tel" autocomplete="tel" >
+
+          <label for="message"> Précisions sur votre projet </label>
+
+          <textarea id="message" name="message" rows="3"></textarea>
+
+          <label class="checkbox">
+            <input type="checkbox" id="cgv-accept" name="cgv" required >
+
+            <span> J'accepte les conditions générales de vente. </span>
+          </label>
+
+          <button class="submit-button" type="submit">
+            Envoyer ma demande <span>→</span>
+          </button>
+
+          <p class="payment-note">
+            💳 Paiement par virement bancaire.<br >
+
+            Les coordonnées bancaires nécessaires au règlement seront
+            communiquées sur le devis ou la facture.
+          </p>
+        </form>
+      </div>
     </div>
 
-
-  </div>
-
-  <!-- ==============================
+    <!-- ==============================
        FOOTER
        ============================== -->
 
-  <footer class="footer">
+    <footer class="footer">
+      <div>
+        <a
+          class="logo"
+          href="index.html"
+          aria-label="Web &amp; Passion - Accueil"
+        >
+          <img
+            src="assets/logo-web-passion.webp"
+            alt="Logo Web &amp; Passion"
+            class="brand-logo"
+          >
 
+          <span> Web <span class="accent">&amp;</span> Passion </span>
+        </a>
 
-    <div>
+        <p>Assistance web, SEO &amp; IA — par passion.</p>
 
-      <a class="logo" href="index.html" aria-label="Web &amp; Passion - Accueil">
+        <div class="footer-socials">
+          <a
+            class="footer-social-link"
+            href="https://www.linkedin.com/in/philippe-jireau-14a0a8448/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Profil LinkedIn de Philippe JIREAU"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              aria-hidden="true"
+            >
+              <path
+                d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"
+              >
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
 
-        <img src="assets/logo-web-passion.webp" alt="Logo Web &amp; Passion" class="brand-logo">
+      <div class="footer-links-group">
+        <div class="footer-links">
+          <a href="services.html"> Services </a>
 
-        <span>
-          Web <span class="accent">&amp;</span> Passion
-        </span>
+          <a href="a-propos.html"> À propos </a>
 
-      </a>
+          <a href="methode.html"> Méthode </a>
 
-      <p>
-        Assistance web, SEO &amp; IA — par passion.
+          <a href="applications.html"> Applications </a>
+
+          <a href="guide-lexique.html"> Guide Lexique Web </a>
+
+          <a href="diagnostic.html"> Diagnostic </a>
+
+          <a href="contact.html"> Contact </a>
+        </div>
+
+        <div class="footer-links legal-links">
+          <a href="mentions-legales.html"> Mentions légales </a>
+
+          <a href="politique-confidentialite.html">
+            Politique de confidentialité
+          </a>
+
+          <a href="cgv.html"> CGV </a>
+
+          <a href="modele-document-ia.html"> Modele document IA </a>
+        </div>
+      </div>
+
+      <p class="copyright">
+        © <span id="year">2026</span>
+        Web &amp; Passion. Tous droits réservés.
       </p>
+    </footer>
 
-      <div class="footer-socials">
-        <a class="footer-social-link" href="https://www.linkedin.com/in/philippe-jireau-14a0a8448/" target="_blank" rel="noopener noreferrer" aria-label="Profil LinkedIn de Philippe JIREAU">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" aria-hidden="true">
-            <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/>
-          </svg>
-          <span>LinkedIn</span>
-        </a>
-      </div>
-
-    </div>
-
-
-    <div class="footer-links-group">
-
-      <div class="footer-links">
-
-        <a href="index.html#services">
-          Services
-        </a>
-
-        <a href="index.html#apropos">
-          À propos
-        </a>
-
-        <a href="index.html#methode">
-          Méthode
-        </a>
-
-        <a href="applications.html">
-          Applications
-        </a>
-
-        <a href="guide-lexique.html">
-          Guide Lexique Web
-        </a>
-
-        <a href="index.html#diagnostic">
-          Diagnostic
-        </a>
-
-        <a href="index.html#contact">
-          Contact
-        </a>
-
-      </div>
-
-
-      <div class="footer-links legal-links">
-
-        <a href="mentions-legales.html">
-          Mentions légales
-        </a>
-
-        <a href="politique-confidentialite.html">
-          Politique de confidentialité
-        </a>
-
-        <a href="cgv.html">
-          CGV
-        </a>
-
-        <a href="modele-document-ia.html">
-          Modele document IA
-        </a>
-
-      </div>
-
-    </div>
-
-
-    <p class="copyright">
-
-      © <span id="year">2026</span>
-      Web &amp; Passion.
-      Tous droits réservés.
-
-    </p>
-
-
-  </footer>
-
-  <script src="js/tarifs.js"></script>
-  <script src="js/audio.js"></script>
-
-</body>
-
+    <script src="js/tarifs.js"></script>
+    <script src="js/audio.js"></script>
+  </body>
 </html>
