@@ -1,6 +1,6 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/jiph2812/
+    - export DEPLOYPATH=$([ -d /home/jiph2812/webetpassion.fr ] && echo /home/jiph2812/webetpassion.fr/ || echo /home/jiph2812/public_html/)
     - /bin/cp -R * $DEPLOYPATH
     - /bin/cp .htaccess $DEPLOYPATH
