@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cryptaedre — Coffre-Fort Cryptographique Zero-Knowledge</title>
+    <meta
+      name="description"
+      content="Application web de cybersécurité locale : chiffrement AES-GCM 256 bits, dérivation PBKDF2 et générateur CSPRNG sans serveur."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Cryptaedre Zero-Knowledge",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "Web",
+        "description": "Outil de chiffrement local AES-256-GCM et générateur de mots de passe cryptographiques."
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <svg
+            class="logo-icon"
+            viewBox="0 0 24 24"
+            width="28"
+            height="28"
+            stroke="currentColor"
+            stroke-width="2"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <span class="brand-name"
+            >Cryptaedre <span class="badge">AES-256-GCM</span></span
+          >
+        </div>
+        <button
+          id="burger-btn"
+          class="burger-btn"
+          aria-label="Ouvrir le menu"
+          aria-expanded="false"
+          aria-controls="main-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+          <ul>
+            <li><a href="#section-vault">Coffre-fort</a></li>
+            <li><a href="#section-generator">Générateur CSPRNG</a></li>
+            <li><a href="#section-audit">Audit d'entropie</a></li>
+            <li><a href="#section-guide">Mode d'emploi</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero-status" aria-labelledby="main-title">
+        <h1 id="main-title">Architecture Zero-Knowledge Locale</h1>
+        <p class="subtitle">
+          Aucune donnée ne quitte votre navigateur. Toutes les opérations
+          cryptographiques sont exécutées en mémoire vive via Web Crypto API.
+        </p>
+        <div id="env-status" class="status-banner" role="status">
+          Vérification de l'environnement cryptographique...
+        </div>
+      </section>
+
+      <div class="grid-layout">
+        <!-- MODULE 1 : COFFRE-FORT CHIFFREMENT / DÉCHIFFREMENT -->
+        <section id="section-vault" class="card" aria-labelledby="vault-title">
+          <h2 id="vault-title">1. Chiffrement & Déchiffrement AES-GCM</h2>
+
+          <div class="form-group">
+            <label for="master-password"
+              >Mot de passe maître (Clé PBKDF2 - 600 000 itérations)</label
+            >
+            <div class="input-with-action">
+              <input
+                type="password"
+                id="master-password"
+                autocomplete="new-password"
+                placeholder="Saisissez une phrase secrète robuste..."
+              />
+              <button
+                type="button"
+                id="toggle-master-btn"
+                class="btn-secondary"
+                aria-label="Afficher ou masquer le mot de passe"
+              >
+                Voir
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="vault-input"
+              >Données en clair OU Charge utile chiffrée (Base64)</label
+            >
+            <textarea
+              id="vault-input"
+              rows="6"
+              placeholder="Collez ici vos identifiants, clés API, notes sensibles ou un bloc chiffré à déverrouiller..."
+            ></textarea>
+          </div>
+
+          <div class="button-row">
+            <button type="button" id="encrypt-btn" class="btn-primary">
+              Chiffrer les données
+            </button>
+            <button type="button" id="decrypt-btn" class="btn-secondary">
+              Déchiffrer les données
+            </button>
+            <button type="button" id="wipe-btn" class="btn-danger">
+              Purger la mémoire
+            </button>
+          </div>
+
+          <div class="form-group output-group">
+            <label for="vault-output">Résultat cryptographique</label>
+            <textarea
+              id="vault-output"
+              rows="6"
+              readonly
+              placeholder="Le résultat chiffré ou déchiffré apparaîtra ici..."
+            ></textarea>
+            <div class="output-actions">
+              <button type="button" id="copy-output-btn" class="btn-secondary">
+                Copier (Auto-effacement 30s)
+              </button>
+              <button type="button" id="export-file-btn" class="btn-secondary">
+                Exporter en .crypt
+              </button>
+            </div>
+          </div>
+          <div
+            id="vault-feedback"
+            class="feedback-msg"
+            role="alert"
+            aria-live="polite"
+          ></div>
+        </section>
+
+        <!-- MODULE 2 : GÉNÉRATEUR & AUDIT -->
+        <div class="side-column">
+          <section
+            id="section-generator"
+            class="card"
+            aria-labelledby="gen-title"
+          >
+            <h2 id="gen-title">2. Générateur CSPRNG</h2>
+
+            <div class="form-group">
+              <label for="pwd-length"
+                >Longueur :
+                <strong id="length-val">24</strong> caractères</label
+              >
+              <input
+                type="range"
+                id="pwd-length"
+                min="12"
+                max="64"
+                value="24"
+              />
+            </div>
+
+            <div class="checkbox-grid">
+              <label class="checkbox-label">
+                <input type="checkbox" id="opt-upper" checked /> Majuscules
+                (A-Z)
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="opt-lower" checked /> Minuscules
+                (a-z)
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="opt-numbers" checked /> Chiffres
+                (0-9)
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="opt-symbols" checked /> Symboles
+                (!@#$...)
+              </label>
+            </div>
+
+            <div class="form-group">
+              <div class="input-with-action">
+                <input
+                  type="text"
+                  id="generated-pwd"
+                  readonly
+                  aria-label="Mot de passe généré"
+                />
+                <button type="button" id="copy-gen-btn" class="btn-secondary">
+                  Copier
+                </button>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              id="generate-btn"
+              class="btn-primary full-width"
+            >
+              Générer une clé aléatoire
+            </button>
+          </section>
+
+          <section
+            id="section-audit"
+            class="card"
+            aria-labelledby="audit-title"
+          >
+            <h2 id="audit-title">3. Calculateur d'Entropie</h2>
+            <div class="form-group">
+              <label for="audit-input"
+                >Tester la résistance mathématique d'un mot de passe</label
+              >
+              <input
+                type="password"
+                id="audit-input"
+                placeholder="Saisissez un mot de passe à analyser..."
+              />
+            </div>
+            <div class="entropy-meter">
+              <div id="entropy-bar" class="entropy-fill"></div>
+            </div>
+            <ul class="audit-stats">
+              <li>
+                Entropie réelle : <strong id="entropy-bits">0 bits</strong>
+              </li>
+              <li>
+                Temps de craquage estimé (Cluster GPU) :
+                <strong id="crack-time">Instantané</strong>
+              </li>
+              <li>Verdict : <strong id="entropy-verdict">Critique</strong></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+
+      <!-- MODULE 4 : MODE D'EMPLOI INTÉGRÉ -->
+      <section
+        id="section-guide"
+        class="card guide-section"
+        aria-labelledby="guide-title"
+      >
+        <h2 id="guide-title">
+          4. Mode d'emploi & Bonnes pratiques de sécurité
+        </h2>
+
+        <div class="guide-grid">
+          <article class="guide-step">
+            <span class="step-badge">Étape 1</span>
+            <h3>Chiffrer un secret</h3>
+            <p>
+              Saisissez une <strong>phrase secrète maîtresse</strong> robuste
+              (minimum 12 caractères). Collez vos identifiants, clés API ou
+              notes dans la zone d'entrée, puis cliquez sur
+              <strong>Chiffrer les données</strong>. Copiez le bloc généré ou
+              téléchargez le fichier <code>.crypt</code>.
+            </p>
+          </article>
+
+          <article class="guide-step">
+            <span class="step-badge">Étape 2</span>
+            <h3>Déchiffrer un secret</h3>
+            <p>
+              Collez le bloc chiffré Base64 (ou le contenu de votre fichier
+              <code>.crypt</code> ouvert avec un éditeur de texte) dans la zone
+              d'entrée. Saisissez le <strong>même mot de passe maître</strong>,
+              puis cliquez sur <strong>Déchiffrer les données</strong>.
+            </p>
+          </article>
+
+          <article class="guide-step">
+            <span class="step-badge">Étape 3</span>
+            <h3>Partager sans risque</h3>
+            <p>
+              Pour envoyer des accès à un tiers, transmettez le bloc chiffré par
+              <strong>e-mail</strong> et communiquez le mot de passe maître par
+              un canal séparé (<strong>SMS ou téléphone</strong>). Sans les deux
+              éléments, le message reste illisible.
+            </p>
+          </article>
+
+          <article class="guide-step">
+            <span class="step-badge">Étape 4</span>
+            <h3>Effacer ses traces</h3>
+            <p>
+              Aucune donnée n'est enregistrée sur internet ni dans votre
+              navigateur. Une fois votre opération terminée, cliquez sur
+              <strong>Purger la mémoire</strong>. Le presse-papiers est
+              automatiquement vidé 30 secondes après chaque copie.
+            </p>
+          </article>
+        </div>
+
+        <div class="guide-warning" role="note">
+          <strong>Règle d'or Zero-Knowledge :</strong> Ni le serveur ni
+          l'éditeur de cet outil ne connaissent votre mot de passe maître.
+          Aucune fonction de « mot de passe oublié » n'existe : si vous perdez
+          votre phrase secrète, vos fichiers <code>.crypt</code> sont
+          définitivement irrécupérables.
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>
+          Exécution 100 % côté client — Algorithmes standards NIST (AES-256-GCM
+          / PBKDF2-HMAC-SHA256).
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
