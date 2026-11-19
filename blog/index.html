@@ -1,171 +1,292 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Blog Web, SEO Local &amp; IA | Web &amp; Passion — Saint-Maximin-la-Sainte-Baume</title>
-    <meta name="description" content="Conseils pratiques sur la création de sites web, le référencement SEO local et l'Intelligence Artificielle pour artisans, indépendants et PME à Saint-Maximin-la-Sainte-Baume (Var 83).">
+    <title>Blog Web, SEO Local &amp; IA | Web &amp; Passion (Var 83)</title>
+    <meta
+      name="description"
+      content="Conseils pratiques sur la création de sites web, le référencement SEO local et l'Intelligence Artificielle pour artisans, indépendants et PME à Saint-Maximin-la-Sainte-Baume (Var 83)."
+    >
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://webetpassion.fr/blog/">
 
     <!-- Open Graph / Réseaux sociaux -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Le Blog Web, SEO Local &amp; IA | Web &amp; Passion">
-    <meta property="og:description" content="Guides pratiques sur le web, le SEO local et l'Intelligence Artificielle pour développer votre activité.">
+    <meta
+      property="og:title"
+      content="Le Blog Web, SEO Local &amp; IA | Web &amp; Passion"
+    >
+    <meta
+      property="og:description"
+      content="Guides pratiques sur le web, le SEO local et l'Intelligence Artificielle pour développer votre activité."
+    >
     <meta property="og:url" content="https://webetpassion.fr/blog/">
     <meta property="og:site_name" content="Web &amp; Passion">
 
     <!-- Feuille de style partagée -->
     <link rel="stylesheet" href="assets/css/blog-article.css">
 
-    <!-- Données structurées Schema.org (Blog + LocalBusiness) -->
+    <!-- Données structurées Schema.org (Blog + Articles + LocalBusiness) -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Blog",
-      "name": "Le Blog Web & Passion",
-      "description": "Conseils pratiques sur la création de sites web, le référencement SEO local et l'Intelligence Artificielle.",
-      "url": "https://webetpassion.fr/blog/",
-      "publisher": {
-        "@type": "ProfessionalService",
-        "name": "Web & Passion",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Saint-Maximin-la-Sainte-Baume",
-          "postalCode": "83470",
-          "addressRegion": "Provence-Alpes-Côte d'Azur",
-          "addressCountry": "FR"
+      {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Le Blog Web & Passion",
+        "description": "Conseils pratiques sur la création de sites web, le référencement SEO local et l'Intelligence Artificielle.",
+        "url": "https://webetpassion.fr/blog/",
+        "publisher": {
+          "@type": "ProfessionalService",
+          "name": "Web & Passion",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Saint-Maximin-la-Sainte-Baume",
+            "postalCode": "83470",
+            "addressRegion": "Provence-Alpes-Côte d'Azur",
+            "addressCountry": "FR"
+          },
+          "telephone": "+33771236136",
+          "url": "https://webetpassion.fr"
         },
-        "telephone": "+33771236136",
-        "url": "https://webetpassion.fr"
+        "blogPost": [
+          {
+            "@type": "BlogPosting",
+            "headline": "Référencement en 2026 : comment rester visible entre SEO classique, AI Overviews et ChatGPT ?",
+            "url": "https://webetpassion.fr/blog/referencement-2026-seo-ia.html",
+            "datePublished": "2026-11-19"
+          },
+          {
+            "@type": "BlogPosting",
+            "headline": "Comment se former à l'Intelligence Artificielle (IA) sans diplôme ?",
+            "url": "https://webetpassion.fr/blog/se-former-ia-sans-diplome.html",
+            "datePublished": "2026-11-18"
+          }
+        ]
       }
-    }
     </script>
-</head>
-<body>
-
+  </head>
+  <body>
     <!-- En-tête & Navigation principale -->
     <header class="site-header">
-        <div class="container header-inner">
-            <a href="../index.html" class="brand-logo" aria-label="Retour à l'accueil Web &amp; Passion">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="16 18 22 12 16 6"></polyline>
-                    <polyline points="8 6 2 12 8 18"></polyline>
-                </svg>
-                <span>Web &amp; Passion</span>
-            </a>
+      <div class="container header-inner">
+        <a
+          href="../index.html"
+          class="brand-logo"
+          aria-label="Retour à l'accueil Web &amp; Passion"
+        >
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+          <span>Web &amp; Passion</span>
+        </a>
 
-            <button class="burger-btn" id="burgerBtn" aria-expanded="false" aria-controls="mainNav" aria-label="Ouvrir le menu de navigation">
-                <span class="burger-line"></span>
-                <span class="burger-line"></span>
-                <span class="burger-line"></span>
-            </button>
+        <button
+          type="button"
+          class="burger-btn"
+          id="burgerBtn"
+          aria-expanded="false"
+          aria-controls="mainNav"
+          aria-label="Ouvrir le menu de navigation"
+        >
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+        </button>
 
-            <nav class="main-nav" id="mainNav" aria-label="Navigation principale">
-                <ul>
-                    <li><a href="../index.html">Accueil</a></li>
-                    <li><a href="../tarifs.html">Tarifs</a></li>
-                    <li><a href="../applications.html">Applications</a></li>
-                    <li><a href="index.html" class="active" aria-current="page">Blog IA &amp; Web</a></li>
-                    <li><a href="../contact.html" class="nav-cta">Demander un devis</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav class="main-nav" id="mainNav" aria-label="Navigation principale">
+          <ul>
+            <li><a href="../index.html">Accueil</a></li>
+            <li><a href="../tarifs.html">Tarifs</a></li>
+            <li><a href="../applications.html">Applications</a></li>
+            <li>
+              <a href="index.html" class="active" aria-current="page"
+                >Blog IA &amp; Web</a
+              >
+            </li>
+            <li>
+              <a href="../contact.html" class="nav-cta">Demander un devis</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
     <!-- Fil d'Ariane SEO -->
     <nav class="breadcrumb" aria-label="Fil d'Ariane">
-        <div class="container">
-            <ol>
-                <li><a href="../index.html">Accueil</a></li>
-                <li><span aria-hidden="true">/</span></li>
-                <li aria-current="page">Blog</li>
-            </ol>
-        </div>
+      <div class="container">
+        <ol>
+          <li><a href="../index.html">Accueil</a></li>
+          <li><span aria-hidden="true">/</span></li>
+          <li aria-current="page">Blog</li>
+        </ol>
+      </div>
     </nav>
 
     <!-- En-tête de la page Blog -->
     <section class="blog-hero">
-        <div class="container">
-            <span class="article-badge">Ressources &amp; Guides Pratiques</span>
-            <h1>Le Blog Web, SEO Local &amp; Intelligence Artificielle</h1>
-            <p class="blog-hero-desc">
-                Conseils concrets pour développer votre visibilité sur Google, moderniser votre activité grâce à l'IA et tirer le meilleur parti de votre présence en ligne.
-            </p>
-        </div>
+      <div class="container">
+        <span class="article-badge">Ressources &amp; Guides Pratiques</span>
+        <h1>Le Blog Web, SEO Local &amp; Intelligence Artificielle</h1>
+        <p class="blog-hero-desc">
+          Conseils concrets pour développer votre visibilité sur Google,
+          moderniser votre activité grâce à l'IA et tirer le meilleur parti de
+          votre présence en ligne.
+        </p>
+      </div>
     </section>
 
     <!-- Grille des articles -->
     <main class="article-wrapper">
-        <div class="container">
-            <div class="blog-posts-grid">
-                <article class="post-card">
-                    <div class="post-card-body">
-                        <div class="post-card-top">
-                            <span class="article-badge">Intelligence Artificielle &amp; Compétences</span>
-                            <span class="post-reading-time">Lecture : 5 min</span>
-                        </div>
-                        <h2 class="post-card-title">
-                            <a href="se-former-ia-sans-diplome.html">
-                                Comment se former à l'Intelligence Artificielle (IA) sans diplôme ?
-                            </a>
-                        </h2>
-                        <p class="post-card-excerpt">
-                            Formations courtes certifiantes, ressources gratuites en autodidacte, portfolio et usages concrets de l'IA pour entrepreneurs, artisans et personnes en reconversion.
-                        </p>
-                    </div>
-                    <div class="post-card-footer">
-                        <time datetime="2026-11-18">
-                            Publié le 18 novembre 2026
-                        </time>
-                        <a href="se-former-ia-sans-diplome.html" class="post-read-more">
-                            Lire l'article
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                        </a>
-                    </div>
-                </article>
+      <div class="container">
+        <div class="blog-posts-grid">
+          <!-- Article 2 : Référencement en 2026 -->
+          <article class="post-card">
+            <div class="post-card-body">
+              <div class="post-card-top">
+                <span class="article-badge">SEO &amp; Visibilité IA</span>
+                <span class="post-reading-time">Lecture : 6 min</span>
+              </div>
+              <h2 class="post-card-title">
+                <a href="referencement-2026-seo-ia.html">
+                  Référencement en 2026 : comment rester visible entre SEO
+                  classique, AI Overviews et ChatGPT ?
+                </a>
+              </h2>
+              <p class="post-card-excerpt">
+                Impact des Aperçus IA en France, différences entre SEO, AEO et
+                GEO, priorités techniques, fiche Google Business Profile et
+                checklist en 5 actions pour votre site.
+              </p>
             </div>
+            <div class="post-card-footer">
+              <time datetime="2026-11-19"> Publié le 19 novembre 2026 </time>
+              <a href="referencement-2026-seo-ia.html" class="post-read-more">
+                Lire l'article
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </article>
 
-            <!-- Bannière de conversion en bas du blog -->
-            <section class="cta-box blog-bottom-cta" aria-label="Accompagnement création web">
-                <h2>Un projet de site internet ou d'outil numérique ?</h2>
-                <p>
-                    Basé à Saint-Maximin-la-Sainte-Baume, j'accompagne les artisans, indépendants et PME dans la création de sites web performants et optimisés pour le référencement local.
-                </p>
-                <div class="cta-buttons">
-                    <a href="../tarifs.html" class="btn btn-primary">Voir les tarifs</a>
-                    <a href="../applications.html" class="btn btn-secondary">Tester les applications</a>
-                    <a href="../contact.html" class="btn btn-secondary">Demander un devis gratuit</a>
-                </div>
-            </section>
+          <!-- Article 1 : Se former à l'IA sans diplôme -->
+          <article class="post-card">
+            <div class="post-card-body">
+              <div class="post-card-top">
+                <span class="article-badge"
+                  >Intelligence Artificielle &amp; Compétences</span
+                >
+                <span class="post-reading-time">Lecture : 5 min</span>
+              </div>
+              <h2 class="post-card-title">
+                <a href="se-former-ia-sans-diplome.html">
+                  Comment se former à l'Intelligence Artificielle (IA) sans
+                  diplôme ?
+                </a>
+              </h2>
+              <p class="post-card-excerpt">
+                Formations courtes certifiantes, ressources gratuites en
+                autodidacte, portfolio et usages concrets de l'IA pour
+                entrepreneurs, artisans et personnes en reconversion.
+              </p>
+            </div>
+            <div class="post-card-footer">
+              <time datetime="2026-11-18"> Publié le 18 novembre 2026 </time>
+              <a href="se-former-ia-sans-diplome.html" class="post-read-more">
+                Lire l'article
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </article>
         </div>
+
+        <!-- Bannière de conversion en bas du blog -->
+        <section
+          class="cta-box blog-bottom-cta"
+          aria-label="Accompagnement création web"
+        >
+          <h2>Un projet de site internet ou d'outil numérique ?</h2>
+          <p>
+            Basé à Saint-Maximin-la-Sainte-Baume, j'accompagne les artisans,
+            indépendants et PME dans la création de sites web performants et
+            optimisés pour le référencement local.
+          </p>
+          <div class="cta-buttons">
+            <a href="../tarifs.html" class="btn btn-primary">Voir les tarifs</a>
+            <a href="../applications.html" class="btn btn-secondary"
+              >Tester les applications</a
+            >
+            <a href="../contact.html" class="btn btn-secondary"
+              >Demander un devis gratuit</a
+            >
+          </div>
+        </section>
+      </div>
     </main>
 
     <!-- Pied de page -->
     <footer class="site-footer">
-        <div class="container footer-inner">
-            <div class="footer-info">
-                <p><strong>Web &amp; Passion</strong> — Philippe Jireau</p>
-                <p>Création de sites internet &amp; SEO local à Saint-Maximin-la-Sainte-Baume (83470)</p>
-                <p>Tél : <a href="tel:+33771236136">07 71 23 61 36</a></p>
-            </div>
-            <div class="footer-links">
-                <a href="../index.html">Accueil</a>
-                <a href="../tarifs.html">Tarifs</a>
-                <a href="../applications.html">Applications</a>
-                <a href="../contact.html">Contact</a>
-            </div>
+      <div class="container footer-inner">
+        <div class="footer-info">
+          <p><strong>Web &amp; Passion</strong> — Philippe Jireau</p>
+          <p>
+            Création de sites internet &amp; SEO local à
+            Saint-Maximin-la-Sainte-Baume (83470)
+          </p>
+          <p>Tél : <a href="tel:+33771236136">07&nbsp;71&nbsp;23&nbsp;61&nbsp;36</a></p>
         </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <p>&copy; 2026 Web &amp; Passion — Tous droits réservés. Micro-entreprise en franchise de TVA (art. 293 B du CGI).</p>
-            </div>
+        <div class="footer-links">
+          <a href="../index.html">Accueil</a>
+          <a href="../tarifs.html">Tarifs</a>
+          <a href="../applications.html">Applications</a>
+          <a href="../contact.html">Contact</a>
         </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <p>
+            &copy; 2026 Web &amp; Passion — Tous droits réservés.
+            Micro-entreprise en franchise de TVA (art. 293 B du CGI).
+          </p>
+        </div>
+      </div>
     </footer>
 
     <script src="assets/js/blog-article.js"></script>
-</body>
+  </body>
 </html>
