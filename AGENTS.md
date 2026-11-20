@@ -162,3 +162,25 @@ c://
 
 3. **Confirmation de fin :**
    - Une fois le `git push` terminé sans erreur, confirme-moi simplement que le code est sur GitHub et rappelle-moi que je peux maintenant cliquer sur **Mettre à jour depuis le dépôt distant** puis **Déployer le commit HEAD** dans cPanel.
+
+---
+
+## Charte graphique & éditoriale permanente (`webetpassion.fr`)
+
+Pour toute nouvelle page ou modification future, applique systématiquement ces choix validés :
+
+1. **Fond d'écran unifié (`body`) :**
+   - Dégradé radial + linéaire bicolore bleu/lavande/rouge fixe (`background-attachment: fixed; background-size: cover;`) :
+     `radial-gradient(circle at 22% 35%, rgba(37, 99, 235, 0.35), transparent 45%), radial-gradient(circle at 78% 65%, rgba(220, 38, 38, 0.35), transparent 45%), linear-gradient(90deg, #1e3a8a 0%, #2563eb 25%, #93c5fd 38%, #e9d5ff 50%, #fca5a5 62%, #ef4444 75%, #7f1d1d 100%)`.
+2. **Cartes, header, formulaires et lisibilité :**
+   - Verre dépoli blanc translucide : `background: rgba(255, 255, 255, 0.90); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.6);`.
+   - Typographie sombre contrastée : `#0f172a` (titres), `#334155` (paragraphes), `#1d4ed8` (accent).
+   - Interdiction de poser du texte blanc directement sur la zone centrale claire du fond.
+   - Blocs volontairement sombres (`#0f172a` pour le footer, les bandeaux `.highlight` ou boutons `#1d4ed8`) : forcer explicitement le texte en `#ffffff`.
+   - Footer compact en hauteur avec liens alignés en colonnes (`.footer-links` en grille 3 colonnes sur PC, 2 colonnes sur mobile).
+3. **Favicon obligatoire dans le `<head>` de chaque page :**
+   - `<link rel="icon" type="image/webp" href="assets/logo-web-passion.webp">` et `<link rel="apple-touch-icon" href="assets/logo-web-passion.webp">` (adapter avec `../assets/...` dans les sous-dossiers comme `blog/`).
+4. **Ton éditorial :**
+   - Tutoiement direct (« tu » / « toi ») et usage exclusif du « Je » (jamais de « on » ni de « nous »), ton chaleureux, franc et sans langue de bois.
+   - Double cible : entrepreneurs/artisans + recruteurs (HTML5, CSS3, JS vanilla, PHP, SEO local à Saint-Maximin-la-Sainte-Baume).
+   - Garder les applications uniquement dans `applications.html` (et y faire référence ailleurs).
