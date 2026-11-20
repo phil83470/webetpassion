@@ -176,25 +176,25 @@ const serviceDetails = {
   depannage: {
     title: "Assistance & dépannage",
 
-    text: "Vous avez un problème avec votre site, un affichage incorrect, un formulaire qui ne fonctionne plus ou une petite modification à effectuer ? Nous pouvons regarder ensemble ce qui bloque et rechercher une solution adaptée.",
+    text: "Tu as un problème avec ton site, un affichage cassé sur mobile, un formulaire en panne ou une modification urgente ? Je regarde avec toi ce qui bloque et je règle le souci rapidement.",
   },
 
   site: {
-    title: "Site web",
+    title: "Site web & intégration",
 
-    text: "Vous souhaitez améliorer un site existant ou créer une présence web plus claire ? Je peux vous accompagner sur la structure, les contenus, les petites modifications et l'organisation générale du site.",
+    text: "Tu veux améliorer un site existant, créer ton site sur mesure ou renforcer ton équipe en HTML5, CSS3, JS vanilla et PHP ? Je m'occupe de la structure, du contenu et du code propre.",
   },
 
   seo: {
-    title: "Référencement SEO",
+    title: "Référencement SEO local",
 
-    text: "Je peux vous aider à améliorer les bases du référencement : titres, contenus, structure des pages, organisation des informations et bonnes pratiques permettant aux moteurs de recherche de mieux comprendre votre site.",
+    text: "Je t'aide à optimiser tes bases SEO : titres, contenus, structure des pages, vitesse et visibilité locale à Saint-Maximin-la-Sainte-Baume et dans le Var pour que Google comprenne bien ton activité.",
   },
 
   ia: {
     title: "IA & outils numériques",
 
-    text: "L'intelligence artificielle peut être utile pour rédiger, rechercher des idées, organiser certaines tâches ou gagner du temps. Je peux vous aider à découvrir ces outils et à les utiliser simplement.",
+    text: "L'intelligence artificielle peut te faire gagner un temps précieux pour rédiger, trouver des idées ou automatiser certaines tâches. Je te montre comment l'utiliser concrètement et simplement.",
   },
 };
 
@@ -259,25 +259,25 @@ const diagnosticDetails = {
   depannage: {
     title: "L'assistance & le dépannage",
 
-    text: "Votre besoin semble correspondre à une recherche de problème ou à une réparation sur votre site.",
+    text: "Ton besoin correspond à une recherche de panne ou à une réparation rapide sur ton site. Je peux regarder ça avec toi dès maintenant.",
   },
 
   site: {
-    title: "Le site web",
+    title: "Le site web sur mesure",
 
-    text: "Votre besoin semble correspondre à l'amélioration, la création ou l'évolution d'un site web.",
+    text: "Ton besoin correspond à la création, la refonte ou l'amélioration d'un site web. Je m'occupe de tout de A à Z.",
   },
 
   seo: {
-    title: "Le référencement SEO",
+    title: "Le référencement SEO local",
 
-    text: "Votre besoin semble correspondre à un travail sur la visibilité et la compréhension de votre site par les moteurs de recherche.",
+    text: "Ton besoin correspond à un travail sur ta visibilité et la compréhension de ton site par Google.",
   },
 
   ia: {
     title: "L'IA & les outils numériques",
 
-    text: "Votre besoin semble correspondre à la découverte ou à l'utilisation d'outils d'intelligence artificielle.",
+    text: "Ton besoin correspond à la découverte ou à la mise en place d'outils d'intelligence artificielle adaptés à ton activité.",
   },
 };
 
