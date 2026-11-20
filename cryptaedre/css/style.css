@@ -428,13 +428,32 @@ input[type="range"] {
   color: var(--warning);
 }
 
-/* Footer */
+/* Footer & Droits d'auteur */
 .site-footer {
   border-top: 1px solid var(--border-color);
-  padding: 1.25rem 0;
+  padding: 1.5rem 0;
   text-align: center;
   color: var(--text-muted);
   font-size: 0.85rem;
+}
+
+.footer-tech {
+  margin-bottom: 0.5rem;
+}
+
+.footer-copyright {
+  color: var(--text-primary);
+  font-size: 0.85rem;
+}
+
+.footer-copyright a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer-copyright a:hover {
+  text-decoration: underline;
 }
 
 /* Responsive Design */

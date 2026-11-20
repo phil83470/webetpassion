@@ -1,3 +1,9 @@
+/**
+ * Cryptaedre — Coffre-Fort Cryptographique Zero-Knowledge (AES-256-GCM / PBKDF2)
+ * @author Philippe JIREAU — Web & Passion (https://webetpassion.fr)
+ * @copyright 2026 Philippe JIREAU - Web & Passion. Tous droits réservés.
+ * @license Propriétaire — Toute reproduction, modification ou redistribution sans autorisation écrite est strictement interdite.
+ */
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
