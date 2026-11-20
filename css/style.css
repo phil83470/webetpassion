@@ -1174,6 +1174,11 @@ section[id],
   color: var(--text-soft);
 }
 
+.guide-actions {
+  margin-top: 18px;
+  gap: 14px;
+}
+
 .quote {
   margin: 0;
 

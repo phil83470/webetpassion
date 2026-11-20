@@ -95,6 +95,19 @@
   margin: 0 auto;
 }
 
+.apps-license-note {
+  margin-top: 28px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.custom-app-desc {
+  color: var(--text-soft);
+  max-width: 680px;
+  margin-top: 8px;
+}
+
 .app-product-card {
   position: relative;
   display: flex;
