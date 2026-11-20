@@ -1086,6 +1086,7 @@ section[id],
 
 .about-photo-item {
   flex: 1;
+  width: 100%;
   display: grid;
   grid-template-columns: 36px minmax(0, 1fr);
   align-items: center;
@@ -1094,6 +1095,9 @@ section[id],
   background: rgba(15, 29, 49, 0.55);
   border: 1px solid var(--border);
   border-radius: 14px;
+  text-align: left;
+  font: inherit;
+  color: inherit;
   cursor: pointer;
   outline: none;
   transition:
@@ -1157,7 +1161,13 @@ section[id],
   color: var(--accent);
 }
 
-.photo-item-text p {
+.photo-item-text {
+  display: block;
+}
+
+.photo-item-text p,
+.photo-item-text .photo-item-desc {
+  display: block;
   margin: 0;
   font-size: 0.88rem;
   line-height: 1.5;
