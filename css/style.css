@@ -295,22 +295,46 @@ section[id],
 .hero {
   width: min(1180px, calc(100% - 40px));
 
-  min-height: calc(100vh - 84px);
-
   margin: 0 auto;
 
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1.15fr 0.85fr;
 
   align-items: center;
 
-  gap: 44px;
+  gap: 32px 44px;
 
-  padding: 60px 0;
+  padding: 50px 0 60px;
+}
+
+.hero-header {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 30px 36px;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: var(--shadow);
+}
+
+.hero-header h1 {
+  margin-bottom: 0;
+
+  font-size: clamp(2.1rem, 4vw, 3.4rem);
+
+  line-height: 1.12;
+
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+.hero-header h1 span {
+  color: var(--accent);
 }
 
 .hero-content {
-  max-width: 720px;
+  width: 100%;
   padding: 30px 32px;
   border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.9);
