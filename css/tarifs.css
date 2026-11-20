@@ -1,17 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 :root {
-  --bg: #020816;
-  --bg-soft: #061126;
-  --panel: rgba(5, 17, 38, 0.88);
-  --text: #eef8ff;
-  --muted: #9cb1c8;
-  --cyan: #00d9ff;
-  --blue: #1787ff;
-  --violet: #9d55ff;
-  --green: #00e6c3;
-  --border: rgba(0, 217, 255, 0.35);
-  --shadow: 0 0 35px rgba(0, 145, 255, 0.16);
+  --bg: #e9d5ff;
+  --bg-soft: rgba(255, 255, 255, 0.9);
+  --panel: rgba(255, 255, 255, 0.9);
+  --text: #0f172a;
+  --muted: #334155;
+  --cyan: #1d4ed8;
+  --blue: #1d4ed8;
+  --violet: #dc2626;
+  --green: #059669;
+  --border: rgba(255, 255, 255, 0.6);
+  --shadow: 0 20px 50px rgba(15, 23, 42, 0.16);
 }
 
 * {
@@ -43,19 +43,13 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
-  color: var(--text);
+  color: #0f172a;
   background:
-    radial-gradient(
-      circle at 12% 15%,
-      rgba(0, 135, 255, 0.13),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 85% 25%,
-      rgba(130, 50, 255, 0.1),
-      transparent 25%
-    ),
-    linear-gradient(135deg, #01040b 0%, #031025 52%, #020714 100%);
+    radial-gradient(circle at 22% 35%, rgba(37, 99, 235, 0.35), transparent 45%),
+    radial-gradient(circle at 78% 65%, rgba(220, 38, 38, 0.35), transparent 45%),
+    linear-gradient(90deg, #1e3a8a 0%, #2563eb 25%, #93c5fd 38%, #e9d5ff 50%, #fca5a5 62%, #ef4444 75%, #7f1d1d 100%);
+  background-attachment: fixed;
+  background-size: cover;
   overflow-x: hidden;
 }
 
@@ -126,7 +120,13 @@ main {
 .pricing-hero {
   position: relative;
   text-align: center;
-  padding: 86px 0 58px;
+  margin: 40px auto 20px;
+  padding: 44px 32px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: var(--shadow);
 }
 
 .pricing-hero::before,
@@ -224,13 +224,11 @@ main {
   flex-direction: column;
   min-height: 590px;
   padding: 38px 32px 30px;
-  border: 1px solid rgba(0, 217, 255, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 20px;
-  background: linear-gradient(
-    160deg,
-    rgba(8, 28, 53, 0.94),
-    rgba(2, 10, 24, 0.94)
-  );
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  color: #0f172a;
   box-shadow: var(--shadow);
   transition:
     transform 0.3s ease,
@@ -343,7 +341,7 @@ main {
 .price-card li {
   position: relative;
   padding-left: 24px;
-  color: #d7e9f5;
+  color: #334155;
   font-size: 0.87rem;
   line-height: 1.4;
 }
@@ -399,14 +397,12 @@ main {
   gap: 40px;
   margin: 12px 0 90px;
   padding: 40px 46px;
-  border: 1px solid rgba(0, 157, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 20px;
-  background: linear-gradient(
-    110deg,
-    rgba(5, 23, 49, 0.95),
-    rgba(4, 13, 30, 0.85)
-  );
-  box-shadow: 0 0 35px rgba(0, 130, 255, 0.12);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  color: #0f172a;
+  box-shadow: var(--shadow);
 }
 
 .custom-content {
@@ -525,10 +521,12 @@ main {
   overflow-y: scroll;
   scrollbar-width: none;
   padding: 34px;
-  border: 1px solid var(--cyan);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 20px;
-  background: #041126;
-  box-shadow: 0 0 50px rgba(0, 183, 255, 0.25);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  color: #0f172a;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.25);
 }
 
 .modal-box::-webkit-scrollbar {
@@ -541,7 +539,7 @@ main {
   right: 15px;
   border: 0;
   background: transparent;
-  color: #b9d7ea;
+  color: #334155;
   font-size: 2rem;
   cursor: pointer;
 }
@@ -571,7 +569,7 @@ main {
 }
 
 #orderForm label {
-  color: #d8eaf5;
+  color: #0f172a;
   font-size: 0.85rem;
   font-weight: 600;
 }
@@ -581,17 +579,17 @@ main {
   width: 100%;
   margin-bottom: 4px;
   padding: 10px 14px;
-  border: 1px solid rgba(0, 185, 255, 0.3);
+  border: 1px solid rgba(15, 23, 42, 0.2);
   border-radius: 9px;
   outline: none;
-  color: white;
-  background: #020a18;
+  color: #0f172a;
+  background: #ffffff;
 }
 
 #orderForm input:focus,
 #orderForm textarea:focus {
   border-color: var(--cyan);
-  box-shadow: 0 0 12px rgba(0, 217, 255, 0.14);
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.14);
 }
 
 .checkbox {
@@ -610,25 +608,26 @@ main {
 .submit-button {
   min-height: 50px;
 
-  color: #ffe600;
-  background: transparent;
+  color: #ffffff;
+  background: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  border-radius: 999px;
 
   cursor: pointer;
   font-weight: 800;
 
-  text-shadow:
-    0 0 5px #ffe600,
-    0 0 px #ffe600,
-    0 0 18px rgba(255, 230, 0, 0.8);
-
-  box-shadow: 0 0 8px rgba(255, 230, 0, 0.35);
+  box-shadow: 0 8px 20px rgba(29, 78, 216, 0.24);
 
   transition: 0.25s ease;
 }
 
+.submit-button:hover {
+  background: #1e40af;
+}
+
 .payment-note {
   margin: 3px 0 0;
-  color: #829bb0;
+  color: #475569;
   font-size: 0.72rem;
   line-height: 1.5;
 }
