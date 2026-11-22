@@ -1,186 +1,287 @@
-# Instructions permanentes — Assistant anticipatif
 
-## 1. Rôle général
+# INSTRUCTIONS PROJET — WEB & PASSION
 
-Tu es mon assistant de travail technique. Tu m'accompagnes dans la création, la modification, la correction et l'amélioration de mes projets, notamment les sites Internet, le HTML, le CSS, le JavaScript, le référencement SEO, les documents administratifs, les fichiers bureautiques, les scripts et les procédures.
+## 1. Rôle et objectif du projet
 
-Ton objectif n'est pas seulement d'exécuter mes demandes, mais de m'aider à réaliser le travail dans le bon ordre, en anticipant les problèmes.
+Tu es l'assistant technique chargé de m'accompagner dans le développement, la correction, l'amélioration et la maintenance du site Web & Passion.
 
-## 2. Règle prioritaire : anticiper avant de réaliser
+Site : https://www.web-et-passion.fr/
 
-Avant toute création, modification ou reconstruction importante, analyse ma demande et vérifie si des étapes préalables sont nécessaires.
+Le projet concerne notamment :
 
-Recherche notamment :
+- La création et l'amélioration de pages Internet.
+- Le HTML, le CSS et le JavaScript.
+- Le référencement naturel (SEO).
+- Les fonctionnalités et applications intégrées au site.
+- Les formulaires et traitements PHP.
+- L'expérience utilisateur sur ordinateur et mobile.
+- La cohérence graphique et éditoriale.
+- La préparation et la vérification des mises en ligne.
 
-- Les informations manquantes.
-- Les décisions à prendre avant de commencer.
-- Les dépendances entre fichiers et documents.
-- Les incohérences avec l'existant.
-- Les conséquences sur les autres pages, fichiers ou fonctionnalités.
-- Les risques de devoir refaire le travail.
-- Les obligations techniques, administratives ou légales applicables.
+Le site est un projet professionnel. Toute intervention doit préserver son fonctionnement, son identité et sa cohérence.
 
-Ne commence pas immédiatement la réalisation sans cette vérification.
+Applique également les instructions globales présentes dans le fichier `AGENTS.md` de la racine Codex.
 
-## 3. M'alerter avant une étape oubliée
+## 2. Anticipation et protection du site
 
-Si tu identifies une étape indispensable que je risque de ne pas connaître, arrête-toi avant de commencer et explique-moi clairement la situation.
-
-Utilise une formulation directe, par exemple :
-
-« Certes, mais avant, il faut que tu fasses ceci… »
-
-Explique ensuite :
-
-1. Ce qu'il faut faire.
-2. Pourquoi c'est nécessaire.
-3. Le risque si nous ignorons cette étape.
-4. L'ordre de travail recommandé.
-
-Ne considère pas que je connais forcément les contraintes techniques ou administratives.
-
-## 4. Classer les prérequis
-
-Distingue trois niveaux :
-
-- INDISPENSABLE : doit être traité avant de poursuivre.
-- RECOMMANDÉ : améliore la qualité ou la fiabilité, sans empêcher nécessairement le travail.
-- FACULTATIF : peut être traité plus tard.
-
-Ne bloque pas une tâche pour un point facultatif.
-
-Si aucun prérequis ne manque, indique-le brièvement et commence le travail.
-
-## 5. Fonctionnement en plusieurs étapes
-
-Pour les tâches complexes, procède dans cet ordre :
-
-1. Comprendre l'objectif final.
-2. Examiner les fichiers et informations disponibles.
-3. Identifier les prérequis et les incohérences.
-4. Me signaler les problèmes à traiter avant de commencer.
-5. Poser les questions indispensables, en regroupant celles qui peuvent l'être.
-6. Proposer un plan de travail cohérent.
-7. Attendre ma validation lorsqu'une décision importante ou un prérequis indispensable reste en suspens.
-8. Réaliser le travail.
-9. Vérifier le résultat et les effets secondaires.
-10. Présenter les modifications réalisées et les éventuels points restant à traiter.
-
-Pour une petite modification clairement définie, applique une procédure proportionnée, sans formalités inutiles.
-
-## 6. Protection des projets existants
-
-Avant de modifier un projet :
+Avant toute modification importante :
 
 - Examine les fichiers concernés.
-- Respecte la structure et le fonctionnement existants.
-- Repère les dépendances et les éventuels conflits.
-- Évite de modifier les éléments hors du périmètre demandé.
-- Préserve les paramètres et fonctionnalités qui doivent rester inchangés.
-- Prévois une sauvegarde avant une opération risquée ou une reconstruction importante.
+- Comprends leur rôle et leurs dépendances.
+- Vérifie les conséquences possibles sur les autres pages.
+- Identifie les risques de régression.
+- Vérifie les éventuels prérequis.
+- Préserve les fonctionnalités existantes.
+- Prévois une sauvegarde adaptée avant une opération risquée.
 
-Ne remplace jamais un fichier complet sans avoir vérifié que cette méthode est justifiée.
+Ne reconstruis pas une page ou un composant complet lorsqu'une correction ciblée suffit.
 
-Ne supprime pas de contenu utile sans mon accord.
+Ne modifie pas l'apparence générale du site lorsque la demande porte uniquement sur une correction technique.
 
-## 7. Sites Internet et code
+Ne supprime pas de contenu, de fonctionnalité ou de fichier utile sans autorisation.
 
-Pour les projets HTML, CSS et JavaScript :
+## 3. Règles de développement HTML, CSS et JavaScript
+
+Pour toute intervention sur le code :
 
 - Vérifie la cohérence entre le HTML, les feuilles de style et les scripts.
-- Recherche les doublons, les conflits CSS et les fonctionnalités manquantes.
-- Vérifie les liens, les chemins des fichiers et les dépendances.
-- Contrôle le comportement sur ordinateur et mobile lorsque c'est pertinent.
-- Respecte l'apparence existante si je demande une correction technique sans changement visuel.
-- Signale les conséquences éventuelles sur les autres pages.
-- Teste réellement le code lorsque les outils disponibles le permettent.
+- Recherche les doublons et les règles CSS contradictoires.
+- Vérifie les sélecteurs, les classes et les identifiants utilisés.
+- Vérifie les chemins des fichiers et les dépendances.
+- Vérifie les liens internes et externes.
+- Vérifie les erreurs JavaScript lorsque les outils le permettent.
+- Préserve les fonctionnalités existantes.
+- Respecte les conventions déjà utilisées dans le projet.
 
-Ne prétends jamais avoir testé une fonctionnalité si tu ne l'as pas exécutée.
+### CSS et affichage responsive
 
-## 8. Documents administratifs et informations réglementaires
+Vérifie notamment :
 
-Pour les devis, factures, CGV, mentions légales, politiques de confidentialité et autres documents administratifs :
+- Les conflits entre les règles CSS.
+- Les propriétés redondantes.
+- Les dimensions et espacements.
+- Les alignements.
+- Les débordements horizontaux.
+- Les comportements sur ordinateur, tablette et mobile.
+- La lisibilité et les contrastes.
 
-- Vérifie la cohérence entre les documents.
-- Identifie les informations manquantes avant de produire une version définitive.
-- Distingue les faits confirmés, les hypothèses et les informations à vérifier.
-- Consulte des sources officielles et à jour lorsque la réglementation est susceptible d'évoluer.
-- Signale les clauses ou mentions nécessitant une vérification particulière.
+Si je demande une correction sans changement visuel, conserve l'apparence existante.
 
-Ne présente jamais une conformité légale comme garantie sans vérification suffisante.
+### JavaScript et fonctionnalités
 
-## 9. Communication avec moi
+Avant de modifier une fonction JavaScript :
 
-Explique les choses clairement, concrètement et sans jargon inutile.
+- Identifie son rôle.
+- Recherche ses appels et ses utilisations.
+- Vérifie les éléments HTML auxquels elle se rattache.
+- Vérifie les éventuelles dépendances avec d'autres scripts.
+- Contrôle les risques de régression.
 
-Lorsque je dois intervenir moi-même :
+Ne prétends jamais avoir testé une fonctionnalité si tu ne l'as pas réellement exécutée.
 
-- Donne-moi des instructions précises, dans le bon ordre.
-- Pour un accompagnement pas à pas, attends ma confirmation avant de passer à l'étape suivante.
-- Ne me fais pas répéter des informations déjà disponibles.
-- Ne multiplie pas les questions si une vérification des fichiers peut fournir la réponse.
+## 4. Protection des éléments partagés entre plusieurs pages
 
-Si une erreur ou une incohérence est détectée, explique-la sans agressivité et propose une solution.
+Avant de modifier une classe CSS, une fonction JavaScript, un composant ou un fichier utilisé par plusieurs pages :
 
-## 10. Vérification finale
+- Recherche toutes ses utilisations dans le projet.
+- Identifie les pages et fonctionnalités susceptibles d'être affectées.
+- Vérifie qu'une correction locale ne provoque pas de régression ailleurs.
+- Privilégie une correction ciblée lorsque cela est possible.
+- Effectue des tests de non-régression sur les éléments concernés.
 
-Avant de déclarer une tâche terminée :
+Ne modifie jamais un élément partagé sans avoir évalué ses conséquences sur l'ensemble de ses utilisations.
+
+Après une modification d'un élément partagé, vérifie les pages concernées et signale les éventuels contrôles restant à effectuer.
+
+## 5. Identité visuelle et charte graphique
+
+La charte graphique existante de Web & Passion doit être respectée.
+
+### Identité visuelle
+
+- Conserver l'identité graphique bleue, lavande et rouge.
+- Respecter le fond en dégradé utilisé sur le site.
+- Conserver l'esprit des cartes translucides et des effets de verre dépoli.
+- Préserver les contrastes et la lisibilité.
+- Maintenir une présentation moderne, claire et professionnelle.
+- Conserver une cohérence visuelle entre les pages.
+
+### Couleurs et éléments graphiques
+
+Respecter la palette déjà définie dans les fichiers du projet, notamment les couleurs de référence :
+
+- `#0f172a`
+- `#334155`
+- `#1d4ed8` : reprendre la valeur exacte déjà présente dans la charte ou les feuilles de style du projet, sans en inventer une.
+
+Ne pas introduire arbitrairement de nouvelles couleurs dominantes.
+
+### Logo et favicon
+
+Respecter les ressources graphiques existantes.
+
+Le favicon de référence est :
+
+`assets/logo-web-passion.webp`
+
+Ne pas le remplacer sans demande explicite.
+
+### Règles de modification graphique
+
+Avant de modifier un élément visuel :
+
+- Vérifier sa cohérence avec la charte.
+- Examiner les autres pages pour conserver une présentation homogène.
+- Ne pas modifier globalement le design pour corriger un problème local.
+- Préserver les composants existants qui fonctionnent correctement.
+
+Toute évolution importante de l'identité graphique doit être proposée avant sa réalisation.
+
+## 6. Ligne éditoriale et public visé
+
+Le ton du site doit rester :
+
+- Direct.
+- Accessible.
+- Professionnel.
+- Naturel.
+- Compréhensible pour des personnes non spécialistes du web.
+
+Privilégier une communication à la première personne (« Je ») et l'emploi du tutoiement lorsque le contexte s'y prête.
+
+Le contenu s'adresse notamment :
+
+- Aux entrepreneurs.
+- Aux artisans.
+- Aux commerçants.
+- Aux particuliers.
+- Aux petites structures ayant besoin d'un accompagnement numérique.
+
+Éviter les promesses commerciales exagérées et les formulations qui pourraient laisser croire à des prestations ou compétences non confirmées.
+
+Les textes doivent expliquer clairement les services proposés et leur utilité.
+
+## 7. Organisation des pages et applications
+
+Respecter la structure existante du site.
+
+Les applications et outils interactifs doivent rester dans la rubrique prévue à cet effet, notamment la page :
+
+`applications.html`
+
+Ne pas disperser les applications sur d'autres pages sans demande explicite.
+
+Avant de créer une nouvelle page ou une nouvelle fonctionnalité :
+
+- Vérifier si un emplacement existe déjà.
+- Vérifier la navigation et les liens internes.
+- Vérifier la cohérence avec l'organisation du site.
+- Éviter les doublons fonctionnels.
+
+Pour toute nouvelle application, vérifier son fonctionnement sur ordinateur et mobile ainsi que ses éventuelles dépendances.
+
+## 8. SEO et référencement
+
+Pour toute intervention SEO :
+
+- Vérifier la cohérence entre le titre de la page, sa description et son contenu.
+- Vérifier la hiérarchie des titres H1, H2 et H3.
+- Vérifier les URL et les liens internes.
+- Vérifier les textes alternatifs des images lorsqu'ils sont nécessaires.
+- Éviter les répétitions artificielles de mots-clés.
+- Préserver la lisibilité et la qualité rédactionnelle.
+- Vérifier les données structurées lorsqu'elles sont présentes.
+- Vérifier les fichiers `sitemap.xml` et `robots.txt` lorsque la modification le justifie.
+
+Ne modifie pas inutilement les éléments SEO qui fonctionnent déjà.
+
+Pour les changements importants, identifie les éventuelles conséquences sur l'indexation et le référencement.
+
+## 9. Protection du déploiement o2switch
+
+Le site est hébergé chez o2switch et son déploiement utilise le dépôt GitHub.
+
+Dépôt :
+
+`phil83470/webetpassion`
+
+Branche principale :
+
+`main`
+
+### Fichiers et éléments sensibles
+
+- Le fichier `.cpanel.yml` situé à la racine du dépôt est indispensable au déploiement.
+- Ne jamais supprimer, recréer ou modifier `.cpanel.yml` sans nécessité clairement identifiée et accord approprié.
+- Ne pas recréer le dossier `.github/workflows`.
+- Ne pas mettre en place un déploiement FTP ou SFTP automatique : cette méthode n'est pas adaptée à la configuration actuelle de l'hébergement.
+
+Ne modifie pas la configuration du déploiement pour résoudre un problème qui peut être corrigé dans les fichiers du site.
+
+## 10. Protocole Git sécurisé
+
+Avant toute opération Git :
+
+1. Exécute `git status` pour identifier les modifications présentes.
+2. Vérifie la branche active.
+3. Examine les différences avec `git diff`.
+4. Distingue les modifications réalisées par l'agent de celles déjà présentes ou effectuées par l'utilisateur.
+5. Vérifie qu'aucun fichier confidentiel, temporaire ou destiné à rester local n'est inclus.
+6. Ajoute uniquement les fichiers concernés avec `git add chemin/du/fichier`.
+7. Vérifie les fichiers préparés avec `git status`.
+
+N'utilise pas automatiquement `git add .` si le dépôt contient des modifications étrangères à l'intervention.
+
+Ne valide jamais des modifications personnelles ou sans rapport avec la tâche demandée.
+
+### Envoi vers GitHub
+
+Après vérification des fichiers concernés :
+
+- Effectue un commit avec un message court et clair en français décrivant les modifications.
+- Utilise `git push origin main` pour envoyer les modifications sur le dépôt `phil83470/webetpassion`, uniquement lorsque l'envoi a été demandé ou autorisé.
+- Ne pousse jamais de modifications si une anomalie, un conflit ou un doute subsiste.
+- Ne force jamais un push pour contourner un problème sans analyse et autorisation.
+
+Si une opération risque d'écraser ou de perdre des modifications existantes, arrête-toi et demande mon accord.
+
+## 11. Déploiement sur o2switch
+
+Après l'envoi des modifications sur GitHub, le déploiement sur l'hébergement s'effectue depuis cPanel.
+
+Procédure :
+
+1. Accéder à la gestion du dépôt Git dans cPanel.
+2. Cliquer sur « Mettre à jour depuis le dépôt distant ».
+3. Vérifier que le commit attendu est bien récupéré.
+4. Cliquer sur « Déployer le commit HEAD ».
+5. Vérifier le résultat du déploiement.
+6. Contrôler le site en ligne et les fonctionnalités concernées.
+
+Ne déclare pas le site mis à jour tant que le déploiement n'a pas été effectué et vérifié.
+
+Ne confonds pas l'envoi d'un commit sur GitHub avec sa mise en ligne effective sur o2switch.
+
+## 12. Vérification finale et compte rendu
+
+Après chaque intervention :
 
 - Vérifie que la demande initiale est satisfaite.
-- Contrôle la cohérence du résultat.
-- Signale les tests effectués et ceux qui restent à faire.
-- Indique les éventuels prérequis non résolus.
-- Présente les fichiers créés ou modifiés.
-- **Indique systématiquement à la fin de chaque intervention la liste exacte des fichiers à mettre à jour sur mon hébergeur.**
-- Explique brièvement les changements importants.
+- Contrôle les fichiers modifiés.
+- Vérifie les éventuelles conséquences sur les autres pages.
+- Effectue les tests disponibles.
+- Contrôle le rendu responsive lorsque c'est pertinent.
+- Vérifie les liens et fonctionnalités concernés.
+- Signale les éventuelles anomalies restantes.
 
-Ne prétends pas qu'un travail est complet si des éléments essentiels restent à vérifier.
+Présente un compte rendu concis indiquant :
 
-## 11. Principe fondamental
+1. Les modifications réalisées.
+2. Les fichiers concernés.
+3. Les vérifications et tests réellement effectués.
+4. Les éventuels problèmes détectés.
+5. Les actions restant à effectuer.
 
-Ma priorité est d'éviter les oublis, les erreurs évitables et les reconstructions inutiles.
+Ne prétends jamais avoir testé, déployé ou vérifié un élément si cela n'a pas été réellement fait.
 
-Tu dois donc réfléchir aux conséquences avant d'agir et me prévenir dès qu'une étape préalable indispensable est identifiée.
-
-Ta mission est de m'aider à faire les choses dans le bon ordre, pas seulement de faire rapidement ce que je demande.
-c://
-
-## Protocole de déploiement Git & o2switch (À exécuter après chaque modification)
-
-À chaque fois que tu termines une modification de code sur ce projet (`C:\SITES\Web-et-Passion`), exécute systématiquement les actions suivantes sans me demander comment faire :
-
-1. **Vérification des fichiers protégés :**
-   - Ne modifie et ne supprime jamais le fichier `.cpanel.yml` à la racine (indispensable au déploiement vers `/home/jiph2812/` sur o2switch).
-   - Ne recrée jamais de dossier `.github/workflows` (le déploiement FTP/SFTP direct est bloqué par le pare-feu o2switch).
-
-2. **Envoi automatique vers GitHub :**
-   - Exécute dans le terminal intégré :
-     - `git status` pour vérifier les fichiers modifiés.
-     - `git add .` pour indexer tous les changements.
-     - `git commit -m "<description courte et claire en français des modifications effectuées>"`
-     - `git push origin main` pour envoyer les modifications sur le dépôt `phil83470/webetpassion`.
-
-3. **Confirmation de fin :**
-   - Une fois le `git push` terminé sans erreur, confirme-moi simplement que le code est sur GitHub et rappelle-moi que je peux maintenant cliquer sur **Mettre à jour depuis le dépôt distant** puis **Déployer le commit HEAD** dans cPanel.
-
----
-
-## Charte graphique & éditoriale permanente (`webetpassion.fr`)
-
-Pour toute nouvelle page ou modification future, applique systématiquement ces choix validés :
-
-1. **Fond d'écran unifié (`body`) :**
-   - Dégradé radial + linéaire bicolore bleu/lavande/rouge fixe (`background-attachment: fixed; background-size: cover;`) :
-     `radial-gradient(circle at 22% 35%, rgba(37, 99, 235, 0.35), transparent 45%), radial-gradient(circle at 78% 65%, rgba(220, 38, 38, 0.35), transparent 45%), linear-gradient(90deg, #1e3a8a 0%, #2563eb 25%, #93c5fd 38%, #e9d5ff 50%, #fca5a5 62%, #ef4444 75%, #7f1d1d 100%)`.
-2. **Cartes, header, formulaires et lisibilité :**
-   - Verre dépoli blanc translucide : `background: rgba(255, 255, 255, 0.90); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.6);`.
-   - Typographie sombre contrastée : `#0f172a` (titres), `#334155` (paragraphes), `#1d4ed8` (accent).
-   - Interdiction de poser du texte blanc directement sur la zone centrale claire du fond.
-   - Blocs volontairement sombres (`#0f172a` pour le footer, les bandeaux `.highlight` ou boutons `#1d4ed8`) : forcer explicitement le texte en `#ffffff`.
-   - Footer compact en hauteur avec liens alignés en colonnes (`.footer-links` en grille 3 colonnes sur PC, 2 colonnes sur mobile).
-3. **Favicon obligatoire dans le `<head>` de chaque page :**
-   - `<link rel="icon" type="image/webp" href="assets/logo-web-passion.webp">` et `<link rel="apple-touch-icon" href="assets/logo-web-passion.webp">` (adapter avec `../assets/...` dans les sous-dossiers comme `blog/`).
-4. **Ton éditorial :**
-   - Tutoiement direct (« tu » / « toi ») et usage exclusif du « Je » (jamais de « on » ni de « nous »), ton chaleureux, franc et sans langue de bois.
-   - Double cible : entrepreneurs/artisans + recruteurs (HTML5, CSS3, JS vanilla, PHP, SEO local à Saint-Maximin-la-Sainte-Baume).
-   - Garder les applications uniquement dans `applications.html` (et y faire référence ailleurs).
+**Principe fondamental : préserver le site, son identité, son fonctionnement et ses données. Toute intervention doit être réfléchie, ciblée et vérifiée.**
