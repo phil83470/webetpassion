@@ -1,0 +1,2363 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mettre à jour un site web et déployer du code rectifié | Web &amp; Passion</title>
+    <meta
+      name="description"
+      content="Guide pratique de A à Z pour mettre à jour un site web sans risque : Git, GitHub, SFTP port 22, SSH, cPanel Git Version Control (.cpanel.yml) et checklist pré-déploiement."
+    >
+    <meta name="robots" content="index, follow">
+    <link
+      rel="canonical"
+      href="https://webetpassion.fr/blog/mettre-a-jour-site-web-deploiement-git.html"
+    >
+
+    <!-- Open Graph / Réseaux sociaux -->
+    <meta property="og:type" content="article">
+    <meta
+      property="og:title"
+      content="Mettre à jour un site web et déployer du code rectifié en toute sécurité | Web &amp; Passion"
+    >
+    <meta
+      property="og:description"
+      content="Comment articuler Git, GitHub, votre éditeur de code et votre hébergeur (SFTP, SSH, cPanel Git) pour publier vos mises à jour sans perte de données."
+    >
+    <meta
+      property="og:url"
+      content="https://webetpassion.fr/blog/mettre-a-jour-site-web-deploiement-git.html"
+    >
+    <meta property="og:site_name" content="Web &amp; Passion">
+    <meta property="article:published_time" content="2026-11-23">
+
+    <!-- Feuille de style partagée -->
+    <link rel="icon" type="image/webp" href="../assets/logo-web-passion.webp">
+    <link rel="apple-touch-icon" href="../assets/logo-web-passion.webp">
+    <link rel="stylesheet" href="assets/css/blog-article.css">
+
+    <!-- Styles spécifiques aux composants interactifs du guide -->
+    <style>
+      .article-content h3 {
+        font-size: 1.15rem;
+        color: var(--text-main);
+        margin-top: 1.5rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .article-content h4 {
+        font-size: 1rem;
+        color: var(--text-main);
+        margin-top: 1.25rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .article-content code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.88em;
+        background-color: #f1f5f9;
+        color: #0f172a;
+        padding: 0.12rem 0.4rem;
+        border-radius: 4px;
+      }
+
+      .article-content pre {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.85rem;
+        line-height: 1.55;
+        background-color: #0f172a;
+        color: #f8fafc;
+        border-left: 4px solid var(--primary);
+        border-radius: 8px;
+        padding: 1rem 1.25rem;
+        overflow-x: auto;
+        margin: 1rem 0 1.25rem;
+      }
+
+      .article-content pre code {
+        background: none;
+        color: inherit;
+        padding: 0;
+        font-size: inherit;
+      }
+
+      .hint {
+        font-size: 0.92rem;
+        color: var(--text-muted);
+      }
+
+      .status-tag {
+        display: inline-block;
+        background-color: #dbeafe;
+        color: var(--primary-dark);
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        padding: 0.25rem 0.65rem;
+        border-radius: 999px;
+      }
+
+      .status-tag--positive {
+        background-color: #dcfce7;
+        color: #166534;
+      }
+
+      .status-tag--warning {
+        background-color: #fef3c7;
+        color: #92400e;
+      }
+
+      .status-tag--error {
+        background-color: #fee2e2;
+        color: #991b1b;
+      }
+
+      .figure-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+      }
+
+      .figure-panel {
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 4px solid var(--primary);
+        border-radius: 8px;
+        padding: 1rem;
+      }
+
+      .figure-label {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        margin-bottom: 0.25rem;
+      }
+
+      .figure-value {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--text-main);
+        line-height: 1.15;
+        margin-bottom: 0.25rem;
+      }
+
+      .figure-desc {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: 0;
+      }
+
+      .inset {
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 4px solid var(--primary);
+        border-radius: 8px;
+        padding: 1.1rem 1.25rem;
+        margin: 1.25rem 0;
+      }
+
+      .inset--error {
+        background-color: #fef2f2;
+        border-color: #fecaca;
+        border-left-color: var(--accent);
+      }
+
+      .inset-title {
+        font-weight: 700;
+        color: var(--text-main);
+        margin-bottom: 0.4rem;
+      }
+
+      .inset p:last-child,
+      .inset ul:last-child {
+        margin-bottom: 0;
+      }
+
+      .summary-list {
+        border-top: 1px solid #e2e8f0;
+        margin: 1rem 0 1.5rem;
+      }
+
+      .summary-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
+        gap: 1rem;
+        padding: 0.85rem 0;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .summary-key {
+        font-weight: 700;
+        color: var(--text-main);
+      }
+
+      .schematic-wrap {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 1rem;
+        margin: 1.25rem 0;
+        overflow-x: auto;
+      }
+
+      .schematic-svg {
+        width: 100%;
+        min-width: 520px;
+        height: auto;
+        display: block;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        margin: 1.25rem 0;
+      }
+
+      .article-content table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 0.92rem;
+      }
+
+      .article-content th {
+        font-weight: 700;
+        color: var(--text-main);
+        padding: 0.65rem 0.75rem 0.65rem 0;
+        border-bottom: 2px solid var(--text-main);
+      }
+
+      .article-content td {
+        padding: 0.65rem 0.75rem 0.65rem 0;
+        border-bottom: 1px solid #e2e8f0;
+        vertical-align: top;
+      }
+
+      .article-content .num {
+        text-align: right;
+      }
+
+      .interactive-box {
+        background-color: #f8fafc;
+        border: 1px solid #cbd5e1;
+        border-top: 4px solid var(--primary);
+        border-radius: 10px;
+        padding: 1.25rem;
+        margin: 1.5rem 0;
+      }
+
+      .interactive-box h3 {
+        margin-top: 0;
+      }
+
+      .button-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 0.9rem 0;
+      }
+
+      .tool-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: inherit;
+        font-size: 0.9rem;
+        font-weight: 600;
+        padding: 0.55rem 0.95rem;
+        border-radius: 6px;
+        border: 1px solid #cbd5e1;
+        background-color: #ffffff;
+        color: var(--text-main);
+        cursor: pointer;
+        transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+      }
+
+      .tool-btn:hover {
+        background-color: #eff6ff;
+        border-color: var(--primary);
+      }
+
+      .tool-btn[aria-pressed="true"],
+      .tool-btn--primary {
+        background-color: var(--primary);
+        border-color: var(--primary);
+        color: #ffffff;
+      }
+
+      .tool-btn--primary:hover {
+        background-color: var(--primary-dark);
+      }
+
+      .wire-diagram {
+        background-color: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 0.75rem;
+      }
+
+      .wire-flow {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 0.75rem;
+        align-items: center;
+        margin-bottom: 0.85rem;
+      }
+
+      .wire-node {
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        padding: 0.45rem 0.75rem;
+        font-weight: 700;
+        font-size: 0.85rem;
+        background-color: #f8fafc;
+      }
+
+      .wire-pipe {
+        border-top: 3px dashed #94a3b8;
+        text-align: center;
+        padding-top: 0.25rem;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.8rem;
+      }
+
+      .wire-pipe--secure {
+        border-top: 3px solid #16a34a;
+        color: #166534;
+        font-weight: 600;
+      }
+
+      .wire-pipe--danger {
+        border-top: 3px dashed var(--accent);
+        color: #991b1b;
+        font-weight: 600;
+      }
+
+      .wire-pipe--warning {
+        border-top: 3px dashed #d97706;
+        color: #92400e;
+        font-weight: 600;
+      }
+
+      .wire-payload {
+        background-color: #0f172a;
+        color: #f8fafc;
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+        border-left: 4px solid var(--primary);
+        overflow-x: auto;
+      }
+
+      .wire-payload--danger {
+        border-left-color: var(--accent);
+      }
+
+      .wire-payload--positive {
+        border-left-color: #16a34a;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 0.9rem;
+        margin: 0.9rem 0;
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+
+      .field label {
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: var(--text-main);
+      }
+
+      .field-hint {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      .field input[type="text"],
+      .field select {
+        font-family: inherit;
+        font-size: 0.95rem;
+        color: var(--text-main);
+        background-color: #ffffff;
+        border: 1px solid #94a3b8;
+        border-radius: 6px;
+        padding: 0.55rem 0.75rem;
+        width: 100%;
+      }
+
+      .code-toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.9rem;
+      }
+
+      .copy-status {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #166534;
+        min-height: 1.2em;
+      }
+
+      .workflow-compare {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1rem;
+        margin-top: 0.75rem;
+      }
+
+      .workflow-col {
+        background-color: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        padding: 1rem;
+      }
+
+      .workflow-col--recommended {
+        border-color: var(--primary);
+        border-top: 4px solid var(--primary);
+      }
+
+      .workflow-col-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        border-bottom: 1px solid #e2e8f0;
+        padding-bottom: 0.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .article-content details {
+        border-top: 1px solid #e2e8f0;
+        border-bottom: 1px solid #e2e8f0;
+        padding: 0.5rem 0;
+        margin: 1rem 0;
+      }
+
+      .article-content summary {
+        font-weight: 700;
+        color: var(--primary);
+        cursor: pointer;
+        padding: 0.35rem 0;
+      }
+
+      .checklist-group {
+        list-style: none;
+        padding-left: 0;
+        margin: 0.75rem 0;
+        border-top: 1px solid #e2e8f0;
+      }
+
+      .checklist-item {
+        border-bottom: 1px solid #e2e8f0;
+        padding: 0.5rem 0;
+      }
+
+      .checklist-label {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        cursor: pointer;
+      }
+
+      .checklist-label input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        margin-top: 3px;
+        accent-color: var(--primary);
+        cursor: pointer;
+      }
+
+      .checklist-text strong {
+        display: block;
+        color: var(--text-main);
+      }
+
+      .checklist-text span {
+        display: block;
+        font-size: 0.88rem;
+        color: var(--text-muted);
+      }
+
+      .progress-track {
+        width: 100%;
+        height: 10px;
+        background-color: #e2e8f0;
+        border-radius: 999px;
+        overflow: hidden;
+        margin: 0.6rem 0 0.9rem;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary), #16a34a);
+        width: 0%;
+        transition: width 0.2s ease;
+      }
+
+      @media (max-width: 640px) {
+        .summary-row,
+        .wire-flow {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+
+    <!-- Données structurées Schema.org (Article + LocalBusiness) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://webetpassion.fr/blog/mettre-a-jour-site-web-deploiement-git.html"
+        },
+        "headline": "Mettre à jour un site web et déployer du code rectifié en toute sécurité",
+        "description": "Guide pratique pour articuler Git, GitHub, votre éditeur de code et votre hébergeur (SFTP, SSH, cPanel Git) afin de publier vos mises à jour sans perte de données.",
+        "datePublished": "2026-11-23",
+        "dateModified": "2026-11-23",
+        "author": {
+          "@type": "Person",
+          "name": "Philippe Jireau",
+          "url": "https://webetpassion.fr"
+        },
+        "publisher": {
+          "@type": "ProfessionalService",
+          "name": "Web & Passion",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Saint-Maximin-la-Sainte-Baume",
+            "postalCode": "83470",
+            "addressRegion": "Provence-Alpes-Côte d'Azur",
+            "addressCountry": "FR"
+          },
+          "telephone": "+33771236136",
+          "url": "https://webetpassion.fr"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Barre de progression de lecture -->
+    <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+    <!-- En-tête & Navigation principale -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a
+          href="../index.html"
+          class="brand-logo"
+          aria-label="Retour à l'accueil Web &amp; Passion"
+        >
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+          <span>Web &amp; Passion</span>
+        </a>
+
+        <button
+          type="button"
+          class="burger-btn"
+          id="burgerBtn"
+          aria-expanded="false"
+          aria-controls="mainNav"
+          aria-label="Ouvrir le menu de navigation"
+        >
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+        </button>
+
+        <nav class="main-nav" id="mainNav" aria-label="Navigation principale">
+          <ul>
+            <li><a href="../index.html">Accueil</a></li>
+            <li><a href="../tarifs.html">Tarifs</a></li>
+            <li><a href="../applications.html">Applications</a></li>
+            <li>
+              <a href="index.html" class="active" aria-current="page"
+                >Blog IA &amp; Web</a
+              >
+            </li>
+            <li>
+              <a href="../contact.html" class="nav-cta">Demander un devis</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Fil d'Ariane SEO -->
+    <nav class="breadcrumb" aria-label="Fil d'Ariane">
+      <div class="container">
+        <ol>
+          <li><a href="../index.html">Accueil</a></li>
+          <li><span aria-hidden="true">/</span></li>
+          <li><a href="index.html">Blog</a></li>
+          <li><span aria-hidden="true">/</span></li>
+          <li aria-current="page">Mettre à jour un site web et déployer du code</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <main class="article-wrapper">
+      <div class="container article-grid">
+        <!-- Colonne Article -->
+        <article class="article-content">
+          <header class="article-header">
+            <span class="article-badge">Déploiement Web &amp; Sécurité</span>
+            <h1>
+              Mettre à jour un site web et déployer du code rectifié en toute
+              sécurité
+            </h1>
+            <div class="article-meta">
+              <span>Par <strong>Philippe Jireau</strong> (Web &amp; Passion)</span>
+              <span>•</span>
+              <time datetime="2026-11-23">Publié le 23 novembre 2026</time>
+              <span>•</span>
+              <span>Temps de lecture : 8 min</span>
+            </div>
+            <p class="article-lead">
+              Corriger une page, ajuster une feuille de style ou déployer une
+              nouvelle fonctionnalité ne devrait jamais mettre votre site en
+              péril. Ce guide détaille comment articuler Git, GitHub, votre
+              éditeur de code et les outils d'un hébergeur comme o2switch pour
+              publier vos mises à jour sans perte de données.
+            </p>
+          </header>
+
+          <!-- Sommaire cliquable -->
+          <nav class="table-of-contents" aria-label="Sommaire de l'article">
+            <h2>Dans ce guide pratique</h2>
+            <ol>
+              <li>
+                <a href="#git-github"
+                  >1. Git et GitHub : stockage, versionnement et filet de sécurité</a
+                >
+              </li>
+              <li>
+                <a href="#connexion-hebergeur"
+                  >2. Se connecter à l'hébergeur (SFTP, cPanel Git, SSH)</a
+                >
+              </li>
+              <li>
+                <a href="#methodes-ide"
+                  >3. Mettre à jour directement depuis l'éditeur de code (IDE)</a
+                >
+              </li>
+              <li>
+                <a href="#comparatif-workflows"
+                  >4. Comparatif : Déploiement Direct vs Workflow Sécurisé</a
+                >
+              </li>
+              <li>
+                <a href="#checklist-finale"
+                  >5. Liste de contrôle avant toute mise en production</a
+                >
+              </li>
+            </ol>
+          </nav>
+
+          <div class="figure-grid" aria-label="Repères techniques clés">
+            <div class="figure-panel">
+              <div class="figure-label">Port SFTP / SSH</div>
+              <div class="figure-value">22</div>
+              <p class="figure-desc">
+                Connexion chiffrée unique, sans bascule en clair.
+              </p>
+            </div>
+            <div class="figure-panel">
+              <div class="figure-label">Rétention JetBackup</div>
+              <div class="figure-value">30–90 j</div>
+              <p class="figure-desc">
+                Sauvegardes automatiques restaurables en un clic.
+              </p>
+            </div>
+            <div class="figure-panel">
+              <div class="figure-label">Exceptions IP SSH</div>
+              <div class="figure-value">5 max</div>
+              <p class="figure-desc">
+                Adresses ou domaines DynDNS autorisés par compte cPanel.
+              </p>
+            </div>
+          </div>
+
+          <div class="inset">
+            <div class="inset-title">L'essentiel avant de commencer</div>
+            <p>
+              Publier directement un fichier depuis votre ordinateur vers le
+              serveur fonctionne pour une retouche isolée, mais laisse votre
+              code sans historique. Associer <strong>Git et GitHub</strong> comme
+              mémoire centrale, puis déployer via
+              <strong>SFTP, SSH ou Git™ Version Control (cPanel)</strong> vous
+              garantit de pouvoir annuler n'importe quelle erreur en quelques
+              secondes.
+            </p>
+          </div>
+
+          <!-- SECTION 1 -->
+          <section id="git-github">
+            <h2>1. Git et GitHub : stockage, versionnement et filet de sécurité</h2>
+            <p>
+              Lorsque vous modifiez le code d'un site web directement sur le
+              serveur en production, la moindre faute de syntaxe écrase
+              immédiatement la version qui fonctionnait. Pour éviter ce
+              scénario, les développeurs séparent l'environnement où le code est
+              écrit de l'environnement où il est stocké, puis de celui où il est
+              exécuté.
+            </p>
+
+            <h3>Trois rôles complémentaires pour protéger votre projet</h3>
+            <div class="summary-list">
+              <div class="summary-row">
+                <div class="summary-key">Git (sur votre machine)</div>
+                <div class="summary-val">
+                  Enregistre l'évolution des fichiers dans le temps. Chaque
+                  ajout, suppression ou correction est figé sous forme d'un
+                  <strong>commit</strong> daté et commenté. Vous pouvez comparer
+                  deux états ou revenir à une version antérieure saine à tout
+                  moment.
+                </div>
+              </div>
+              <div class="summary-row">
+                <div class="summary-key">GitHub / GitLab (dans le cloud)</div>
+                <div class="summary-val">
+                  Sert de dépôt distant central (<em>source principale</em>) et
+                  de sauvegarde hors-site. Si votre ordinateur tombe en panne ou
+                  si une manipulation détruit un dossier sur l'hébergement,
+                  l'intégralité du code et de son historique reste intacte en
+                  ligne.
+                </div>
+              </div>
+              <div class="summary-row">
+                <div class="summary-key">JetBackup (sur l'hébergeur)</div>
+                <div class="summary-val">
+                  Complète Git côté serveur : o2switch sauvegarde
+                  automatiquement vos fichiers, bases de données et emails
+                  (conservés 30, 45 ou 90 jours selon l'offre). C'est votre
+                  second filet de sécurité pour restaurer un site complet ou une
+                  base SQL en cas d'incident.
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="schematic-wrap"
+              aria-label="Schéma des trois couches de sécurité : Poste local, GitHub et Hébergeur"
+            >
+              <svg
+                class="schematic-svg"
+                viewBox="0 0 680 180"
+                role="img"
+                aria-label="Architecture du filet de sécurité à trois niveaux : éditeur local, dépôt GitHub et hébergement web"
+              >
+                <title>
+                  Architecture du filet de sécurité : IDE, GitHub et Hébergeur
+                </title>
+                <!-- Zone 1: Local -->
+                <rect
+                  x="10"
+                  y="20"
+                  width="185"
+                  height="120"
+                  fill="#f8fafc"
+                  stroke="#0f172a"
+                  stroke-width="2"
+                ></rect>
+                <rect x="10" y="20" width="185" height="6" fill="#1d4ed8"></rect>
+                <text
+                  x="24"
+                  y="48"
+                  font-family="sans-serif"
+                  font-size="13"
+                  font-weight="800"
+                  fill="#0f172a"
+                >
+                  1. Poste local (IDE)
+                </text>
+                <text
+                  x="24"
+                  y="70"
+                  font-family="sans-serif"
+                  font-size="12"
+                  fill="#334155"
+                >
+                  Code rectifié &amp; tests
+                </text>
+                <text
+                  x="24"
+                  y="92"
+                  font-family="monospace"
+                  font-size="11"
+                  fill="#1d4ed8"
+                >
+                  git add / git commit
+                </text>
+                <text
+                  x="24"
+                  y="122"
+                  font-family="sans-serif"
+                  font-size="11"
+                  font-weight="700"
+                  fill="#166534"
+                >
+                  Historique local créé
+                </text>
+
+                <!-- Arrow 1->2 -->
+                <line
+                  x1="195"
+                  y1="80"
+                  x2="245"
+                  y2="80"
+                  stroke="#1d4ed8"
+                  stroke-width="2.5"
+                ></line>
+                <polygon points="245,74 256,80 245,86" fill="#1d4ed8"></polygon>
+                <text
+                  x="200"
+                  y="68"
+                  font-family="monospace"
+                  font-size="10"
+                  fill="#0f172a"
+                >
+                  git push
+                </text>
+
+                <!-- Zone 2: GitHub -->
+                <rect
+                  x="256"
+                  y="20"
+                  width="185"
+                  height="120"
+                  fill="#dbeafe"
+                  stroke="#1e40af"
+                  stroke-width="2"
+                ></rect>
+                <rect x="256" y="20" width="185" height="6" fill="#1e40af"></rect>
+                <text
+                  x="270"
+                  y="48"
+                  font-family="sans-serif"
+                  font-size="13"
+                  font-weight="800"
+                  fill="#0f172a"
+                >
+                  2. GitHub (Cloud)
+                </text>
+                <text
+                  x="270"
+                  y="70"
+                  font-family="sans-serif"
+                  font-size="12"
+                  fill="#1e40af"
+                >
+                  Stockage &amp; révisions
+                </text>
+                <text
+                  x="270"
+                  y="92"
+                  font-family="monospace"
+                  font-size="11"
+                  fill="#1e40af"
+                >
+                  Dépôt distant (origin)
+                </text>
+                <text
+                  x="270"
+                  y="122"
+                  font-family="sans-serif"
+                  font-size="11"
+                  font-weight="700"
+                  fill="#1e40af"
+                >
+                  Filet de sécurité code
+                </text>
+
+                <!-- Arrow 2->3 -->
+                <line
+                  x1="441"
+                  y1="80"
+                  x2="485"
+                  y2="80"
+                  stroke="#1d4ed8"
+                  stroke-width="2.5"
+                ></line>
+                <polygon points="485,74 496,80 485,86" fill="#1d4ed8"></polygon>
+                <text
+                  x="444"
+                  y="68"
+                  font-family="monospace"
+                  font-size="10"
+                  fill="#0f172a"
+                >
+                  pull/deploy
+                </text>
+
+                <!-- Zone 3: Host -->
+                <rect
+                  x="496"
+                  y="20"
+                  width="174"
+                  height="120"
+                  fill="#f8fafc"
+                  stroke="#0f172a"
+                  stroke-width="2"
+                ></rect>
+                <rect x="496" y="20" width="174" height="6" fill="#16a34a"></rect>
+                <text
+                  x="510"
+                  y="48"
+                  font-family="sans-serif"
+                  font-size="13"
+                  font-weight="800"
+                  fill="#0f172a"
+                >
+                  3. Hébergeur Web
+                </text>
+                <text
+                  x="510"
+                  y="70"
+                  font-family="sans-serif"
+                  font-size="12"
+                  fill="#334155"
+                >
+                  Site public en ligne
+                </text>
+                <text
+                  x="510"
+                  y="92"
+                  font-family="monospace"
+                  font-size="11"
+                  fill="#1d4ed8"
+                >
+                  .cpanel.yml / SFTP
+                </text>
+                <text
+                  x="510"
+                  y="122"
+                  font-family="sans-serif"
+                  font-size="11"
+                  font-weight="700"
+                  fill="#166534"
+                >
+                  + JetBackup serveur
+                </text>
+
+                <text
+                  x="10"
+                  y="165"
+                  font-family="sans-serif"
+                  font-size="11"
+                  fill="#334155"
+                >
+                  En cas d'erreur en production : revenez au commit sain sur
+                  GitHub (code) ou restaurez via JetBackup (fichiers + base SQL).
+                </text>
+              </svg>
+            </div>
+
+            <p>
+              <strong>En résumé :</strong> Git ne remplace pas la sauvegarde
+              serveur (qui protège aussi votre base de données et vos fichiers
+              médias téléversés par les visiteurs), et JetBackup ne remplace pas
+              Git (qui conserve chaque ligne de code modifiée avec son auteur et
+              sa justification). Les deux mécanismes se complètent.
+            </p>
+          </section>
+
+          <!-- SECTION 2 -->
+          <section id="connexion-hebergeur">
+            <h2>
+              2. Comment se connecter et mettre à jour son site sur un
+              hébergeur (type o2switch)
+            </h2>
+            <p>
+              Pour acheminer vos fichiers rectifiés jusqu'à l'espace web de
+              votre hébergement, trois grandes voies existent : le transfert de
+              fichiers sécurisé (SFTP/FTPS), l'outil graphique Git de cPanel et
+              la ligne de commande SSH.
+            </p>
+
+            <h3>2.1 Transfert sécurisé de fichiers : FTP, FTPS et SFTP (FileZilla)</h3>
+            <p>
+              Bien que leurs noms se ressemblent, ces trois protocoles offrent
+              des niveaux de sécurité radicalement différents.
+            </p>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Protocole</th>
+                    <th>Chiffrement</th>
+                    <th class="num">Port</th>
+                    <th>Verdict</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>FTP</strong> (File Transfer Protocol)</td>
+                    <td>Aucun — identifiants et fichiers en clair</td>
+                    <td class="num">21</td>
+                    <td><span class="status-tag status-tag--error">À éviter</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>FTPS</strong> (FTP Secure)</td>
+                    <td>SSL/TLS en mode explicite</td>
+                    <td class="num">21</td>
+                    <td><span class="status-tag status-tag--warning">Acceptable</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>SFTP</strong> (SSH File Transfer Protocol)</td>
+                    <td>SSH natif intégral dès l'ouverture</td>
+                    <td class="num">22</td>
+                    <td><span class="status-tag status-tag--positive">Recommandé</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="interactive-box" id="protocol-simulator">
+              <h3>Inspecteur interactif : que circule-t-il sur le réseau ?</h3>
+              <p class="hint">
+                Sélectionnez un protocole pour observer le comportement de la
+                connexion (notamment sur un réseau Wi-Fi public) et les réglages
+                à appliquer dans FileZilla.
+              </p>
+              <div
+                class="button-row"
+                role="group"
+                aria-label="Choix du protocole de transfert"
+              >
+                <button
+                  type="button"
+                  class="tool-btn"
+                  id="proto-btn-ftp"
+                  aria-pressed="false"
+                  onclick="selectProtocol('ftp')"
+                >
+                  FTP (port 21)
+                </button>
+                <button
+                  type="button"
+                  class="tool-btn"
+                  id="proto-btn-ftps-opt"
+                  aria-pressed="false"
+                  onclick="selectProtocol('ftps-opt')"
+                >
+                  FTPS « si disponible »
+                </button>
+                <button
+                  type="button"
+                  class="tool-btn"
+                  id="proto-btn-ftps"
+                  aria-pressed="false"
+                  onclick="selectProtocol('ftps')"
+                >
+                  FTPS explicite TLS
+                </button>
+                <button
+                  type="button"
+                  class="tool-btn"
+                  id="proto-btn-sftp"
+                  aria-pressed="true"
+                  onclick="selectProtocol('sftp')"
+                >
+                  SFTP (port 22)
+                </button>
+              </div>
+              <div class="wire-diagram" id="wire-output" aria-live="polite"></div>
+            </div>
+
+            <p>
+              <strong>Paramètres SFTP sur FileZilla pour o2switch :</strong>
+              sélectionnez le protocole <code>SFTP - SSH File Transfer Protocol</code>,
+              renseignez votre domaine (ou l'adresse serveur
+              <code>qqch.o2switch.net</code> de votre email de bienvenue),
+              utilisez le type d'authentification <em>Normale</em> avec votre
+              <strong>identifiant et mot de passe cPanel</strong> (le SFTP n'est
+              pas disponible sur les comptes FTP secondaires), et laissez le
+              port sur <code>22</code>. Au préalable, votre adresse IP doit être
+              ajoutée dans l'outil <strong>Autorisation SSH</strong> de cPanel.
+            </p>
+
+            <details>
+              <summary>
+                Alternatives cPanel : Gestionnaire de fichiers et comptes FTP
+                secondaires
+              </summary>
+              <p>
+                Sans installer FileZilla, le
+                <strong>Gestionnaire de fichiers</strong> de cPanel permet de
+                naviguer dans vos répertoires, téléverser un fichier ou modifier
+                du code directement depuis le navigateur. Si vous travaillez
+                avec un prestataire externe, vous pouvez également créer un
+                <strong>compte FTP secondaire</strong> limité à un seul
+                sous-dossier afin de ne pas partager votre mot de passe cPanel
+                principal (ce compte fonctionnera en FTPS explicite plutôt qu'en
+                SFTP).
+              </p>
+            </details>
+
+            <h3>2.2 L'outil Git™ Version Control de cPanel et Gitweb</h3>
+            <p>
+              cPanel intègre une surcouche graphique nommée
+              <strong>Git™ Version Control</strong>. Elle permet de gérer des
+              dépôts sur votre hébergement, de consulter l'historique des
+              commits via l'interface web <strong>Gitweb</strong> (bouton
+              <em>History</em>) et d'automatiser la mise en ligne grâce au hook
+              <code>post-receive</code> et au fichier <code>.cpanel.yml</code>.
+            </p>
+
+            <p>
+              Deux architectures sont possibles lors de la création du dépôt
+              dans cPanel :
+            </p>
+            <ul class="styled-list">
+              <li>
+                <strong
+                  >Dépôt local principal (case <em>Clone a repository</em>
+                  décochée) :</strong
+                >
+                l'hébergement reçoit directement vos commits. Depuis votre
+                ordinateur, vous liez votre dossier local via
+                <code>git remote add origin ssh://identifiant@serveur/chemin</code>
+                (ou vous le clonez avec <code>git clone</code>) puis vous
+                exécutez <code>git push -u origin master</code>.
+              </li>
+              <li>
+                <strong
+                  >Miroir d'un dépôt externe GitHub / GitLab (case
+                  <em>Clone a repository</em> cochée) :</strong
+                >
+                c'est l'approche recommandée si vous utilisez GitHub comme filet
+                de sécurité. L'URL doit commencer par <code>https://</code>,
+                <code>ssh://</code>, <code>http://</code> ou
+                <code>git://</code> et
+                <strong>ne doit jamais contenir de paire identifiant:motdepasse</strong>.
+              </li>
+            </ul>
+
+            <div class="inset inset--error">
+              <div class="inset-title">
+                Dépôt privé sur GitHub : deux paires de clés SSH à ne pas
+                confondre
+              </div>
+              <p>
+                Pour cloner un dépôt privé, le protocole <code>ssh://</code> est
+                obligatoire. Vous devez configurer deux autorisations
+                distinctes :
+              </p>
+              <ul class="styled-list">
+                <li>
+                  <strong>Connexion A (Votre ordinateur → Hébergement) :</strong>
+                  votre clé publique locale dans
+                  <code>~/.ssh/authorized_keys</code> sur l'hébergement.
+                </li>
+                <li>
+                  <strong>Connexion B (Hébergement → GitHub/GitLab) :</strong>
+                  une clé privée dédiée dans <code>~/.ssh/id_rsa</code> sur
+                  l'hébergement, dont la clé publique est ajoutée dans les
+                  réglages SSH de votre compte GitHub, avec autorisation
+                  pare-feu côté hébergeur (GitHub est généralement déjà en liste
+                  blanche sur o2switch ; pour GitLab, contactez le support en
+                  cas de timeout).
+                </li>
+              </ul>
+            </div>
+
+            <h4>
+              Déploiement PUSH vs PULL et règle d'or du fichier
+              <code>.cpanel.yml</code>
+            </h4>
+            <p>
+              Dans cPanel, deux modes de déclenchement existent. En mode
+              <strong>PUSH</strong>, pousser directement vers l'hébergement
+              déclenche automatiquement le script de déploiement. En mode
+              <strong>PULL</strong> (avec GitHub), vous poussez d'abord votre
+              code vers GitHub, puis vous ouvrez cPanel → <em>Gérer</em> →
+              onglet <em>Pull or Deploy</em> pour cliquer sur
+              <strong>Update from Remote</strong> (récupère le code via
+              <code>git pull</code>) puis sur
+              <strong>Deploy Head Commit</strong>.
+            </p>
+            <p>
+              Dans les deux cas, deux prérequis stricts s'appliquent : un
+              fichier <code>.cpanel.yml</code> valide à la racine du dépôt Git,
+              et un <strong>espace de travail Git propre</strong> sur
+              l'hébergement (<code>git status</code> ne doit signaler aucune
+              modification locale en attente, sinon cPanel refuse le
+              déploiement).
+            </p>
+
+            <div class="interactive-box" id="cpanel-yml-builder">
+              <h3>Générateur de fichier <code>.cpanel.yml</code> et commandes associées</h3>
+              <p class="hint">
+                Personnalisez les paramètres de votre hébergement pour obtenir
+                la configuration exacte à placer à la racine de votre projet.
+              </p>
+
+              <div class="form-grid">
+                <div class="field">
+                  <label for="cfg-user">Identifiant cPanel</label>
+                  <input
+                    type="text"
+                    id="cfg-user"
+                    value="identifiant"
+                    oninput="updateCpanelGenerator()"
+                  >
+                  <span class="field-hint"
+                    >Nom de votre compte Linux sur l'hébergement.</span
+                  >
+                </div>
+                <div class="field">
+                  <label for="cfg-domain">Dossier cible du site</label>
+                  <input
+                    type="text"
+                    id="cfg-domain"
+                    value="mon-site-internet.fr"
+                    oninput="updateCpanelGenerator()"
+                  >
+                  <span class="field-hint"
+                    >Ex. <code>public_html</code> ou <code>mon-site.fr</code>.</span
+                  >
+                </div>
+                <div class="field">
+                  <label for="cfg-mode">Stratégie de tâches</label>
+                  <select id="cfg-mode" onchange="updateCpanelGenerator()">
+                    <option value="rsync">
+                      Copie directe via rsync (dossier html/)
+                    </option>
+                    <option value="script">
+                      Exécution d'un script bash (deploy.sh)
+                    </option>
+                  </select>
+                  <span class="field-hint"
+                    >Choisissez <code>deploy.sh</code> pour des tâches
+                    multiples.</span
+                  >
+                </div>
+              </div>
+
+              <div class="code-toolbar">
+                <strong
+                  >Contenu de <code>.cpanel.yml</code> (à placer à la racine du
+                  dépôt)</strong
+                >
+                <button
+                  type="button"
+                  class="tool-btn"
+                  onclick="copyGeneratedCode('yml-preview', 'copy-yml-status')"
+                >
+                  Copier le YAML
+                </button>
+              </div>
+              <span
+                class="copy-status"
+                id="copy-yml-status"
+                aria-live="polite"
+              ></span>
+              <pre><code id="yml-preview"></code></pre>
+
+              <div class="code-toolbar">
+                <strong>Vérification préalable en SSH (propreté du dépôt)</strong>
+                <button
+                  type="button"
+                  class="tool-btn"
+                  onclick="copyGeneratedCode('ssh-check-preview', 'copy-ssh-status')"
+                >
+                  Copier la commande
+                </button>
+              </div>
+              <span
+                class="copy-status"
+                id="copy-ssh-status"
+                aria-live="polite"
+              ></span>
+              <pre><code id="ssh-check-preview"></code></pre>
+            </div>
+
+            <h3>2.3 L'accès SSH en ligne de commande</h3>
+            <p>
+              Vous n'êtes pas obligé de passer par l'interface graphique de
+              cPanel : l'accès SSH vous ouvre directement un terminal sur votre
+              hébergement pour exécuter <code>git</code>, manipuler des
+              archives, lancer <code>mysqldump</code>, utiliser
+              <code>wp-cli</code>, ou piloter des environnements Node.js,
+              Python ou Ruby.
+            </p>
+
+            <ol class="styled-list">
+              <li>
+                <strong>Débloquer votre IP dans le pare-feu :</strong> ouvrez
+                l'outil <em>Autorisation SSH</em> dans cPanel et ajoutez votre
+                adresse IP (5 exceptions maximum). Si votre box change d'IP,
+                utilisez un service DynDNS gratuit (comme No-IP) : l'hébergeur
+                met à jour l'autorisation automatiquement en 3 à 5 minutes. Une
+                erreur <em>timeout</em> signifie presque toujours que votre IP
+                n'est pas en liste blanche.
+              </li>
+              <li>
+                <strong>Choisir votre mode de connexion :</strong> via le
+                navigateur avec l'outil <strong>Terminal</strong> de cPanel
+                (connexion automatique), par mot de passe sur le port 22
+                (<code>ssh identifiant@serveur.o2switch.net</code>), ou par
+                <strong>clé SSH</strong> sans mot de passe.
+              </li>
+              <li>
+                <strong>Configurer l'authentification par clé SSH (recommandé) :</strong>
+                générez une paire de clés avec
+                <code>ssh-keygen -t rsa -b 4096</code> (ou avec PuTTYgen en mode
+                SSH-2-RSA sur Windows, en veillant à le télécharger uniquement
+                sur le site officiel). Copiez le contenu de
+                <code>id_rsa.pub</code> dans <code>~/.ssh/authorized_keys</code>
+                sur le serveur.
+              </li>
+            </ol>
+
+            <div class="inset">
+              <div class="inset-title">
+                Droits Unix indispensables pour que la clé SSH soit acceptée
+              </div>
+              <p>
+                Par sécurité, le serveur SSH refuse automatiquement toute clé si
+                les permissions sont trop larges. Vérifiez ces quatre réglages :
+              </p>
+              <ul class="styled-list">
+                <li>Dossier <code>~/.ssh</code> : <code>chmod 700</code></li>
+                <li>
+                  Fichier <code>authorized_keys</code> sur le serveur :
+                  <code>chmod 644</code>
+                </li>
+                <li>Clé publique <code>.pub</code> : <code>chmod 644</code></li>
+                <li>
+                  Clé privée <code>id_rsa</code> sur votre poste :
+                  <code>chmod 400</code>
+                </li>
+              </ul>
+            </div>
+
+            <details>
+              <summary>
+                Ce que l'accès SSH permet — et ce qui reste interdit en
+                hébergement mutualisé
+              </summary>
+              <p>
+                <strong>Autorisé :</strong> commandes <code>git</code>,
+                manipulation de fichiers et d'archives (<code>zip</code>,
+                <code>tar.gz</code>), export de base de données
+                (<code>mysqldump</code>), scripts bash/Python, consoles de
+                frameworks (Symfony, Laravel, virtualenv Python, Ruby,
+                Node.js/npm), outils CMS (WP-CLI, Drush).
+              </p>
+              <p>
+                <strong>Interdit :</strong> installer des paquets système
+                (<code>apt-get</code>, <code>yum</code>), lancer des conteneurs
+                Docker ou des machines virtuelles, modifier le pare-feu ou la
+                configuration globale du serveur web (tout ce qui requiert les
+                droits <code>root</code>).
+              </p>
+            </details>
+          </section>
+
+          <!-- SECTION 3 -->
+          <section id="methodes-ide">
+            <h2>
+              3. Mettre à jour directement depuis l'éditeur de code (IDE)
+            </h2>
+            <p>
+              Que vous utilisiez Antigravity, VS Code ou un éditeur similaire,
+              vous n'avez pas besoin de basculer sans cesse entre votre code et
+              un logiciel tiers comme FileZilla. Votre éditeur propose deux
+              mécanismes directs : l'extension de transfert SFTP et le terminal
+              intégré.
+            </p>
+
+            <h3>Méthode A — Plugin ou extension d'upload SFTP direct</h3>
+            <p>
+              Les extensions SFTP intégrées à l'IDE (configurées via un fichier
+              JSON local de projet) relient votre dossier de travail à un
+              répertoire précis sur le serveur en utilisant le protocole
+              <strong>SFTP sur le port 22</strong>.
+            </p>
+            <ul class="styled-list">
+              <li>
+                <strong>Fonctionnement :</strong> vous déclenchez manuellement
+                l'envoi du fichier modifié (clic droit → <em>Upload</em>) ou
+                vous activez l'envoi automatique à chaque sauvegarde
+                (<code>uploadOnSave</code>).
+              </li>
+              <li>
+                <strong>Sécurité de configuration :</strong> utilisez
+                impérativement le protocole <code>sftp</code> (jamais
+                <code>ftp</code>), votre identifiant cPanel ou votre clé privée
+                SSH, et excluez les dossiers sensibles (<code>.git</code>,
+                <code>node_modules</code>, fichiers de configuration locaux
+                contenant vos mots de passe) de la synchronisation.
+              </li>
+              <li>
+                <strong>Point de vigilance :</strong> avec
+                <code>uploadOnSave</code> activé, une faute de frappe
+                enregistrée par réflexe (<code>Ctrl+S</code>) part immédiatement
+                en production. Ne l'activez jamais sur un site actif sans copie
+                locale versionnée.
+              </li>
+            </ul>
+
+            <h3>Méthode B — Le terminal intégré à l'éditeur</h3>
+            <p>
+              La quasi-totalité des éditeurs modernes intègrent un terminal
+              système (raccourci clavier ou panneau inférieur). C'est l'outil le
+              plus polyvalent, car il vous permet de piloter Git ou d'envoyer
+              des fichiers sans quitter votre code :
+            </p>
+
+            <pre><code># 1. Vérifier les fichiers modifiés avant tout envoi
+git status
+
+# 2. Enregistrer la rectification dans l'historique Git local
+git add chemin/du/fichier.html
+git commit -m "Correctif affichage menu mobile"
+
+# 3. Envoyer vers votre sauvegarde GitHub (ou directement vers cPanel)
+git push origin main</code></pre>
+
+            <p>
+              Si vous devez pousser ponctuellement un dossier compilé (par
+              exemple un dossier <code>dist/</code> ou des assets statiques)
+              par-dessus SSH sans passer par un dépôt distant, le terminal de
+              l'IDE permet aussi d'exécuter une synchronisation différentielle
+              chiffrée via <code>rsync -avz -e ssh</code>, beaucoup plus rapide
+              que de renvoyer tout le site fichier par fichier.
+            </p>
+          </section>
+
+          <!-- SECTION 4 -->
+          <section id="comparatif-workflows">
+            <h2>
+              4. Comparatif étape par étape : Déploiement Direct vs Workflow
+              Sécurisé
+            </h2>
+            <p>
+              Faut-il toujours passer par GitHub pour corriger une simple faute
+              d'orthographe, ou peut-on parfois déployer en direct ? Comparez
+              ci-dessous le déroulement concret des deux méthodes et leur
+              comportement lorsqu'un incident survient en production.
+            </p>
+
+            <div class="interactive-box" id="workflow-explorer">
+              <h3>Explorateur étape par étape des deux workflows</h3>
+              <p class="hint">
+                Cliquez sur une étape pour comparer exactement ce qui se passe
+                entre le déploiement direct rapide et le workflow recommandé
+                sécurisé (IDE → GitHub → Hébergeur).
+              </p>
+
+              <div
+                class="button-row"
+                role="group"
+                aria-label="Sélection de l'étape du workflow"
+              >
+                <button
+                  type="button"
+                  class="tool-btn"
+                  id="wf-btn-1"
+                  aria-pressed="true"
+                  onclick="selectWorkflowStep(1)"
+                >
+                  Étape 1 : Édition
+                </button>
+                <button
+                  type="button"
+                  class="tool-btn"
+                  id="wf-btn-2"
+                  aria-pressed="false"
+                  onclick="selectWorkflowStep(2)"
+                >
+                  Étape 2 : Sauvegarde
+                </button>
+                <button
+                  type="button"
+                  class="tool-btn"
+                  id="wf-btn-3"
+                  aria-pressed="false"
+                  onclick="selectWorkflowStep(3)"
+                >
+                  Étape 3 : Transfert
+                </button>
+                <button
+                  type="button"
+                  class="tool-btn"
+                  id="wf-btn-4"
+                  aria-pressed="false"
+                  onclick="selectWorkflowStep(4)"
+                >
+                  Étape 4 : Mise en ligne
+                </button>
+                <button
+                  type="button"
+                  class="tool-btn"
+                  id="wf-btn-5"
+                  aria-pressed="false"
+                  onclick="selectWorkflowStep(5)"
+                >
+                  Scénario d'urgence (Bug)
+                </button>
+              </div>
+
+              <div
+                class="workflow-compare"
+                id="workflow-detail"
+                aria-live="polite"
+              ></div>
+            </div>
+
+            <h3>Tableau décisionnel : quelle méthode choisir ?</h3>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Critère</th>
+                    <th>Déploiement Direct (SFTP / IDE)</th>
+                    <th>Workflow Sécurisé (IDE → GitHub → Hébergeur)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Vitesse sur 1 fichier isolé</strong></td>
+                    <td>Immédiate (quelques secondes)</td>
+                    <td>Rapide (1 commit + 1 push + pull/deploy)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Historique &amp; traçabilité</strong></td>
+                    <td>Aucun — le fichier précédent est écrasé</td>
+                    <td>Complet (auteur, date, diff ligne par ligne)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Travail en équipe</strong></td>
+                    <td>Risque élevé d'écraser le code d'un collègue</td>
+                    <td>Fusion contrôlée via GitHub</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Retour arrière sur erreur</strong></td>
+                    <td>Manuel ou restauration globale JetBackup</td>
+                    <td>
+                      Instantané via <code>git revert</code> + redéploiement
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Usage conseillé</strong></td>
+                    <td>Dépôt d'un média, hotfix trivial sur site statique</td>
+                    <td>
+                      Toute évolution de code, thème, plugin ou application
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>
+              Procédure complète du Workflow Recommandé (IDE → GitHub → cPanel)
+            </h3>
+            <ol class="styled-list">
+              <li>
+                <strong>Rectifiez et testez localement</strong> dans votre
+                éditeur de code.
+              </li>
+              <li>
+                <strong>Validez la modification dans Git :</strong> dans le
+                terminal intégré, exécutez <code>git status</code>, puis
+                <code>git add</code> sur les fichiers concernés et
+                <code>git commit -m "Description claire du correctif"</code>.
+              </li>
+              <li>
+                <strong>Synchronisez vers GitHub :</strong> lancez
+                <code>git push origin main</code>. Votre code rectifié est
+                désormais sauvegardé et historisé hors de votre machine.
+              </li>
+              <li>
+                <strong>Mettez à jour l'hébergement :</strong> dans cPanel →
+                <em>Git™ Version Control</em> → <em>Gérer</em> →
+                <em>Pull or Deploy</em>, cliquez sur
+                <strong>Update from Remote</strong> pour importer le dernier
+                commit depuis GitHub.
+              </li>
+              <li>
+                <strong>Déployez en production :</strong> cliquez sur
+                <strong>Deploy Head Commit</strong> (exécute votre fichier
+                <code>.cpanel.yml</code>). Vérifiez ensuite votre site public
+                dans un onglet de navigation privée.
+              </li>
+            </ol>
+          </section>
+
+          <!-- SECTION 5 -->
+          <section id="checklist-finale">
+            <h2>5. Liste de contrôle avant toute mise en production</h2>
+            <p>
+              Cochez chaque point ci-dessous avant d'appliquer une mise à jour
+              sur votre site. Votre progression est mémorisée localement dans
+              votre navigateur.
+            </p>
+
+            <div class="interactive-box" id="predeploy-checklist">
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: baseline;
+                  flex-wrap: wrap;
+                  gap: 0.5rem;
+                "
+              >
+                <h3 style="margin: 0">Contrôle pré-déploiement</h3>
+                <span class="status-tag" id="checklist-counter"
+                  >0 / 6 vérifiés</span
+                >
+              </div>
+              <div class="progress-track" aria-hidden="true">
+                <div class="progress-fill" id="checklist-progress"></div>
+              </div>
+
+              <ul class="checklist-group" id="checklist-items">
+                <li class="checklist-item">
+                  <label class="checklist-label">
+                    <input
+                      type="checkbox"
+                      id="chk-1"
+                      onchange="toggleChecklistItem('chk-1')"
+                    >
+                    <span class="checklist-text">
+                      <strong>Accès SSH autorisé pour mon IP actuelle</strong>
+                      <span
+                        >Adresse IP (ou DynDNS) renseignée dans l'outil
+                        Autorisation SSH de cPanel.</span
+                      >
+                    </span>
+                  </label>
+                </li>
+                <li class="checklist-item">
+                  <label class="checklist-label">
+                    <input
+                      type="checkbox"
+                      id="chk-2"
+                      onchange="toggleChecklistItem('chk-2')"
+                    >
+                    <span class="checklist-text">
+                      <strong
+                        >Connexion chiffrée vérifiée (SFTP port 22 ou SSH par
+                        clé)</strong
+                      >
+                      <span
+                        >Aucun transfert en FTP non chiffré ; permissions
+                        <code>.ssh</code> conformes (700 / 644 / 400).</span
+                      >
+                    </span>
+                  </label>
+                </li>
+                <li class="checklist-item">
+                  <label class="checklist-label">
+                    <input
+                      type="checkbox"
+                      id="chk-3"
+                      onchange="toggleChecklistItem('chk-3')"
+                    >
+                    <span class="checklist-text">
+                      <strong
+                        >Code commité et poussé sur GitHub (filet de
+                        sécurité)</strong
+                      >
+                      <span
+                        >Le dernier état sain et la rectification sont
+                        enregistrés sur le dépôt distant.</span
+                      >
+                    </span>
+                  </label>
+                </li>
+                <li class="checklist-item">
+                  <label class="checklist-label">
+                    <input
+                      type="checkbox"
+                      id="chk-4"
+                      onchange="toggleChecklistItem('chk-4')"
+                    >
+                    <span class="checklist-text">
+                      <strong
+                        >Arbre Git propre sur l'hébergement
+                        (<code>git status</code>)</strong
+                      >
+                      <span
+                        >Aucune modification locale non commitée ne bloque
+                        cPanel Git™ Version Control.</span
+                      >
+                    </span>
+                  </label>
+                </li>
+                <li class="checklist-item">
+                  <label class="checklist-label">
+                    <input
+                      type="checkbox"
+                      id="chk-5"
+                      onchange="toggleChecklistItem('chk-5')"
+                    >
+                    <span class="checklist-text">
+                      <strong
+                        >Fichier <code>.cpanel.yml</code> présent à la racine et
+                        valide</strong
+                      >
+                      <span
+                        >Chemin <code>DEPLOYPATH</code> vérifié pour éviter
+                        d'écraser un mauvais répertoire.</span
+                      >
+                    </span>
+                  </label>
+                </li>
+                <li class="checklist-item">
+                  <label class="checklist-label">
+                    <input
+                      type="checkbox"
+                      id="chk-6"
+                      onchange="toggleChecklistItem('chk-6')"
+                    >
+                    <span class="checklist-text">
+                      <strong
+                        >Sauvegarde serveur JetBackup vérifiée (en cas de
+                        refonte majeure)</strong
+                      >
+                      <span
+                        >Date de la dernière sauvegarde automatique confirmée
+                        dans cPanel avant déploiement.</span
+                      >
+                    </span>
+                  </label>
+                </li>
+              </ul>
+
+              <div class="button-row">
+                <button
+                  type="button"
+                  class="tool-btn tool-btn--primary"
+                  onclick="exportChecklist()"
+                >
+                  Télécharger mon récapitulatif (.txt)
+                </button>
+                <button
+                  type="button"
+                  class="tool-btn"
+                  id="reset-chk-btn"
+                  onclick="resetChecklist(this)"
+                >
+                  Réinitialiser la liste
+                </button>
+              </div>
+              <p
+                class="hint"
+                id="checklist-feedback"
+                aria-live="polite"
+                style="margin-bottom: 0"
+              ></p>
+            </div>
+          </section>
+
+          <!-- Pont métier vers Web & Passion -->
+          <section id="accompagnement-web-passion" class="business-bridge">
+            <h2>
+              Besoin d'aide pour sécuriser la maintenance ou le déploiement de
+              votre site ?
+            </h2>
+            <p>
+              Basé à <strong>Saint-Maximin-la-Sainte-Baume</strong>,
+              j'accompagne les artisans, indépendants et PME dans la création,
+              la refonte et la mise en ligne fiable de leur site internet.
+            </p>
+            <div class="cta-box">
+              <h3>
+                Un site rapide, versionné et facile à faire évoluer
+              </h3>
+              <p>
+                Estimez votre projet en ligne ou contactez-moi directement pour
+                un accompagnement technique adapté.
+              </p>
+              <div class="cta-buttons">
+                <a href="../applications.html" class="btn btn-primary"
+                  >Tester mes applications web</a
+                >
+                <a href="../contact.html" class="btn btn-secondary"
+                  >Demander un contact</a
+                >
+              </div>
+            </div>
+          </section>
+        </article>
+
+        <!-- Barre latérale (Sidebar) -->
+        <aside
+          class="article-sidebar"
+          aria-label="Informations et services Web &amp; Passion"
+        >
+          <div class="sidebar-card">
+            <h3>Rappel express SFTP</h3>
+            <p>
+              <strong>Protocole :</strong> <code>SFTP</code><br>
+              <strong>Port :</strong> <code>22</code><br>
+              <strong>Identifiant :</strong> compte <code>cPanel</code><br>
+              <strong>Prérequis :</strong> IP en liste blanche SSH
+            </p>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>À propos de l'auteur</h3>
+            <p>
+              <strong>Philippe Jireau</strong> — Créateur et développeur web
+              freelance chez <strong>Web &amp; Passion</strong> à
+              Saint-Maximin-la-Sainte-Baume (Var).
+            </p>
+            <a href="../tarifs.html" class="sidebar-link"
+              >Découvrir mes prestations →</a
+            >
+          </div>
+
+          <div class="sidebar-card highlight-card">
+            <h3>Outils gratuits en ligne</h3>
+            <p>
+              Découvrez mes applications web interactives : simulateur de devis
+              en ligne et générateur de carte de visite numérique.
+            </p>
+            <a href="../applications.html" class="btn btn-primary btn-full"
+              >Accéder aux applications</a
+            >
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-info">
+          <p><strong>Web &amp; Passion</strong> — Philippe Jireau</p>
+          <p>
+            Création de sites internet &amp; SEO local à
+            Saint-Maximin-la-Sainte-Baume (83470)
+          </p>
+          <p>
+            Tél : <a href="tel:+33771236136">07&nbsp;71&nbsp;23&nbsp;61&nbsp;36</a>
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="../index.html">Accueil</a>
+          <a href="../tarifs.html">Tarifs</a>
+          <a href="../applications.html">Applications</a>
+          <a href="../contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <p>
+            &copy; 2026 Web &amp; Passion — Tous droits réservés.
+            Micro-entreprise en franchise de TVA (art. 293 B du CGI).
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/blog-article.js"></script>
+    <script>
+      var STORAGE_KEY = 'wp_guide_deploiement_state_v1';
+      var appState = {
+        protocol: 'sftp',
+        workflowStep: 1,
+        checklist: {
+          'chk-1': false,
+          'chk-2': false,
+          'chk-3': false,
+          'chk-4': false,
+          'chk-5': false,
+          'chk-6': false
+        }
+      };
+
+      var PROTOCOL_DATA = {
+        ftp: {
+          title: 'FTP classique (File Transfer Protocol)',
+          statusTag: 'À proscrire',
+          statusClass: 'status-tag--error',
+          pipeClass: 'wire-pipe--danger',
+          pipeLabel: 'Port 21 — Trafic EN CLAIR',
+          payloadClass: 'wire-payload--danger',
+          payloadText:
+            'USER mon_identifiant_cpanel\nPASS MonMotDePasseEnClair123!\nSTOR index.html [Contenu lisible par toute machine sur le réseau]',
+          detail:
+            'Sur un Wi-Fi public ou un réseau non fiable, une attaque man-in-the-middle intercepte immédiatement votre mot de passe cPanel et vos fichiers.'
+        },
+        'ftps-opt': {
+          title: 'FTPS « si disponible » (option par défaut risquée)',
+          statusTag: 'Piège de configuration',
+          statusClass: 'status-tag--warning',
+          pipeClass: 'wire-pipe--warning',
+          pipeLabel: 'Port 21 — Négociation incertaine',
+          payloadClass: 'wire-payload--danger',
+          payloadText:
+            "AUTH TLS -> Échec ou refus silencieux\nBascule automatique en FTP non chiffré sans avertissement à l'utilisateur.",
+          detail:
+            'Dans FileZilla, l’option « Connexion FTP explicite sur TLS si disponible » peut basculer en clair silencieusement si le serveur ne répond pas en TLS.'
+        },
+        ftps: {
+          title: 'FTPS explicite sur TLS (obligatoire)',
+          statusTag: 'Chiffrement SSL/TLS',
+          statusClass: 'status-tag--warning',
+          pipeClass: 'wire-pipe--secure',
+          pipeLabel: 'Port 21 — Tunnel TLS exigé avant envoi',
+          payloadClass: 'wire-payload--positive',
+          payloadText:
+            'AUTH TLS -> Certificat vérifié\n[Flux chiffré : identifiants, commandes et fichiers illisibles sur le réseau]',
+          detail:
+            'Valable si vous utilisez un compte FTP secondaire cPanel (car le SFTP est réservé au compte principal). Refuse la connexion si le chiffrement échoue.'
+        },
+        sftp: {
+          title: 'SFTP (SSH File Transfer Protocol)',
+          statusTag: 'Solution recommandée',
+          statusClass: 'status-tag--positive',
+          pipeClass: 'wire-pipe--secure',
+          pipeLabel: 'Port 22 — Chiffrement SSH natif intégral',
+          payloadClass: 'wire-payload--positive',
+          payloadText:
+            'SSH-2.0 Handshake -> Authentification cPanel ou Clé SSH\n[100 % chiffré dès le premier octet — aucune bascule en clair possible]',
+          detail:
+            'Un seul port (22), un seul mode, chiffrement systématique. Utilise vos identifiants cPanel principaux et requiert la mise en liste blanche de votre IP dans Autorisation SSH.'
+        }
+      };
+
+      var WORKFLOW_STEPS = {
+        1: {
+          directTitle: 'Modification directe sur le fichier',
+          directBadge: 'Rapide',
+          directBadgeClass: 'status-tag',
+          directDesc:
+            'Vous corrigez le fichier dans votre IDE ou directement via le Gestionnaire de fichiers de cPanel.',
+          directCmd:
+            "Ctrl+S dans l'éditeur (aucune trace des versions précédentes)",
+          secTitle: 'Édition locale dans une branche de travail',
+          secBadge: 'Maîtrisé',
+          secBadgeClass: 'status-tag--positive',
+          secDesc:
+            'Vous modifiez et testez vos fichiers sur votre ordinateur. Le site en ligne reste totalement intact pendant vos essais.',
+          secCmd: 'git diff   # Permet de relire chaque ligne modifiée'
+        },
+        2: {
+          directTitle: 'Aucune sauvegarde de version',
+          directBadge: 'Vulnérable',
+          directBadgeClass: 'status-tag--error',
+          directDesc:
+            "Aucune trace intermédiaire n'est créée. Si vous fermez l'éditeur ou écrasez un autre bloc, l'ancien code est perdu.",
+          directCmd: '# Pas de commit — seule copie : votre disque local',
+          secTitle: 'Commit local + Push vers GitHub',
+          secBadge: 'Filet de sécurité',
+          secBadgeClass: 'status-tag--positive',
+          secDesc:
+            'Vous figez la correction dans Git avec un message explicite, puis vous la poussez vers GitHub (stockage cloud hors-site).',
+          secCmd:
+            'git commit -am "Correctif formulaire contact"\ngit push origin main'
+        },
+        3: {
+          directTitle: 'Upload SFTP (FileZilla ou plugin IDE)',
+          directBadge: 'Manuel',
+          directBadgeClass: 'status-tag',
+          directDesc:
+            'Vous glissez-déposez les fichiers modifiés vers le dossier du site sur le port 22. Attention à ne pas oublier un fichier lié.',
+          directCmd: 'SFTP port 22 -> /home/utilisateur/mon-site.fr/',
+          secTitle: 'Synchronisation Git sur cPanel (PULL ou PUSH)',
+          secBadge: 'Automatisé',
+          secBadgeClass: 'status-tag--positive',
+          secDesc:
+            'Dans cPanel → Git™ Version Control → Pull or Deploy, cliquez sur « Update from Remote ». Seuls les deltas validés sont récupérés.',
+          secCmd: '# cPanel exécute : git pull origin main'
+        },
+        4: {
+          directTitle: "Écrasement immédiat à la fin du transfert",
+          directBadge: 'Exposé',
+          directBadgeClass: 'status-tag--warning',
+          directDesc:
+            'Pendant le transfert de plusieurs fichiers, les visiteurs peuvent charger un site incohérent (HTML nouveau, CSS ancien).',
+          directCmd: "# En ligne immédiatement dès la fin de l'upload",
+          secTitle: 'Exécution contrôlée via .cpanel.yml',
+          secBadge: 'Propre',
+          secBadgeClass: 'status-tag--positive',
+          secDesc:
+            'Cliquez sur « Deploy Head Commit » (ou déclenchement auto en PUSH). rsync copie proprement les fichiers vers le dossier public.',
+          secCmd: '/usr/bin/rsync -av html/ $DEPLOYPATH'
+        },
+        5: {
+          directTitle: 'Restauration manuelle ou JetBackup complet',
+          directBadge: 'Stress élevé',
+          directBadgeClass: 'status-tag--error',
+          directDesc:
+            "Si vous n'avez plus l'ancien fichier, vous devez réparer à l'aveugle ou restaurer l'hébergement via JetBackup (délai et risque d'écraser des données récentes).",
+          directCmd: 'cPanel -> JetBackup -> Restaurer le dossier à J-1',
+          secTitle: 'Retour arrière Git en 1 commande',
+          secBadge: 'Récupération < 1 min',
+          secBadgeClass: 'status-tag--positive',
+          secDesc:
+            'Vous annulez exactement le commit fautif sur votre poste, poussez vers GitHub et cliquez sur Update + Deploy dans cPanel.',
+          secCmd: 'git revert HEAD\ngit push origin main'
+        }
+      };
+
+      function persistState() {
+        try {
+          window.localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+        } catch (e) {
+          // Stockage local indisponible
+        }
+      }
+
+      function selectProtocol(key) {
+        if (!PROTOCOL_DATA[key]) return;
+        appState.protocol = key;
+        var keys = ['ftp', 'ftps-opt', 'ftps', 'sftp'];
+        for (var i = 0; i < keys.length; i++) {
+          var btn = document.getElementById('proto-btn-' + keys[i]);
+          if (btn) {
+            btn.setAttribute('aria-pressed', keys[i] === key ? 'true' : 'false');
+          }
+        }
+        renderProtocolOutput();
+        persistState();
+      }
+
+      function renderProtocolOutput() {
+        var container = document.getElementById('wire-output');
+        if (!container) return;
+        var data = PROTOCOL_DATA[appState.protocol] || PROTOCOL_DATA.sftp;
+        container.innerHTML =
+          '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.75rem;">' +
+          '<strong>' +
+          data.title +
+          '</strong>' +
+          '<span class="status-tag ' +
+          data.statusClass +
+          '">' +
+          data.statusTag +
+          '</span>' +
+          '</div>' +
+          '<div class="wire-flow">' +
+          '<div class="wire-node">Votre ordinateur</div>' +
+          '<div class="wire-pipe ' +
+          data.pipeClass +
+          '">' +
+          data.pipeLabel +
+          '</div>' +
+          '<div class="wire-node">Serveur o2switch</div>' +
+          '</div>' +
+          '<div class="wire-payload ' +
+          data.payloadClass +
+          '"><pre style="margin:0;padding:0;border:none;background:transparent;"><code>' +
+          data.payloadText +
+          '</code></pre></div>' +
+          '<p style="margin-top:0.75rem;margin-bottom:0;font-size:0.92rem;">' +
+          data.detail +
+          '</p>';
+      }
+
+      function sanitizePathSegment(val, fallback) {
+        var cleaned = String(val || '')
+          .replace(/[^a-zA-Z0-9._\-\/]/g, '')
+          .replace(/^\/+|\/+$/g, '');
+        return cleaned || fallback;
+      }
+
+      function updateCpanelGenerator() {
+        var userInput = document.getElementById('cfg-user');
+        var domainInput = document.getElementById('cfg-domain');
+        var modeSelect = document.getElementById('cfg-mode');
+        var ymlPre = document.getElementById('yml-preview');
+        var sshPre = document.getElementById('ssh-check-preview');
+
+        if (!userInput || !domainInput || !modeSelect || !ymlPre || !sshPre) {
+          return;
+        }
+
+        var user = sanitizePathSegment(userInput.value, 'identifiant');
+        var domain = sanitizePathSegment(
+          domainInput.value,
+          'mon-site-internet.fr'
+        );
+        var mode = modeSelect.value;
+
+        var ymlContent = '';
+        if (mode === 'script') {
+          ymlContent =
+            '---\n' +
+            'deployment:\n' +
+            '  tasks:\n' +
+            '    - export DEPLOYPATH=/home/' +
+            user +
+            '/' +
+            domain +
+            '\n' +
+            '    - /usr/bin/bash deploy.sh';
+        } else {
+          ymlContent =
+            '---\n' +
+            'deployment:\n' +
+            '  tasks:\n' +
+            '    - export DEPLOYPATH=/home/' +
+            user +
+            '/' +
+            domain +
+            '\n' +
+            '    - /usr/bin/rsync -av html/ $DEPLOYPATH';
+        }
+        ymlPre.textContent = ymlContent;
+
+        sshPre.textContent =
+          'ssh ' +
+          user +
+          '@' +
+          user +
+          '.odns.fr\n' +
+          'cd ~/depots/mon-projet && git status\n' +
+          '# Résultat attendu : "nothing to commit, working tree clean"';
+      }
+
+      function copyGeneratedCode(sourceId, statusId) {
+        var src = document.getElementById(sourceId);
+        var status = document.getElementById(statusId);
+        if (!src || !status) return;
+        var text = src.textContent || '';
+        if (
+          navigator.clipboard &&
+          typeof navigator.clipboard.writeText === 'function'
+        ) {
+          navigator.clipboard.writeText(text).then(
+            function () {
+              status.textContent = 'Copié dans le presse-papiers.';
+              setTimeout(function () {
+                if (status) status.textContent = '';
+              }, 2500);
+            },
+            function () {
+              status.textContent =
+                'Sélectionnez et copiez le bloc manuellement (Ctrl+C).';
+            }
+          );
+        } else {
+          status.textContent =
+            'Sélectionnez et copiez le bloc manuellement (Ctrl+C).';
+        }
+      }
+
+      function selectWorkflowStep(stepNum) {
+        var num = Number(stepNum);
+        if (!WORKFLOW_STEPS[num]) return;
+        appState.workflowStep = num;
+        for (var i = 1; i <= 5; i++) {
+          var btn = document.getElementById('wf-btn-' + i);
+          if (btn) {
+            btn.setAttribute('aria-pressed', i === num ? 'true' : 'false');
+          }
+        }
+        renderWorkflowStep();
+        persistState();
+      }
+
+      function renderWorkflowStep() {
+        var container = document.getElementById('workflow-detail');
+        if (!container) return;
+        var step = WORKFLOW_STEPS[appState.workflowStep] || WORKFLOW_STEPS[1];
+        container.innerHTML =
+          '<div class="workflow-col">' +
+          '<div class="workflow-col-head">' +
+          '<strong>Déploiement Direct</strong>' +
+          '<span class="status-tag ' +
+          step.directBadgeClass +
+          '">' +
+          step.directBadge +
+          '</span>' +
+          '</div>' +
+          '<h4 style="margin-top:0;">' +
+          step.directTitle +
+          '</h4>' +
+          '<p style="font-size:0.92rem;">' +
+          step.directDesc +
+          '</p>' +
+          '<pre style="margin-bottom:0;"><code>' +
+          step.directCmd +
+          '</code></pre>' +
+          '</div>' +
+          '<div class="workflow-col workflow-col--recommended">' +
+          '<div class="workflow-col-head">' +
+          '<strong>Workflow Sécurisé</strong>' +
+          '<span class="status-tag ' +
+          step.secBadgeClass +
+          '">' +
+          step.secBadge +
+          '</span>' +
+          '</div>' +
+          '<h4 style="margin-top:0;">' +
+          step.secTitle +
+          '</h4>' +
+          '<p style="font-size:0.92rem;">' +
+          step.secDesc +
+          '</p>' +
+          '<pre style="margin-bottom:0;"><code>' +
+          step.secCmd +
+          '</code></pre>' +
+          '</div>';
+      }
+
+      function toggleChecklistItem(id) {
+        var cb = document.getElementById(id);
+        if (!cb) return;
+        appState.checklist[id] = Boolean(cb.checked);
+        updateChecklistUI();
+        persistState();
+      }
+
+      function updateChecklistUI() {
+        var keys = ['chk-1', 'chk-2', 'chk-3', 'chk-4', 'chk-5', 'chk-6'];
+        var done = 0;
+        for (var i = 0; i < keys.length; i++) {
+          var cb = document.getElementById(keys[i]);
+          var checked = Boolean(appState.checklist[keys[i]]);
+          if (cb) cb.checked = checked;
+          if (checked) done++;
+        }
+        var counter = document.getElementById('checklist-counter');
+        var bar = document.getElementById('checklist-progress');
+        var feedback = document.getElementById('checklist-feedback');
+        if (counter) {
+          counter.textContent = done + ' / ' + keys.length + ' vérifiés';
+          counter.className =
+            done === keys.length
+              ? 'status-tag status-tag--positive'
+              : 'status-tag';
+        }
+        if (bar) {
+          bar.style.width = Math.round((done / keys.length) * 100) + '%';
+        }
+        if (feedback) {
+          if (done === keys.length) {
+            feedback.textContent =
+              'Tous les prérequis sont validés : vous pouvez déployer en toute sérénité.';
+          } else {
+            feedback.textContent = '';
+          }
+        }
+      }
+
+      function resetChecklist(btn) {
+        if (!btn) return;
+        if (btn.dataset.armed !== 'true') {
+          btn.dataset.armed = 'true';
+          btn.textContent = 'Cliquer encore pour confirmer';
+          return;
+        }
+        btn.dataset.armed = 'false';
+        btn.textContent = 'Réinitialiser la liste';
+        var keys = ['chk-1', 'chk-2', 'chk-3', 'chk-4', 'chk-5', 'chk-6'];
+        for (var i = 0; i < keys.length; i++) {
+          appState.checklist[keys[i]] = false;
+        }
+        updateChecklistUI();
+        persistState();
+      }
+
+      function exportChecklist() {
+        var labels = {
+          'chk-1':
+            'Accès SSH autorisé pour mon IP actuelle (cPanel Autorisation SSH)',
+          'chk-2':
+            'Connexion chiffrée vérifiée (SFTP port 22 ou SSH par clé, droits 700/644/400)',
+          'chk-3':
+            'Code commité et poussé sur GitHub (filet de sécurité)',
+          'chk-4':
+            'Arbre Git propre sur l’hébergement (git status clean)',
+          'chk-5':
+            'Fichier .cpanel.yml présent à la racine et DEPLOYPATH vérifié',
+          'chk-6':
+            'Sauvegarde serveur JetBackup vérifiée avant déploiement'
+        };
+        var lines = [
+          'RÉCAPITULATIF PRÉ-DÉPLOIEMENT WEB',
+          '================================',
+          ''
+        ];
+        var keys = ['chk-1', 'chk-2', 'chk-3', 'chk-4', 'chk-5', 'chk-6'];
+        for (var i = 0; i < keys.length; i++) {
+          var mark = appState.checklist[keys[i]] ? '[OK]' : '[ ] ';
+          lines.push(mark + ' ' + labels[keys[i]]);
+        }
+        var content = lines.join('\n');
+        var blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'checklist-deploiement.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      function initApp() {
+        try {
+          var raw = window.localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            var saved = JSON.parse(raw);
+            if (saved && typeof saved === 'object') {
+              if (saved.protocol && PROTOCOL_DATA[saved.protocol]) {
+                appState.protocol = saved.protocol;
+              }
+              if (saved.workflowStep && WORKFLOW_STEPS[saved.workflowStep]) {
+                appState.workflowStep = saved.workflowStep;
+              }
+              if (saved.checklist && typeof saved.checklist === 'object') {
+                var keys = ['chk-1', 'chk-2', 'chk-3', 'chk-4', 'chk-5', 'chk-6'];
+                for (var i = 0; i < keys.length; i++) {
+                  if (typeof saved.checklist[keys[i]] === 'boolean') {
+                    appState.checklist[keys[i]] = saved.checklist[keys[i]];
+                  }
+                }
+              }
+            }
+          }
+        } catch (e) {
+          // Repli silencieux sur l'état par défaut
+        }
+
+        selectProtocol(appState.protocol);
+        selectWorkflowStep(appState.workflowStep);
+        updateCpanelGenerator();
+        updateChecklistUI();
+      }
+
+      initApp();
+    </script>
+  </body>
+</html>
