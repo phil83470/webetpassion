@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Protocole Freelance 360° : Sécuriser Données, Code &amp; Propriété | Web &amp; Passion</title>
+    <meta
+      name="description"
+      content="Guide opératoire de l'onboarding au offboarding pour sécuriser vos collaborations avec des freelances : propriété intellectuelle (art. L131-3), RGPD, coffre-fort, clés API, rotation des secrets et protocole Kill-Switch."
+    >
+    <meta name="robots" content="index, follow">
+    <link
+      rel="canonical"
+      href="https://webetpassion.fr/blog/protocole-freelance-360-securiser-donnees-code-propriete.html"
+    >
+
+    <!-- Open Graph / Réseaux sociaux -->
+    <meta property="og:type" content="article">
+    <meta
+      property="og:title"
+      content="Le Protocole Freelance 360° : Sécuriser vos Données, votre Code et votre Propriété | Web &amp; Passion"
+    >
+    <meta
+      property="og:description"
+      content="Cadre Zero-Trust en 4 piliers pour collaborer avec des prestataires sans risque de fuite de données, de perte de propriété intellectuelle ou de clés API orphelines."
+    >
+    <meta
+      property="og:url"
+      content="https://webetpassion.fr/blog/protocole-freelance-360-securiser-donnees-code-propriete.html"
+    >
+    <meta property="og:site_name" content="Web &amp; Passion">
+    <meta property="article:published_time" content="2026-11-24">
+
+    <!-- Feuille de style partagée -->
+    <link rel="icon" type="image/webp" href="../assets/logo-web-passion.webp">
+    <link rel="apple-touch-icon" href="../assets/logo-web-passion.webp">
+    <link rel="stylesheet" href="assets/css/blog-article.css">
+
+    <style>
+      .article-content h3 {
+        font-size: 1.15rem;
+        color: var(--text-main);
+        margin-top: 1.4rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .article-content code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.88em;
+        background-color: #f1f5f9;
+        color: #0f172a;
+        padding: 0.12rem 0.4rem;
+        border-radius: 4px;
+      }
+
+      .status-tag {
+        display: inline-block;
+        background-color: #dbeafe;
+        color: var(--primary-dark);
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        padding: 0.25rem 0.65rem;
+        border-radius: 999px;
+      }
+
+      .status-tag--positive {
+        background-color: #dcfce7;
+        color: #166534;
+      }
+
+      .status-tag--warning {
+        background-color: #fef3c7;
+        color: #92400e;
+      }
+
+      .status-tag--error {
+        background-color: #fee2e2;
+        color: #991b1b;
+      }
+
+      .pillars-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+      }
+
+      .pillar-card {
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-top: 4px solid var(--primary);
+        border-radius: 8px;
+        padding: 1rem;
+      }
+
+      .pillar-phase {
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 0.25rem;
+      }
+
+      .pillar-card h3 {
+        margin-top: 0;
+        margin-bottom: 0.35rem;
+        font-size: 1.05rem;
+      }
+
+      .pillar-card p {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        margin-bottom: 0;
+      }
+
+      .inset {
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 4px solid var(--primary);
+        border-radius: 8px;
+        padding: 1.1rem 1.25rem;
+        margin: 1.25rem 0;
+      }
+
+      .inset--error {
+        background-color: #fef2f2;
+        border-color: #fecaca;
+        border-left-color: var(--accent);
+      }
+
+      .inset-title {
+        font-weight: 700;
+        color: var(--text-main);
+        margin-bottom: 0.4rem;
+      }
+
+      .inset p:last-child,
+      .inset ul:last-child {
+        margin-bottom: 0;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        margin: 1.25rem 0;
+      }
+
+      .article-content table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 0.92rem;
+      }
+
+      .article-content th {
+        font-weight: 700;
+        color: var(--text-main);
+        padding: 0.7rem 0.75rem 0.7rem 0;
+        border-bottom: 2px solid var(--text-main);
+      }
+
+      .article-content td {
+        padding: 0.7rem 0.75rem 0.7rem 0;
+        border-bottom: 1px solid #e2e8f0;
+        vertical-align: top;
+      }
+
+      .compare-two {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1rem;
+        margin: 1.25rem 0;
+      }
+
+      .compare-card {
+        background-color: #f8fafc;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        padding: 1.1rem;
+      }
+
+      .compare-card--highlight {
+        background-color: #eff6ff;
+        border-color: var(--primary);
+        border-top: 4px solid var(--primary);
+      }
+
+      .compare-card h3 {
+        margin-top: 0;
+      }
+
+      .steps-inline {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1rem;
+        margin: 1.25rem 0;
+      }
+
+      .step-box {
+        background-color: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-top: 4px solid var(--accent);
+        border-radius: 8px;
+        padding: 1rem;
+      }
+
+      .step-num {
+        display: inline-block;
+        font-weight: 800;
+        font-size: 1.25rem;
+        color: var(--accent);
+        margin-bottom: 0.25rem;
+      }
+
+      .step-box h4 {
+        margin: 0 0 0.35rem;
+        font-size: 1rem;
+      }
+
+      .step-box p {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        margin-bottom: 0;
+      }
+
+      .interactive-box {
+        background-color: #f8fafc;
+        border: 1px solid #cbd5e1;
+        border-top: 4px solid var(--primary);
+        border-radius: 10px;
+        padding: 1.25rem;
+        margin: 1.5rem 0;
+      }
+
+      .interactive-box h3 {
+        margin-top: 0;
+      }
+
+      .checklist-group {
+        list-style: none;
+        padding-left: 0;
+        margin: 0.75rem 0;
+        border-top: 1px solid #e2e8f0;
+      }
+
+      .checklist-item {
+        border-bottom: 1px solid #e2e8f0;
+        padding: 0.5rem 0;
+      }
+
+      .checklist-label {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        cursor: pointer;
+      }
+
+      .checklist-label input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        margin-top: 3px;
+        accent-color: var(--primary);
+        cursor: pointer;
+      }
+
+      .progress-track {
+        width: 100%;
+        height: 10px;
+        background-color: #e2e8f0;
+        border-radius: 999px;
+        overflow: hidden;
+        margin: 0.6rem 0 0.9rem;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary), #16a34a);
+        width: 0%;
+        transition: width 0.2s ease;
+      }
+    </style>
+
+    <!-- Données structurées Schema.org -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://webetpassion.fr/blog/protocole-freelance-360-securiser-donnees-code-propriete.html"
+        },
+        "headline": "Le Protocole Freelance 360° : Sécuriser vos Données, votre Code et votre Propriété",
+        "description": "Un guide opératoire pour l'entreprise de l'onboarding au offboarding : propriété intellectuelle (art. L131-3), RGPD, coffre-fort, gestion des secrets et protocole Kill-Switch.",
+        "datePublished": "2026-11-24",
+        "dateModified": "2026-11-24",
+        "author": {
+          "@type": "Person",
+          "name": "Philippe Jireau",
+          "url": "https://webetpassion.fr"
+        },
+        "publisher": {
+          "@type": "ProfessionalService",
+          "name": "Web & Passion",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Saint-Maximin-la-Sainte-Baume",
+            "postalCode": "83470",
+            "addressRegion": "Provence-Alpes-Côte d'Azur",
+            "addressCountry": "FR"
+          },
+          "telephone": "+33771236136",
+          "url": "https://webetpassion.fr"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+    <!-- En-tête & Navigation principale -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a
+          href="../index.html"
+          class="brand-logo"
+          aria-label="Retour à l'accueil Web &amp; Passion"
+        >
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+          <span>Web &amp; Passion</span>
+        </a>
+
+        <button
+          type="button"
+          class="burger-btn"
+          id="burgerBtn"
+          aria-expanded="false"
+          aria-controls="mainNav"
+          aria-label="Ouvrir le menu de navigation"
+        >
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+        </button>
+
+        <nav class="main-nav" id="mainNav" aria-label="Navigation principale">
+          <ul>
+            <li><a href="../index.html">Accueil</a></li>
+            <li><a href="../tarifs.html">Tarifs</a></li>
+            <li><a href="../applications.html">Applications</a></li>
+            <li>
+              <a href="index.html" class="active" aria-current="page"
+                >Blog IA &amp; Web</a
+              >
+            </li>
+            <li>
+              <a href="../contact.html" class="nav-cta">Demander un devis</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Fil d'Ariane SEO -->
+    <nav class="breadcrumb" aria-label="Fil d'Ariane">
+      <div class="container">
+        <ol>
+          <li><a href="../index.html">Accueil</a></li>
+          <li><span aria-hidden="true">/</span></li>
+          <li><a href="index.html">Blog</a></li>
+          <li><span aria-hidden="true">/</span></li>
+          <li aria-current="page">Le Protocole Freelance 360°</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <main class="article-wrapper">
+      <div class="container article-grid">
+        <article class="article-content">
+          <header class="article-header">
+            <span class="article-badge">Cybersécurité &amp; Cadre Légal</span>
+            <h1>
+              Le Protocole Freelance 360° : Sécuriser vos Données, votre Code
+              et votre Propriété
+            </h1>
+            <div class="article-meta">
+              <span>Par <strong>Philippe Jireau</strong> (Web &amp; Passion)</span>
+              <span>•</span>
+              <time datetime="2026-11-24">Publié le 24 novembre 2026</time>
+              <span>•</span>
+              <span>Temps de lecture : 7 min</span>
+            </div>
+            <p class="article-lead">
+              Faire appel à un freelance apporte vitesse, souplesse et
+              expertise, mais introduit souvent des angles morts critiques :
+              fuites de données, perte de propriété intellectuelle ou clés API
+              orphelines. Voici le guide opératoire complet, de l'onboarding au
+              offboarding, pour garder le contrôle total de votre
+              infrastructure.
+            </p>
+          </header>
+
+          <!-- Sommaire cliquable -->
+          <nav class="table-of-contents" aria-label="Sommaire de l'article">
+            <h2>Sommaire du protocole</h2>
+            <ol>
+              <li>
+                <a href="#zero-trust"
+                  >1. Les 4 piliers du cadre Zero-Trust avec un freelance</a
+                >
+              </li>
+              <li>
+                <a href="#contrat-pi-rgpd"
+                  >2. Le Contrat : Propriété Intellectuelle et conformité
+                  RGPD</a
+                >
+              </li>
+              <li>
+                <a href="#identite-acces"
+                  >3. L'Identité : Moindre privilège et coffre-fort de mots de
+                  passe</a
+                >
+              </li>
+              <li>
+                <a href="#infrastructure-secrets"
+                  >4. L'Infrastructure : Séparer le code des secrets et clés
+                  API</a
+                >
+              </li>
+              <li>
+                <a href="#offboarding-action"
+                  >5. Offboarding Kill-Switch, remédiation et plan d'action</a
+                >
+              </li>
+            </ol>
+          </nav>
+
+          <div class="inset inset--error">
+            <div class="inset-title">Agilité vs Vulnérabilité</div>
+            <p>
+              La vitesse d'exécution ne doit jamais se faire au détriment du
+              contrôle de l'infrastructure et de la propriété intellectuelle.
+              Sans protocole structuré, trois risques majeurs apparaissent :
+              <strong>fuites de données</strong>, <strong>perte de PI</strong>
+              et <strong>clés API orphelines</strong> oubliées après la mission.
+            </p>
+          </div>
+
+          <!-- Section 1 -->
+          <section id="zero-trust">
+            <h2>1. Les 4 piliers du cadre Zero-Trust avec un freelance</h2>
+            <p>
+              Le cadre de sécurité <strong>Zero-Trust</strong> s'applique à
+              chaque étape de la collaboration afin de cloisonner les aspects
+              juridiques et techniques :
+            </p>
+
+            <div class="pillars-grid">
+              <div class="pillar-card">
+                <div class="pillar-phase">1. Phase Pré-mission</div>
+                <h3>Le Contrat (Légal &amp; PI)</h3>
+                <p>
+                  Verrouiller la cession des droits, la confidentialité et les
+                  rôles RGPD avant tout échange.
+                </p>
+              </div>
+              <div class="pillar-card">
+                <div class="pillar-phase">2. Phase d'Onboarding</div>
+                <h3>L'Identité (Accès Humains)</h3>
+                <p>
+                  Appliquer le moindre privilège et partager les accès via un
+                  coffre-fort centralisé.
+                </p>
+              </div>
+              <div class="pillar-card">
+                <div class="pillar-phase">3. Phase d'Exécution</div>
+                <h3>L'Infrastructure (Machines)</h3>
+                <p>
+                  Séparer le code des secrets, auditer les appels API et
+                  planifier la rotation des clés.
+                </p>
+              </div>
+              <div class="pillar-card">
+                <div class="pillar-phase">4. Fin de mission</div>
+                <h3>Le Cycle de Vie (Offboarding)</h3>
+                <p>
+                  Exécuter la révocation complète des accès et la rotation des
+                  secrets dès la clôture.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 2 -->
+          <section id="contrat-pi-rgpd">
+            <h2>
+              2. Le Contrat : Propriété Intellectuelle et conformité RGPD
+            </h2>
+
+            <h3>Le mythe de la propriété intellectuelle en France</h3>
+            <p>
+              <strong>Régler une facture ne transfère jamais la propriété</strong>
+              d'un code, d'un design ou d'un texte. Sans contrat explicite, le
+              freelance demeure l'unique propriétaire légal de l'œuvre :
+            </p>
+            <ul class="styled-list">
+              <li>
+                <strong>Étape 1 — Création de l'œuvre :</strong> Propriété =
+                Freelance (100 %).
+              </li>
+              <li>
+                <strong>Étape 2 — Paiement de la facture :</strong> Propriété =
+                toujours Freelance (100 %).
+              </li>
+              <li>
+                <strong>Étape 3 — Signature de la clause de cession :</strong>
+                Propriété = Client.
+              </li>
+            </ul>
+
+            <div class="compare-two">
+              <div class="compare-card">
+                <h3>Option A : Licence d'utilisation</h3>
+                <p>
+                  Le client dispose d'un droit d'usage limité. Le freelance reste
+                  propriétaire et peut concéder d'autres licences.
+                </p>
+                <ul class="styled-list">
+                  <li><strong>Propriété :</strong> Le Freelance</li>
+                  <li><strong>Durée :</strong> Limitée</li>
+                  <li><strong>Réutilisation :</strong> Possible</li>
+                  <li><strong>Impact coût :</strong> Modéré</li>
+                </ul>
+              </div>
+              <div class="compare-card compare-card--highlight">
+                <h3>Option B : Cession de droits</h3>
+                <p>
+                  Le client devient titulaire exclusif. Le freelance perd le
+                  droit d'exploiter la création.
+                </p>
+                <ul class="styled-list">
+                  <li><strong>Propriété :</strong> Le Client</li>
+                  <li><strong>Durée :</strong> Exclusive</li>
+                  <li><strong>Réutilisation :</strong> Interdite</li>
+                  <li><strong>Impact coût :</strong> Majoré (+30 % à +100 %)</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3>Anatomie stricte d'une clause de cession valide</h3>
+            <p>
+              Selon l'<strong>article L131-3 du Code de la Propriété Intellectuelle</strong>,
+              l'absence d'une seule de ces quatre mentions peut entraîner
+              l'annulation de la cession :
+            </p>
+            <ol class="styled-list">
+              <li>
+                <strong>Droits cédés :</strong> reproduction, représentation,
+                adaptation.
+              </li>
+              <li>
+                <strong>Domaine d'exploitation :</strong> supports visés (Web,
+                Application, Print).
+              </li>
+              <li>
+                <strong>Étendue géographique :</strong> France, Europe ou Monde.
+              </li>
+              <li>
+                <strong>Durée :</strong> limitée ou pour toute la durée légale
+                des droits d'auteur.
+              </li>
+            </ol>
+
+            <h3>Statut RGPD et responsabilité légale</h3>
+            <p>
+              Dans 90 % des cas, le freelance agit comme
+              <strong>Sous-traitant (Article 28 du RGPD)</strong>. Si les rôles
+              ne sont pas contractuellement définis et que le freelance décide
+              seul des outils et durées de conservation, le client s'expose à
+              une requalification et aux sanctions de la CNIL.
+            </p>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Critère</th>
+                    <th>Responsable de Traitement (Client)</th>
+                    <th>Sous-traitant (Freelance)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Prise de décision</strong></td>
+                    <td>Décide des finalités</td>
+                    <td>Suit les instructions strictes</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Responsabilité</strong></td>
+                    <td>Porte le risque de sanction CNIL</td>
+                    <td>Responsabilité limitée au contrat</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Propriété des outils</strong></td>
+                    <td>Fournit ou valide l'infrastructure</td>
+                    <td>Utilise les outils imposés</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="interactive-box" id="legal-checklist-box">
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: baseline;
+                  flex-wrap: wrap;
+                  gap: 0.5rem;
+                "
+              >
+                <h3 style="margin: 0">
+                  Checklist légale avant le premier jour de mission
+                </h3>
+                <span class="status-tag" id="legal-counter">0 / 5 validés</span>
+              </div>
+              <div class="progress-track" aria-hidden="true">
+                <div class="progress-fill" id="legal-progress"></div>
+              </div>
+              <ul class="checklist-group">
+                <li class="checklist-item">
+                  <label class="checklist-label">
+                    <input
+                      type="checkbox"
+                      id="lchk-1"
+                      onchange="toggleLegalCheck()"
+                    >
+                    <span
+                      >Accord de confidentialité (NDA) signé avant tout partage
+                      d'accès.</span
+                    >
+                  </label>
+                </li>
+                <li class="checklist-item">
+                  <label class="checklist-label">
+                    <input
+                      type="checkbox"
+                      id="lchk-2"
+                      onchange="toggleLegalCheck()"
+                    >
+                    <span>Annexe RGPD (Article 28) incluse au contrat.</span>
+                  </label>
+                </li>
+                <li class="checklist-item">
+                  <label class="checklist-label">
+                    <input
+                      type="checkbox"
+                      id="lchk-3"
+                      onchange="toggleLegalCheck()"
+                    >
+                    <span>Clause de cession de droits chiffrée séparément.</span>
+                  </label>
+                </li>
+                <li class="checklist-item">
+                  <label class="checklist-label">
+                    <input
+                      type="checkbox"
+                      id="lchk-4"
+                      onchange="toggleLegalCheck()"
+                    >
+                    <span
+                      >Clause de réserve de propriété (protection jusqu'au
+                      paiement).</span
+                    >
+                  </label>
+                </li>
+                <li class="checklist-item">
+                  <label class="checklist-label">
+                    <input
+                      type="checkbox"
+                      id="lchk-5"
+                      onchange="toggleLegalCheck()"
+                    >
+                    <span>Exigence d'une assurance Cyber/RC Pro active vérifiée.</span>
+                  </label>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- Section 3 -->
+          <section id="identite-acces">
+            <h2>
+              3. L'Identité : Moindre privilège et coffre-fort de mots de passe
+            </h2>
+            <p>
+              Transmettre des identifiants via Slack, e-mail ou SMS garantit leur
+              persistance dans des historiques non sécurisés. La sécurité de
+              votre entreprise devient alors tributaire de l'hygiène numérique
+              personnelle du prestataire (boîte mail non chiffrée, appareil
+              personnel exposé).
+            </p>
+
+            <h3>Application stricte du Principe du Moindre Privilège (PoLP)</h3>
+            <p>
+              Le freelance ne doit accéder qu'aux systèmes, applications et
+              fichiers strictement nécessaires à sa tâche. Jamais de droits
+              d'administration globaux, jamais d'accès direct à la base de
+              données de production sans supervision :
+            </p>
+            <ul class="styled-list">
+              <li>
+                <strong>Filtre d'Environnement :</strong> accès Dev / Test
+                uniquement.
+              </li>
+              <li>
+                <strong>Filtre de Temps :</strong> accès borné à la durée
+                stricte de la mission.
+              </li>
+              <li>
+                <strong>Filtre de Rôle :</strong> permissions minimales requises.
+              </li>
+            </ul>
+
+            <h3>Le rôle du coffre-fort de mots de passe d'entreprise</h3>
+            <p>
+              Utiliser une infrastructure centralisée permet de partager l'accès
+              aux plateformes (CMS, réseaux sociaux, SaaS)
+              <strong>sans jamais révéler le mot de passe réel</strong> au
+              prestataire, tout en permettant une révocation instantanée en un
+              clic.
+            </p>
+          </section>
+
+          <!-- Section 4 -->
+          <section id="infrastructure-secrets">
+            <h2>
+              4. L'Infrastructure : Séparer le code des secrets et clés API
+            </h2>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Critère</th>
+                    <th>Accès Humains (Mots de passe)</th>
+                    <th>Accès Machines (Clés API / Secrets)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Authentification</strong></td>
+                    <td>Via interface web</td>
+                    <td>Directement via le code</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Protection MFA</strong></td>
+                    <td>
+                      <span class="status-tag status-tag--positive"
+                        >Oui (Obligatoire)</span
+                      >
+                    </td>
+                    <td>
+                      <span class="status-tag status-tag--error"
+                        >Non (Contournée par design)</span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Vitesse d'exécution</strong></td>
+                    <td>Lente (vitesse de frappe)</td>
+                    <td>Millisecondes (scripts automatisés)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Rayon d'impact</strong></td>
+                    <td>Limité à la session</td>
+                    <td>Massif et silencieux</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Règle d'or : ne jamais coder les clés en dur</h3>
+            <p>
+              Une clé API inscrite en dur dans le code source ou poussée sur un
+              dépôt (même privé) est une bombe à retardement : l'historique Git
+              n'oublie jamais. Les secrets doivent être résolus au moment de
+              l'exécution (<em>runtime</em>) : l'entreprise crée et détient les
+              clés dans un coffre-fort central (GitHub Secrets, Vault) et les
+              injecte dynamiquement via le pipeline CI/CD. Le développeur ne
+              manipule que des variables d'environnement.
+            </p>
+            <p>
+              De plus, le donneur d'ordre doit toujours
+              <strong>générer les clés</strong> (client en Admin, prestataire
+              en lecture seule), surveiller les journaux d'API pour repérer toute
+              extraction anormale, et imposer une
+              <strong>rotation proactive des secrets</strong> (critique au-delà
+              de 90 jours ou dès la fin du contrat).
+            </p>
+          </section>
+
+          <!-- Section 5 -->
+          <section id="offboarding-action">
+            <h2>
+              5. Offboarding Kill-Switch, remédiation et plan d'action
+            </h2>
+
+            <h3>Le Offboarding Parfait : Protocole « Kill-Switch »</h3>
+            <p>
+              La simple désactivation du compte utilisateur du freelance ne
+              suffit pas. Tout secret partagé ou jeton généré durant la mission
+              doit être invalidé pour garantir une étanchéité post-contrat :
+            </p>
+            <ol class="styled-list">
+              <li>
+                <strong>Révocation d'Identité :</strong> couper l'accès au
+                coffre-fort d'entreprise.
+              </li>
+              <li>
+                <strong>Rotation des Secrets :</strong> renouveler les clés API
+                partagées durant la mission.
+              </li>
+              <li>
+                <strong>Fermeture Cloud / IAM :</strong> supprimer les rôles
+                AWS, Azure ou GCP temporaires.
+              </li>
+              <li>
+                <strong>Acquisition PI :</strong> collecter les livrables et
+                valider la cession de droits.
+              </li>
+            </ol>
+
+            <h3>Plan de remédiation en cas d'incident critique</h3>
+            <p>
+              En cas de fuite sur un dépôt public ou de trafic anormal,
+              respectez cette séquence stricte (ne supprimez jamais l'ancienne
+              clé avant d'avoir déployé la nouvelle pour éviter toute coupure de
+              service) :
+            </p>
+            <div class="steps-inline">
+              <div class="step-box">
+                <span class="step-num">1</span>
+                <h4>Générer</h4>
+                <p>Créer de nouveaux identifiants propres immédiatement.</p>
+              </div>
+              <div class="step-box">
+                <span class="step-num">2</span>
+                <h4>Remplacer</h4>
+                <p>Injecter les nouvelles clés dans le coffre-fort / CI/CD.</p>
+              </div>
+              <div class="step-box">
+                <span class="step-num">3</span>
+                <h4>Détruire</h4>
+                <p>Révoquer et supprimer définitivement l'ancienne clé compromise.</p>
+              </div>
+            </div>
+
+            <div class="inset">
+              <div class="inset-title">Votre plan d'action en 3 étapes</div>
+              <ul class="styled-list">
+                <li>
+                  <strong>Auditer les Contrats :</strong> vérifier la présence
+                  des clauses de cession de droits et RGPD pour vos prestataires
+                  actifs.
+                </li>
+                <li>
+                  <strong>Déployer un Coffre-Fort :</strong> migrer tout
+                  partage de mots de passe hors de Slack ou des e-mails vers une
+                  solution centralisée.
+                </li>
+                <li>
+                  <strong>Scanner les Dépôts Git :</strong> analyser vos dépôts
+                  pour détecter d'éventuelles clés API codées en dur.
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- Pont métier vers Web & Passion -->
+          <section id="accompagnement-web-passion" class="business-bridge">
+            <h2>
+              Un projet web encadré, transparent et sécurisé dès le premier jour ?
+            </h2>
+            <p>
+              Chez <strong>Web &amp; Passion</strong> à
+              Saint-Maximin-la-Sainte-Baume, vous restez propriétaire de votre
+              nom de domaine, de votre hébergement et de votre code source, avec
+              des accès maîtrisés et documentés.
+            </p>
+            <div class="cta-box">
+              <h3>Travaillons en toute confiance</h3>
+              <p>
+                Estimez votre projet en ligne ou contactez-moi pour échanger sur
+                vos besoins.
+              </p>
+              <div class="cta-buttons">
+                <a href="../applications.html" class="btn btn-primary"
+                  >Tester mes applications web</a
+                >
+                <a href="../contact.html" class="btn btn-secondary"
+                  >Demander un contact</a
+                >
+              </div>
+            </div>
+          </section>
+        </article>
+
+        <!-- Barre latérale -->
+        <aside
+          class="article-sidebar"
+          aria-label="Informations et services Web &amp; Passion"
+        >
+          <div class="sidebar-card">
+            <h3>Les 3 barrières Zero-Trust</h3>
+            <p>
+              <strong>1. Bouclier d'Identité :</strong> PoLP &amp; coffre-fort.<br>
+              <strong>2. Barrière d'Infrastructure :</strong> Injection de
+              secrets &amp; rotation API.<br>
+              <strong>3. Armure Légale :</strong> Cession PI &amp; RGPD Art. 28.
+            </p>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>À propos de l'auteur</h3>
+            <p>
+              <strong>Philippe Jireau</strong> — Créateur et développeur web
+              freelance chez <strong>Web &amp; Passion</strong> à
+              Saint-Maximin-la-Sainte-Baume (Var).
+            </p>
+            <a href="../tarifs.html" class="sidebar-link"
+              >Découvrir mes prestations →</a
+            >
+          </div>
+
+          <div class="sidebar-card highlight-card">
+            <h3>Outils gratuits en ligne</h3>
+            <p>
+              Découvrez mes applications web interactives : simulateur de devis
+              en ligne et générateur de carte de visite numérique.
+            </p>
+            <a href="../applications.html" class="btn btn-primary btn-full"
+              >Accéder aux applications</a
+            >
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-info">
+          <p><strong>Web &amp; Passion</strong> — Philippe Jireau</p>
+          <p>
+            Création de sites internet &amp; SEO local à
+            Saint-Maximin-la-Sainte-Baume (83470)
+          </p>
+          <p>
+            Tél : <a href="tel:+33771236136">07&nbsp;71&nbsp;23&nbsp;61&nbsp;36</a>
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="../index.html">Accueil</a>
+          <a href="../tarifs.html">Tarifs</a>
+          <a href="../applications.html">Applications</a>
+          <a href="../contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <p>
+            &copy; 2026 Web &amp; Passion — Tous droits réservés.
+            Micro-entreprise en franchise de TVA (art. 293 B du CGI).
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/blog-article.js"></script>
+    <script>
+      function toggleLegalCheck() {
+        var ids = ['lchk-1', 'lchk-2', 'lchk-3', 'lchk-4', 'lchk-5'];
+        var done = 0;
+        var state = {};
+        for (var i = 0; i < ids.length; i++) {
+          var cb = document.getElementById(ids[i]);
+          var checked = Boolean(cb && cb.checked);
+          state[ids[i]] = checked;
+          if (checked) done++;
+        }
+        try {
+          window.localStorage.setItem('wp_freelance_legal_v1', JSON.stringify(state));
+        } catch (e) {}
+        var counter = document.getElementById('legal-counter');
+        var bar = document.getElementById('legal-progress');
+        if (counter) {
+          counter.textContent = done + ' / ' + ids.length + ' validés';
+          counter.className =
+            done === ids.length
+              ? 'status-tag status-tag--positive'
+              : 'status-tag';
+        }
+        if (bar) {
+          bar.style.width = Math.round((done / ids.length) * 100) + '%';
+        }
+      }
+
+      (function initLegalCheck() {
+        try {
+          var raw = window.localStorage.getItem('wp_freelance_legal_v1');
+          if (raw) {
+            var state = JSON.parse(raw);
+            var ids = ['lchk-1', 'lchk-2', 'lchk-3', 'lchk-4', 'lchk-5'];
+            for (var i = 0; i < ids.length; i++) {
+              var cb = document.getElementById(ids[i]);
+              if (cb && typeof state[ids[i]] === 'boolean') {
+                cb.checked = state[ids[i]];
+              }
+            }
+          }
+        } catch (e) {}
+        toggleLegalCheck();
+      })();
+    </script>
+  </body>
+</html>

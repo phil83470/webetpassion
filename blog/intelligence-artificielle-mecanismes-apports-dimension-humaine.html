@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Intelligence Artificielle : Mécanismes, Apports &amp; Dimension Humaine | Web &amp; Passion</title>
+    <meta
+      name="description"
+      content="Thèse et rapport d'analyse sur l'Intelligence Artificielle : fonctionnement des LLM, écart entre maquette (POC) et production réelle, apports concrets, pièges à éviter et approche centrée sur l'humain."
+    >
+    <meta name="robots" content="index, follow">
+    <link
+      rel="canonical"
+      href="https://webetpassion.fr/blog/intelligence-artificielle-mecanismes-apports-dimension-humaine.html"
+    >
+
+    <!-- Open Graph / Réseaux sociaux -->
+    <meta property="og:type" content="article">
+    <meta
+      property="og:title"
+      content="L'Intelligence Artificielle : Mécanismes, Apports Théoriques vs Concrets et Dimension Humaine | Web &amp; Passion"
+    >
+    <meta
+      property="og:description"
+      content="Démystification des modèles de langage, fracture entre POC et terrain réel, gains opérationnels, dérives à éviter et principes d'une IA responsable."
+    >
+    <meta
+      property="og:url"
+      content="https://webetpassion.fr/blog/intelligence-artificielle-mecanismes-apports-dimension-humaine.html"
+    >
+    <meta property="og:site_name" content="Web &amp; Passion">
+    <meta property="article:published_time" content="2026-11-24">
+
+    <!-- Feuille de style partagée -->
+    <link rel="icon" type="image/webp" href="../assets/logo-web-passion.webp">
+    <link rel="apple-touch-icon" href="../assets/logo-web-passion.webp">
+    <link rel="stylesheet" href="assets/css/blog-article.css">
+
+    <style>
+      .article-content h3 {
+        font-size: 1.15rem;
+        color: var(--text-main);
+        margin-top: 1.4rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .figure-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+      }
+
+      .figure-panel {
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 4px solid var(--primary);
+        border-radius: 8px;
+        padding: 1rem;
+      }
+
+      .figure-label {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        margin-bottom: 0.25rem;
+      }
+
+      .figure-value {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--text-main);
+        line-height: 1.15;
+        margin-bottom: 0.25rem;
+      }
+
+      .figure-desc {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: 0;
+      }
+
+      .inset {
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 4px solid var(--primary);
+        border-radius: 8px;
+        padding: 1.1rem 1.25rem;
+        margin: 1.25rem 0;
+      }
+
+      .inset--warning {
+        background-color: #fffbeb;
+        border-color: #fde68a;
+        border-left-color: #d97706;
+      }
+
+      .inset-title {
+        font-weight: 700;
+        color: var(--text-main);
+        margin-bottom: 0.4rem;
+      }
+
+      .inset p:last-child {
+        margin-bottom: 0;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        margin: 1.25rem 0;
+      }
+
+      .article-content table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 0.92rem;
+      }
+
+      .article-content th {
+        font-weight: 700;
+        color: var(--text-main);
+        padding: 0.7rem 0.75rem 0.7rem 0;
+        border-bottom: 2px solid var(--text-main);
+      }
+
+      .article-content td {
+        padding: 0.7rem 0.75rem 0.7rem 0;
+        border-bottom: 1px solid #e2e8f0;
+        vertical-align: top;
+      }
+    </style>
+
+    <!-- Données structurées Schema.org -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://webetpassion.fr/blog/intelligence-artificielle-mecanismes-apports-dimension-humaine.html"
+        },
+        "headline": "Thèse et Rapport d'Analyse : L'Intelligence Artificielle — Mécanismes, Apports Théoriques vs Concrets, Impacts et Dimension Humaine",
+        "description": "Analyse approfondie des fondements de l'IA générative, de l'écart entre maquette et production, des gains concrets, des pièges à éviter et d'une approche centrée sur l'humain.",
+        "datePublished": "2026-11-24",
+        "dateModified": "2026-11-24",
+        "author": {
+          "@type": "Person",
+          "name": "Philippe Jireau",
+          "url": "https://webetpassion.fr"
+        },
+        "publisher": {
+          "@type": "ProfessionalService",
+          "name": "Web & Passion",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Saint-Maximin-la-Sainte-Baume",
+            "postalCode": "83470",
+            "addressRegion": "Provence-Alpes-Côte d'Azur",
+            "addressCountry": "FR"
+          },
+          "telephone": "+33771236136",
+          "url": "https://webetpassion.fr"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+    <!-- En-tête & Navigation principale -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a
+          href="../index.html"
+          class="brand-logo"
+          aria-label="Retour à l'accueil Web &amp; Passion"
+        >
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+          <span>Web &amp; Passion</span>
+        </a>
+
+        <button
+          type="button"
+          class="burger-btn"
+          id="burgerBtn"
+          aria-expanded="false"
+          aria-controls="mainNav"
+          aria-label="Ouvrir le menu de navigation"
+        >
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+        </button>
+
+        <nav class="main-nav" id="mainNav" aria-label="Navigation principale">
+          <ul>
+            <li><a href="../index.html">Accueil</a></li>
+            <li><a href="../tarifs.html">Tarifs</a></li>
+            <li><a href="../applications.html">Applications</a></li>
+            <li>
+              <a href="index.html" class="active" aria-current="page"
+                >Blog IA &amp; Web</a
+              >
+            </li>
+            <li>
+              <a href="../contact.html" class="nav-cta">Demander un devis</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Fil d'Ariane SEO -->
+    <nav class="breadcrumb" aria-label="Fil d'Ariane">
+      <div class="container">
+        <ol>
+          <li><a href="../index.html">Accueil</a></li>
+          <li><span aria-hidden="true">/</span></li>
+          <li><a href="index.html">Blog</a></li>
+          <li><span aria-hidden="true">/</span></li>
+          <li aria-current="page">L'Intelligence Artificielle : Mécanismes &amp; Dimension Humaine</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <main class="article-wrapper">
+      <div class="container article-grid">
+        <article class="article-content">
+          <header class="article-header">
+            <span class="article-badge">Thèse &amp; Rapport d'Analyse — IA</span>
+            <h1>
+              L'Intelligence Artificielle : Mécanismes, Apports Théoriques vs
+              Concrets, Impacts et Dimension Humaine
+            </h1>
+            <div class="article-meta">
+              <span>Par <strong>Philippe Jireau</strong> (Web &amp; Passion)</span>
+              <span>•</span>
+              <time datetime="2026-11-24">Publié le 24 novembre 2026</time>
+              <span>•</span>
+              <span>Temps de lecture : 6 min</span>
+            </div>
+            <p class="article-lead">
+              L'essor rapide de l'intelligence artificielle générative et des
+              modèles de langage à grande échelle a suscité à la fois un
+              enthousiasme massif et une confusion quant à leurs capacités
+              réelles. Ce rapport dresse une analyse approfondie et objective des
+              fondements de l'IA, en dissociant les démonstrations de
+              laboratoire de la réalité du terrain, tout en traçant les contours
+              d'une adoption centrée sur l'humain.
+            </p>
+          </header>
+
+          <!-- Sommaire cliquable -->
+          <nav class="table-of-contents" aria-label="Sommaire de l'article">
+            <h2>Sommaire du rapport</h2>
+            <ol>
+              <li>
+                <a href="#demystification"
+                  >1. Démystification et Périmètre : Ce que fait réellement l'IA</a
+                >
+              </li>
+              <li>
+                <a href="#paradoxe-demo"
+                  >2. Le Paradoxe de la Démo : Apports Théoriques vs Réalité du
+                  Terrain</a
+                >
+              </li>
+              <li>
+                <a href="#apports-concrets"
+                  >3. Cartographie des Apports Concrets et Gains
+                  Opérationnels</a
+                >
+              </li>
+              <li>
+                <a href="#derives-pieges"
+                  >4. Dérives et Pièges Majeurs à Éviter</a
+                >
+              </li>
+              <li>
+                <a href="#ia-humaine"
+                  >5. Principes pour une IA Centrée sur l'Humain et Éthique</a
+                >
+              </li>
+            </ol>
+          </nav>
+
+          <div class="figure-grid" aria-label="Repères clés du rapport">
+            <div class="figure-panel">
+              <div class="figure-label">Architecture clé</div>
+              <div class="figure-value">Transformer</div>
+              <p class="figure-desc">
+                Machine d'inférence probabiliste, sans conscience autonome.
+              </p>
+            </div>
+            <div class="figure-panel">
+              <div class="figure-label">POC non industrialisés</div>
+              <div class="figure-value">50–80 %</div>
+              <p class="figure-desc">
+                Part des maquettes d'IA qui n'atteignent pas la production.
+              </p>
+            </div>
+            <div class="figure-panel">
+              <div class="figure-label">Principe directeur</div>
+              <div class="figure-value">Copilote</div>
+              <p class="figure-desc">
+                Augmentation humaine (<em>Human-in-the-Loop</em>) plutôt que
+                remplacement.
+              </p>
+            </div>
+          </div>
+
+          <!-- Section 1 -->
+          <section id="demystification">
+            <h2>1. Démystification et Périmètre : Ce que fait réellement l'IA</h2>
+            <p>
+              Pour appréhender la portée de l'intelligence artificielle moderne,
+              il convient de dépasser la métaphore du « cerveau artificiel » ou
+              de la conscience autonome. Les avancées récentes, dominées par les
+              réseaux de neurones profonds et les architectures
+              <em>Transformer</em>, reposent sur des principes statistiques et
+              mathématiques d'une grande rigueur.
+            </p>
+            <p>
+              Comme le rappellent les analyses d'IBM et de Cloudflare, un grand
+              modèle de langage (<em>Large Language Model</em> ou LLM) est avant
+              tout une machine d'inférence probabiliste. Le traitement
+              s'effectue en plusieurs étapes fondamentales :
+            </p>
+            <ul class="styled-list">
+              <li>
+                <strong>La Tokenisation :</strong> Les données textuelles sont
+                découpées en unités élémentaires appelées <em>tokens</em> (mots
+                ou fragments de mots), associées à des identifiants numériques.
+              </li>
+              <li>
+                <strong>Le Mécanisme d'Auto-Attention :</strong> L'architecture
+                Transformer évalue les relations de dépendance et le contexte
+                entre les différents tokens d'une séquence, indépendamment de
+                leur position relative.
+              </li>
+              <li>
+                <strong>La Prédiction Probabiliste :</strong> Le modèle ne
+                « pense » pas au sens humain ; il calcule à chaque étape la
+                probabilité du token suivant le plus pertinent en fonction du
+                contexte fourni dans sa fenêtre d'entrée.
+              </li>
+            </ul>
+            <p>
+              L'apprentissage s'articule généralement en trois phases
+              successives : un pré-entraînement auto-supervisé sur d'immenses
+              volumes de données non structurées pour capturer la structure du
+              langage ; un affinage spécialisé (<em>fine-tuning</em>) sur des
+              paires d'instructions et de réponses ; et un alignement par
+              apprentissage par renforcement à partir de retours humains
+              (<em>Reinforcement Learning from Human Feedback</em> ou RLHF) pour
+              sécuriser et orienter le comportement de l'assistant.
+            </p>
+          </section>
+
+          <!-- Section 2 -->
+          <section id="paradoxe-demo">
+            <h2>
+              2. Le Paradoxe de la Démo : Apports Théoriques vs Réalité du
+              Terrain
+            </h2>
+            <p>
+              L'un des constats les plus marquants des études industrielles
+              récentes réside dans la fracture majeure entre les réussites en
+              laboratoire et les déploiements à l'échelle opérationnelle. Le
+              concept de la « maquette » ou <em>Proof of Concept</em> (POC)
+              suscite fréquemment des attentes irréalistes.
+            </p>
+
+            <div class="inset inset--warning">
+              <div class="inset-title">Constat terrain (Gartner, IDC, Slash Tech)</div>
+              <p>
+                Les retours d'expérience synthétisés par des cabinets d'études
+                et des experts en ingénierie logicielle révèlent que
+                <strong>50 % à 80 % des POC d'IA</strong> ne parviennent jamais
+                au stade de la mise en production.
+              </p>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Dimension d'Analyse</th>
+                    <th>Sur Maquette / POC (Théorique)</th>
+                    <th>Dans le Concret Réel (Production)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Qualité des Données</strong></td>
+                    <td>
+                      Échantillons propres, structurés et parfois nettoyés
+                      manuellement.
+                    </td>
+                    <td>
+                      Données hétérogènes, incomplètes, non structurées et
+                      bruitées.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Périmètre d'Usage</strong></td>
+                    <td>
+                      Scénarios nominaux privilégiés (<em>happy paths</em>) dans
+                      un cadre isolé.
+                    </td>
+                    <td>
+                      Gestion obligatoire de tous les cas d'échec, cas limites
+                      et exceptions.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Modèle Économique &amp; Coûts</strong></td>
+                    <td>
+                      Coûts d'inférence négligeables du fait de faibles volumes
+                      de tests.
+                    </td>
+                    <td>
+                      Facturation croissante liée à l'usage massif, exigences de
+                      coût au p95.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Architecture &amp; Sécurité</strong></td>
+                    <td>
+                      Prototypes déconnectés du système d'information existant.
+                    </td>
+                    <td>
+                      Intégration stricte aux CRM/ERP, gouvernance RGPD et
+                      moindre privilège.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Facteur Humain</strong></td>
+                    <td>
+                      Équipe réduite de concepteurs enthousiastes et experts.
+                    </td>
+                    <td>
+                      Adoption par des utilisateurs finaux non formés et
+                      résistances métier.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>
+              En maquette, l'IA démontre ce qui est théoriquement réalisable
+              dans des conditions idéales. Dans le concret réel, la valeur de
+              l'IA dépend de la maturité des données d'entreprise, de la
+              solidité de l'infrastructure d'orchestration et de
+              l'accompagnement humain.
+            </p>
+          </section>
+
+          <!-- Section 3 -->
+          <section id="apports-concrets">
+            <h2>
+              3. Cartographie des Apports Concrets et Gains Opérationnels
+            </h2>
+            <p>
+              Malgré le taux d'abandon élevé des POC mal cadrés, l'IA apporte
+              des bénéfices tangibles lorsqu'elle est déployée avec une
+              intention stratégique claire. L'IA excelle non pas en tant que
+              substitut à l'intelligence humaine, mais en tant que partenaire
+              d'augmentation des capacités cognitives.
+            </p>
+            <p>
+              Les gains réels constatés dans les organisations se manifestent
+              principalement à travers trois grands axes :
+            </p>
+            <div class="info-cards">
+              <div class="info-card">
+                <h3>Traitement de l'Information Non Structurée</h3>
+                <p>
+                  Synthèse de rapports volumineux, extraction automatique de
+                  clauses juridiques, analyse de sentiments dans les retours
+                  clients et qualification de tickets support.
+                </p>
+              </div>
+              <div class="info-card">
+                <h3>Accélération du Travail Intellectuel</h3>
+                <p>
+                  Assistance au codage informatique, génération de premières
+                  ébauches de documents, traduction contextuelle et aide à la
+                  recherche documentaire.
+                </p>
+              </div>
+              <div class="info-card">
+                <h3>Automatisation des Processus Répétitifs</h3>
+                <p>
+                  Traitement automatisé de flux documentaires standardisés et
+                  orchestration de tâches administratives banalisées.
+                </p>
+              </div>
+            </div>
+            <p style="margin-top: 1.25rem">
+              Lorsque l'IA est utilisée comme un « copilote », elle permet de
+              libérer du temps de travail au profit d'activités à plus forte
+              valeur ajoutée, exigeant du jugement critique, de l'empathie et
+              une prise de décision stratégique.
+            </p>
+          </section>
+
+          <!-- Section 4 -->
+          <section id="derives-pieges">
+            <h2>4. Dérives et Pièges Majeurs à Éviter</h2>
+            <p>
+              L'intégration de l'IA comporte des risques structurels que les
+              dirigeants et équipes techniques doivent impérativement anticiper
+              pour éviter les échecs coûteux ou les dégradations
+              opérationnelles.
+            </p>
+            <p>
+              Les cinq erreurs les plus récurrentes documentées dans l'analyse
+              des échecs de projets IA s'établissent comme suit :
+            </p>
+            <ol class="styled-list">
+              <li>
+                <strong>La Fascination Techno-Centrée :</strong> Lancer un
+                projet IA « pour faire de l'IA » sans cibler un problème métier
+                précis ni définir de métriques de succès financières ou
+                opérationnelles au préalable.
+              </li>
+              <li>
+                <strong>L'Absence d'Infrastructure et de Données Adaptées :</strong>
+                Tenter d'industrialiser un algorithme sans préparer la qualité
+                des données sous-jacentes (<em>AI-ready data</em>) ni poser
+                d'architecture MLOps et de mémoire vectorielle.
+              </li>
+              <li>
+                <strong>Le Piège du Remplacement Aveugle :</strong> Chercher à
+                automatiser entièrement une fonction complexe sans conserver de
+                supervision humaine, conduisant à la propagation d'erreurs ou
+                d'hallucinations.
+              </li>
+              <li>
+                <strong>La Négligence des Risques de Sécurité et de Conformité :</strong>
+                Accorder des privilèges excessifs aux agents IA ou exposer des
+                données confidentielles sans traçabilité ni journalisation des
+                actions.
+              </li>
+              <li>
+                <strong>L'Uniformisation des Productions :</strong> S'en
+                remettre exclusivement aux modèles probabilistes pour la
+                création de contenu ou la réflexion stratégique, au risque de
+                standardiser les livrables et d'appauvrir la variété des idées.
+              </li>
+            </ol>
+          </section>
+
+          <!-- Section 5 -->
+          <section id="ia-humaine">
+            <h2>5. Principes pour une IA Centrée sur l'Humain et Éthique</h2>
+            <p>
+              Pour que l'intelligence artificielle constitue un progrès durable,
+              les organisations doivent replacer le facteur humain au cœur de
+              leur démarche. L'objectif ultime doit être l'IA de confiance et
+              l'augmentation des compétences.
+            </p>
+            <p>
+              Les piliers fondamentaux d'une IA responsable et humaine reposent
+              sur les exigences suivantes :
+            </p>
+            <ul class="styled-list">
+              <li>
+                <strong>Garder l'Humain dans la Boucle (<em>Human-in-the-Loop</em>) :</strong>
+                Maintenir systématiquement la responsabilité et le contrôle des
+                décisions finales entre les mains des professionnels, en
+                particulier dans les domaines sensibles (santé, droit, finance,
+                ressources humaines).
+              </li>
+              <li>
+                <strong>Prioriser la Formation et la Conduite du Changement :</strong>
+                Investir autant dans la montée en compétences des collaborateurs
+                que dans l'acquisition de technologies. L'acculturation à l'IA
+                conditionne directement son adoption réelle.
+              </li>
+              <li>
+                <strong>Explicabilité et Auditabilité :</strong> Imposer des
+                exigences de traçabilité pour comprendre le raisonnement et les
+                sources mobilisés par les agents IA lors de l'exécution d'une
+                tâche.
+              </li>
+              <li>
+                <strong>Viser l'Augmentation plutôt que l'Élimination :</strong>
+                Concevoir les outils d'IA comme des amplificateurs de la
+                créativité et de la productivité humaine, en valorisant
+                l'expertise, l'esprit critique et la singularité de chaque
+                collaborateur.
+              </li>
+            </ul>
+
+            <div class="inset">
+              <div class="inset-title">Conclusion</div>
+              <p>
+                L'intelligence artificielle n'est ni une magie autonome ni une
+                menace inévitable pour le travail humain. Comme toute
+                technologie statistique puissante, son succès réel dépend de la
+                clarté des objectifs métier, de la rigueur de l'industrialisation
+                technique et, avant tout, du respect de la primauté de
+                l'intelligence et de la responsabilité humaines.
+              </p>
+            </div>
+          </section>
+
+          <!-- Pont métier vers Web & Passion -->
+          <section id="accompagnement-web-passion" class="business-bridge">
+            <h2>
+              Intégrer l'IA utilement dans votre activité ou votre site web ?
+            </h2>
+            <p>
+              Basé à <strong>Saint-Maximin-la-Sainte-Baume</strong>,
+              j'accompagne les artisans, indépendants et PME pour tirer parti du
+              numérique et de l'IA de façon concrète, sécurisée et adaptée à vos
+              besoins réels.
+            </p>
+            <div class="cta-box">
+              <h3>Passons de la théorie à des outils concrets</h3>
+              <p>
+                Découvrez mes applications web ou échangeons directement sur
+                votre projet.
+              </p>
+              <div class="cta-buttons">
+                <a href="../applications.html" class="btn btn-primary"
+                  >Tester mes applications web</a
+                >
+                <a href="../contact.html" class="btn btn-secondary"
+                  >Demander un contact</a
+                >
+              </div>
+            </div>
+          </section>
+        </article>
+
+        <!-- Barre latérale -->
+        <aside
+          class="article-sidebar"
+          aria-label="Informations et services Web &amp; Passion"
+        >
+          <div class="sidebar-card">
+            <h3>À propos de l'auteur</h3>
+            <p>
+              <strong>Philippe Jireau</strong> — Créateur et développeur web
+              freelance chez <strong>Web &amp; Passion</strong> à
+              Saint-Maximin-la-Sainte-Baume (Var).
+            </p>
+            <p>
+              Conception de sites internet rapides, SEO local et outils
+              numériques sur-mesure pour les professionnels.
+            </p>
+            <a href="../tarifs.html" class="sidebar-link"
+              >Découvrir mes prestations →</a
+            >
+          </div>
+
+          <div class="sidebar-card highlight-card">
+            <h3>Outils gratuits en ligne</h3>
+            <p>
+              Découvrez mes applications web interactives : simulateur de devis
+              en ligne et générateur de carte de visite numérique.
+            </p>
+            <a href="../applications.html" class="btn btn-primary btn-full"
+              >Accéder aux applications</a
+            >
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-info">
+          <p><strong>Web &amp; Passion</strong> — Philippe Jireau</p>
+          <p>
+            Création de sites internet &amp; SEO local à
+            Saint-Maximin-la-Sainte-Baume (83470)
+          </p>
+          <p>
+            Tél : <a href="tel:+33771236136">07&nbsp;71&nbsp;23&nbsp;61&nbsp;36</a>
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="../index.html">Accueil</a>
+          <a href="../tarifs.html">Tarifs</a>
+          <a href="../applications.html">Applications</a>
+          <a href="../contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <p>
+            &copy; 2026 Web &amp; Passion — Tous droits réservés.
+            Micro-entreprise en franchise de TVA (art. 293 B du CGI).
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/blog-article.js"></script>
+  </body>
+</html>

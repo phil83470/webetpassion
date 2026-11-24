@@ -50,8 +50,20 @@
   </url>
   <url>
     <loc>https://webetpassion.fr/blog/</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-24</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://webetpassion.fr/blog/protocole-freelance-360-securiser-donnees-code-propriete.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://webetpassion.fr/blog/intelligence-artificielle-mecanismes-apports-dimension-humaine.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
