@@ -40,8 +40,12 @@ html {
   scroll-behavior: auto;
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
+html::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
   background:
     radial-gradient(
       circle at 22% 35%,
@@ -63,8 +67,12 @@ body {
       #ef4444 75%,
       #7f1d1d 100%
     );
-  background-attachment: fixed;
   background-size: cover;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: transparent;
   color: var(--text);
   line-height: 1.6;
 }
