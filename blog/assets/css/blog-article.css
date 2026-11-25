@@ -93,10 +93,23 @@ a:hover {
 .brand-logo {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.7rem;
     font-weight: 700;
     font-size: 1.25rem;
     color: var(--text-main);
+    white-space: nowrap;
+}
+
+.brand-logo img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    border-radius: 999px;
+    flex-shrink: 0;
+}
+
+.brand-logo .accent {
+    color: var(--accent);
 }
 
 .brand-logo svg {

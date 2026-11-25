@@ -1,4 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // 0. Garantir l'affichage du logo Web & Passion sur les pages actuelles et futures du blog
+    const brandLogo = document.querySelector(".brand-logo");
+    if (brandLogo && !brandLogo.querySelector("img")) {
+        const svg = brandLogo.querySelector("svg");
+        if (svg) {
+            const img = document.createElement("img");
+            img.src = "../assets/logo-web-passion.webp";
+            img.alt = "Logo Web & Passion";
+            img.width = 44;
+            img.height = 44;
+            svg.replaceWith(img);
+        }
+    }
+
     // 1. Gestion du menu burger sur mobile
     const burgerBtn = document.getElementById("burgerBtn");
     const mainNav = document.getElementById("mainNav");
